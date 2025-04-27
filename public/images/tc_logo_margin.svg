@@ -1,0 +1,21 @@
+<svg version="1.1" viewBox="0 0 686 688.8635170603675" fill="none" stroke="none" stroke-linecap="round" stroke-miterlimit="10" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <clipPath id="p.0">
+            <path d="M0 0h686v688.8635H0z" clip-rule="nonzero"/>
+        </clipPath>
+    </defs>
+    <g clip-path="url(#p.0)">
+
+        <!-- The 4 arches with gaps -->
+        <path d="M343 154c50 0 90 0 120 30s30 70 30 120" stroke="#000" stroke-width="24" fill="none"/>
+        <path d="M532 344c0 50 0 90-30 120s-70 30-120 30" stroke="#000" stroke-width="24" fill="none"/>
+        <path d="M343 532c-50 0-90 0-120-30s-30-70-30-120" stroke="#000" stroke-width="24" fill="none"/>
+        <path d="M154 344c0-50 0-90 30-120s70-30 120-30" stroke="#000" stroke-width="24" fill="none"/>
+
+        <!-- Inner parts: only Red Circle and Camera Lens -->
+        <path fill="#ff0000" d="m199.50394 464.3819c0-13.272247 10.759262-24.031494 24.031494-24.031494 6.3735504 0 12.486053 2.5318604 16.992828 7.038666 4.50679 4.506775 7.038666 10.619263 7.038666 16.992828 0 13.272217-10.759262 24.031494-24.031494 24.031494-13.272232 0-24.031494-10.759277-24.031494-24.031494z" fill-rule="evenodd"/>
+
+        <!-- The center camera lens -->
+        <path stroke="#000000" stroke-width="24.0" stroke-linejoin="round" stroke-linecap="round" d="m255.96457 344.42783c0-48.070526 38.96884-87.03937 87.03937-87.03937 23.08429 0 45.223083 9.170197 61.546143 25.493225 16.323029 16.32306 25.493225 38.461853 25.493225 61.546143 0 48.070526-38.96884 87.03937-87.03937 87.03937-48.070526 0-87.03937-38.96884-87.03937-87.03937z" fill="none"/>
+    </g>
+</svg>

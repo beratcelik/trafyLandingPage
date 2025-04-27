@@ -1,0 +1,710 @@
+/* Genel Sıfırlama */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: #000; background: #fff; }
+a { text-decoration: none; color: inherit; }
+header, main, footer {
+    width: 100%;
+    margin: 0; /* No centering */
+    max-width: none; /* Remove limitation */
+}
+
+.btn { display: inline-block; padding: .75rem 1.5rem; border: 1px solid #000; border-radius: 999px; font-size: 1rem; font-weight: 600; transition: background .3s, color .3s; }
+.btn:hover { background: #000; color: #fff; }
+.hidden { display: none; }
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center; /* 👈 Center everything horizontally */
+    align-items: center;
+    padding: 0 2rem;
+    z-index: 100;
+}
+
+.header-center {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-wrapper img {
+    height: 24px;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+nav a {
+    font-weight: 500;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+
+
+
+/* Bölümler */
+section { padding: 80px 2rem 40px; }
+#hero {
+    width: 100vw;
+    height: 80vh;
+    position: relative;
+    overflow: hidden; /* 🧹 Hide overflow to keep it clean */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+#hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* 🧡 This makes it behave like a background! */
+    filter: brightness(60%); /* 🔥 Optional: Darken a bit for better text visibility */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1; /* 🚀 Always above the video */
+    color: white;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* Filtre */
+#filter { text-align: center; }
+.tabs { display: inline-flex; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; }
+.tab { padding: .75rem 1.5rem; background: #f9f9f9; cursor: pointer; font-weight: 500; }
+.tab.active { background: #000; color: #fff; }
+
+/* Detay Grupları */
+#details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem;
+}
+
+.detail-group {
+    display: none; /* hide by default */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+    max-width: 1200px;
+}
+
+.detail-group.active {
+    display: flex; /* show when active */
+}
+
+
+
+.detail-card {
+    background: #fff;
+    text-align: center;
+    border: none;
+    padding: 2rem 1rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    max-width: 400px;
+    flex: 1 1 400px;
+}
+
+.detail-card:hover {
+    transform: translateY(-10px);
+}
+
+.product-image {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 1.5rem;
+}
+
+.new-badge {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #c45600;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    width: 100%; /* NEW */
+}
+
+
+.product-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.5rem;
+}
+
+.product-subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.product-description {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 2rem;
+}
+
+.product-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    background-color: #0071e3;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #005bb5;
+}
+
+.btn-secondary {
+    color: #0071e3;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+}
+
+.btn-secondary:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+    .detail-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+.detail-card h2 { font-size: 1.5rem; margin-bottom: .5rem; }
+.detail-card h3 { font-size: 1.125rem; color: #555; margin-bottom: 1rem; }
+.detail-card h4 { font-size: 1rem; margin-top: 1rem; margin-bottom: .5rem; }
+.detail-card ul { list-style: disc inside; margin-left: .5rem; margin-bottom: 1rem; }
+.detail-card p { margin-bottom: 1rem; }
+
+/* Footer */
+footer { text-align: center; padding: 2rem; font-size: .9rem; color: #777; }
+
+
+.model-details {
+    display: none;
+    padding: 4rem 2rem;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.model-details.active {
+    display: block;
+}
+
+.model-summary {
+    max-width: 700px;
+    margin: 2rem auto 2rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.model-sections-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.model-section {
+    background: #fafafa;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+    text-align: left;
+}
+
+.model-section:hover {
+    transform: translateY(-5px);
+}
+
+.model-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #111;
+    font-weight: 600;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.features-list li {
+    padding: 0.5rem 0;
+    font-size: 1.05rem;
+    border-bottom: 1px solid #eee;
+}
+
+.features-list li:last-child {
+    border-bottom: none;
+}
+
+.model-cta {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.model-cta .btn {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 999px;
+}
+
+.buy-btn {
+    background: #007aff;
+    color: white;
+    border: none;
+}
+
+.scroll-btn {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.compare-btn {
+    background: #f5f5f7;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .model-sections-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/* Comparison */
+.comparison {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: #fff;
+}
+
+.comparison-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 4rem;
+    color: #111;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 3rem;
+}
+
+.comparison-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    background: #fafafa;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.5s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Kartlar hover olduğunda hafif yükseliyor */
+.comparison-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+}
+
+/* Fade-in animasyonu */
+.comparison-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.comparison-item h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #000;
+}
+
+.comparison-item p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+/* Model Series */
+.model-series {
+    padding: 5rem 2rem;
+    background: #f9f9f9;
+}
+
+.model-name {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.slider-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+    cursor: grab;
+}
+
+.feature-card {
+    flex: 0 0 auto;
+    min-width: 260px;
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #111;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.3s;
+}
+
+.slider-btn:hover {
+    background: #333;
+}
+
+.slider-btn.left {
+    left: -1rem;
+}
+
+.slider-btn.right {
+    right: -1rem;
+}
+
+
+/* Comparison Table */
+
+.comparison-table {
+    padding: 5rem 2rem;
+    background: #fff;
+    text-align: center;
+}
+
+.comparison-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+th, td {
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+    color: #333;
+}
+
+th {
+    font-weight: 700;
+    background: #fafafa;
+    color: #000;
+}
+
+tr:hover td {
+    background: #f5f5f5;
+}
+
+thead {
+    background: #f9f9f9;
+}
+
+td:first-child, th:first-child {
+    text-align: left;
+}
+
+/* CTA Butonlar */
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.buy-btn {
+    background-color: #007aff; /* Apple tarzı mavi */
+    color: #fff;
+    border: none;
+}
+
+.buy-btn:hover {
+    background-color: #005bb5;
+}
+
+.scroll-btn,
+.compare-btn {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    color: #333;
+}
+
+.scroll-btn:hover,
+.compare-btn:hover {
+    background-color: #ddd;
+}
+
+.compare-buy-btn {
+    background-color: #007aff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.compare-buy-btn:hover {
+    background-color: #005bb5;
+}
+/* Yeniden Başlama Bölümü */
+.restart-selection {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: #f9f9f9;
+    margin-top: 4rem;
+    border-top: 1px solid #eee;
+}
+
+.restart-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.restart-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #111;
+}
+
+.restart-selection p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+.restart-btn {
+    background-color: #007aff;
+    color: #fff;
+    padding: 0.75rem 2rem;
+    border-radius: 999px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.restart-btn:hover {
+    background-color: #005bb5;
+}
+/* GENERAL BUTTON BASE */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+/* FILLED BLUE BUTTON (Apple style) */
+.btn-primary {
+    background-color: #007aff;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #005bb5;
+}
+
+/* OUTLINED BLUE BUTTON (Apple style) */
+.btn-outline {
+    background-color: transparent;
+    color: #007aff;
+    border: 1px solid #007aff;
+}
+
+.btn-outline:hover {
+    background-color: #007aff;
+    color: white;
+}
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.model-specs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6rem;
+    margin-top: 4rem;
+}
+
+.spec-block {
+    text-align: center;
+    max-width: 600px;
+}
+
+.spec-block h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #111;
+}
+
+.spec-block p {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #555;
+}
+.spec-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    color: #0071e3; /* Soft blue like Apple's icons */
+}
