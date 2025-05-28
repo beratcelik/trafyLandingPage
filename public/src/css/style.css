@@ -708,3 +708,21 @@ td:first-child, th:first-child {
     margin-bottom: 1rem;
     color: #0071e3; /* Soft blue like Apple's icons */
 }
+
+
+.social-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.social-link i {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.8;
+}
+.social-link a:hover {
+    color: darkblue; /* Instagram-ish pink */
+}
