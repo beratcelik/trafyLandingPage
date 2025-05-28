@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createBuyButton = (model) => {
     const link = shopierLinks[model];
     if (!link) return '';
-    return `<a href="${link}" className="btn compare-buy-btn" target="_blank">Satın Al</a>`;
+    return `<a href="${link}" class="btn compare-buy-btn" target="_blank">Satın Al</a>`;
 };
 
     document.querySelectorAll('.buy-button').forEach(span => {
