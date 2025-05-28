@@ -38,14 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /*
-    // 👇 Shopier Button Injection
-    const shopierLinks = {
-    "uno": "https://www.shopier.com/s/product/35252586",
-    "unopro": "https://www.shopier.com/s/product/35253512",
-    "dos": "https://www.shopier.com/s/product/35254014",
-    "dospro": "https://www.shopier.com/s/product/35256008",
-    "tres": "https://www.shopier.com/s/product/35256356"
-};
+<a href="https://www.shopier.com/s/product/35252586" class="btn compare-buy-btn" target="_blank">Şimdi Satın Al</a>
+<a href="https://www.shopier.com/s/product/35253512" class="btn compare-buy-btn" target="_blank">Şimdi Satın Al</a>
+<a href="https://www.shopier.com/s/product/35254014" class="btn compare-buy-btn" target="_blank">Şimdi Satın Al</a>
+<a href="https://www.shopier.com/s/product/35256008" class="btn compare-buy-btn" target="_blank">Şimdi Satın Al</a>
+<a href="https://www.shopier.com/s/product/35256356" class="btn compare-buy-btn" target="_blank">Şimdi Satın Al</a>
 
  */
 
