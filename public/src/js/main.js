@@ -37,9 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 });
 
-    // 👇 Lucide icon loader
-    lucide.createIcons();
-
+/*
     // 👇 Shopier Button Injection
     const shopierLinks = {
     "uno": "https://www.shopier.com/s/product/35252586",
@@ -49,15 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "tres": "https://www.shopier.com/s/product/35256356"
 };
 
-    const createBuyButton = (model) => {
-    const link = shopierLinks[model];
-    if (!link) return '';
-    return `<a href="${link}" class="btn compare-buy-btn" target="_blank">Satın Al</a>`;
-};
+ */
 
-    document.querySelectorAll('.buy-button').forEach(span => {
-    const model = span.dataset.model;
-    span.outerHTML = createBuyButton(model);
-});
 });
 
