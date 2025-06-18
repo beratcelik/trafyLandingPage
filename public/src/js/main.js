@@ -36,5 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     lucide.createIcons();
+    fetch("/.netlify/functions/getPrices")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("price-uno").textContent = data["Trafy Uno"];
+            document.getElementById("price-uno-pro").textContent = data["Trafy Uno Pro"];
+            document.getElementById("price-dos").textContent = data["Trafy Dos"];
+            document.getElementById("price-dos-pro").textContent = data["Trafy Dos Pro"];
+            document.getElementById("price-tres").textContent = data["Trafy Tres"];
+        })
+        .catch(() => {
+            document.getElementById("price-uno").textContent = "9.999 TL";
+            document.getElementById("price-uno-pro").textContent = "9.999 TL";
+            document.getElementById("price-dos").textContent = "9.999 TL";
+            document.getElementById("price-dos-pro").textContent = "9.999 TL";
+            document.getElementById("price-tres").textContent = "9.999 TL";
+        });
 
 });

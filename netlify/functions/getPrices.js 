@@ -1,0 +1,31 @@
+const axios = require("axios");
+const cheerio = require("cheerio");
+
+// Product URLs and their names
+const products = {
+  "Trafy Uno": "https://www.shopier.com/s/product/35252586",
+  "Trafy Uno Pro": "https://www.shopier.com/s/product/35253512",
+  "Trafy Dos": "https://www.shopier.com/s/product/35254014",
+  "Trafy Dos Pro": "https://www.shopier.com/s/product/35256008",
+  "Trafy Tres": "https://www.shopier.com/s/product/35256356",
+};
+
+exports.handler = async function () {
+  const results = {};
+
+  for (const [name, url] of Object.entries(products)) {
+    try {
+      const res = await axios.get(url);
+      const $ = cheerio.load(res.data);
+      const price = $(".price-value").first().text().trim();
+      results[name] = price ? `${price} TL` : "Fiyat bulunamadı";
+    } catch (err) {
+      results[name] = "Hata alındı";
+    }
+  }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(results),
+  };
+};
