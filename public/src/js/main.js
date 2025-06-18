@@ -46,11 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("price-tres").textContent = data["Trafy Tres"];
         })
         .catch(() => {
-            document.getElementById("price-uno").textContent = "9.999 TL";
-            document.getElementById("price-uno-pro").textContent = "9.999 TL";
-            document.getElementById("price-dos").textContent = "9.999 TL";
-            document.getElementById("price-dos-pro").textContent = "9.999 TL";
-            document.getElementById("price-tres").textContent = "9.999 TL";
+            document.getElementById("price-uno").textContent = "700 TL";
+            document.getElementById("price-uno-pro").textContent = "2000 TL";
+            document.getElementById("price-dos").textContent = "3000 TL";
+            document.getElementById("price-dos-pro").textContent = "5000 TL";
+            document.getElementById("price-tres").textContent = "7000 TL";
         });
 
 });
