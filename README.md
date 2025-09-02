@@ -1,5 +1,7 @@
 ```bash
 git add .
-git commit -m "Add getPrices Netlify Function"
+git commit -m "Static Prices addded"
 git push origin main
 ```
+
+

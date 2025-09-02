@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("price-tres").textContent = data["Trafy Tres"];
         })
         .catch(() => {
-            document.getElementById("price-uno").textContent = "700 TL";
+            document.getElementById("price-uno").textContent = "1000 TL";
             document.getElementById("price-uno-pro").textContent = "2000 TL";
             document.getElementById("price-dos").textContent = "3000 TL";
             document.getElementById("price-dos-pro").textContent = "5000 TL";
