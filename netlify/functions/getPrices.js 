@@ -13,36 +13,48 @@ const products = {
 function normalizePrice(raw) {
   if (!raw) return null;
 
-  // Ör: "7.499,00 TL" / "₺7.499,00" / "7499"
-  let s = raw
-    .replace(/\u00a0/g, " ")        // nbsp
+  let s = String(raw)
+    .replace(/\u00a0/g, " ")
     .replace(/₺/g, "TL")
     .replace(/\s+/g, " ")
     .trim();
 
-  // İçinde hiç rakam yoksa (ör. "Tükendi") null dön
   if (!/\d/.test(s)) return null;
 
-  // Bazı sayfalarda fiyat ayrı elementlerde gelebilir -> sadece ilk anlamlı parçayı çekelim
-  // "7.499,00 TL" gibi kalır; yoksa sadece sayı olur.
-  // TL yoksa ekle.
+  // Eğer sonunda TL yoksa ekle
   if (!/TL/i.test(s)) s = `${s} TL`;
+
+  // "TL TL" olursa düzelt
+  s = s.replace(/\bTL\s*TL\b/i, "TL").trim();
 
   return s;
 }
 
+
 function extractPrice($) {
-  // 1) Senin mevcut selector
-  const sel1 = $(".price-value").first().text().trim();
-  const p1 = normalizePrice(sel1);
+  // 0) EN SAĞLAM: data-price
+  const dataPrice =
+    $(".product-price[data-price]").attr("data-price") ||
+    $(".product-price-wrapper .product-price").attr("data-price");
+
+  const p0 = normalizePrice(dataPrice);
+  if (p0) return p0;
+
+  // 1) Alternatif: span’leri birleştir (value + cent + currency)
+  const value = $(".product-price .price-value").first().text().trim();
+  const cent = $(".product-price .price-cent").first().text().trim(); // boş olabilir
+  const currency = $(".product-price .price-currency").first().text().trim();
+
+  const combined = `${value}${cent ? "," + cent : ""} ${currency || ""}`.trim();
+  const p1 = normalizePrice(combined);
   if (p1) return p1;
 
-  // 2) Sık görülen alternatifler (Shopier bazen markup değiştiriyor)
-  const sel2 = $('[class*="price"]').first().text().trim();
-  const p2 = normalizePrice(sel2);
+  // 2) Senin eski selector (fallback)
+  const sel1 = $(".price-value").first().text().trim();
+  const p2 = normalizePrice(sel1);
   if (p2) return p2;
 
-  // 3) Meta üzerinden yakalama ihtimali
+  // 3) Meta / JSON-LD fallback’ler (kalsın)
   const meta =
     $('meta[property="product:price:amount"]').attr("content") ||
     $('meta[itemprop="price"]').attr("content") ||
@@ -50,21 +62,9 @@ function extractPrice($) {
   const p3 = normalizePrice(meta);
   if (p3) return p3;
 
-  // 4) JSON-LD (structured data) içinden dene
-  const ldJson = $('script[type="application/ld+json"]').first().text();
-  if (ldJson) {
-    try {
-      const data = JSON.parse(ldJson);
-      const offers = Array.isArray(data) ? data.find(d => d?.offers)?.offers : data?.offers;
-      const price = offers?.price || offers?.lowPrice;
-      const currency = offers?.priceCurrency || "TL";
-      const p4 = normalizePrice(price ? `${price} ${currency}` : null);
-      if (p4) return p4;
-    } catch (_) {}
-  }
-
   return null;
 }
+
 
 async function fetchOne(name, url) {
   try {
