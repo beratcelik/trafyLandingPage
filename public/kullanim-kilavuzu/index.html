@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trafy Kullanım Kılavuzu</title>
+    <meta name="description" content="Trafy araç içi kameralar için hızlı başlangıç ve kullanım kılavuzu." />
+
+    <link rel="stylesheet" href="/kullanim-kilavuzu/guide.css" />
+</head>
+<body>
+<header class="topbar">
+    <div class="topbar-inner">
+        <div class="brand">
+            <span class="dot" aria-hidden="true"></span>
+            <h1>Trafy • Kullanım Kılavuzu</h1>
+        </div>
+
+        <nav class="right">
+            <a class="backlink" href="/" aria-label="Ana sayfaya dön">← Ana Sayfa</a>
+        </nav>
+    </div>
+
+    <div class="topbar-inner bottom">
+        <div class="model-select" id="modelSelect" aria-label="Model seçimi"></div>
+
+        <div class="search-wrap">
+            <input id="search" class="search" type="search" placeholder="Kartlarda ara (Wi-Fi, park modu, MicroSD…)" autocomplete="off" />
+        </div>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="hero">
+        <h2 id="heroTitle">Hızlı Başlangıç</h2>
+        <p id="heroDesc">Model seç, kartları kaydır, hızlıca kur.</p>
+        <div class="hero-actions">
+            <a class="pill" id="copyLink" href="#" aria-label="Bu modeli linkle paylaş">🔗 Linki Kopyala</a>
+            <a class="pill" id="openShop" href="#" target="_blank" rel="noopener" aria-label="Ürün sayfasını aç">🛒 Ürün Sayfası</a>
+        </div>
+    </section>
+
+    <section class="section-head">
+        <h3 id="sectionTitle">Kartlar</h3>
+        <div class="hint">İpucu: Trackpad ile yana kaydır • Mobilde parmakla kaydır • Klavyede ← →</div>
+    </section>
+
+    <section class="carousel" aria-label="Kılavuz kartları">
+        <button class="navbtn" id="prevBtn" aria-label="Önceki kart">‹</button>
+
+        <div class="viewport">
+            <div class="track" id="track"></div>
+        </div>
+
+        <button class="navbtn" id="nextBtn" aria-label="Sonraki kart">›</button>
+    </section>
+
+    <div class="dots" id="dots" aria-label="Kart göstergeleri"></div>
+
+    <footer class="page-foot">
+        <div>© Trafy • Kılavuz</div>
+        <div class="muted">Görselleri daha sonra JSON’a ekleyebilirsin.</div>
+    </footer>
+</main>
+
+<dialog id="dlg">
+    <div class="modal">
+        <h4 id="dlgTitle">Detay</h4>
+        <p id="dlgText"></p>
+    </div>
+    <div class="close">
+        <button class="btn" id="dlgClose">Kapat</button>
+    </div>
+</dialog>
+
+<script src="/kullanim-kilavuzu/guide.js" defer></script>
+</body>
+</html>

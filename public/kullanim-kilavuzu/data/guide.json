@@ -1,0 +1,131 @@
+{
+  "models": [
+    {
+      "name": "Trafy Uno",
+      "heroTitle": "Trafy Uno • Hızlı Başlangıç",
+      "heroDesc": "Kurulum, günlük kullanım ve temel ayarlar.",
+      "shopUrl": "https://www.shopier.com/s/product/35252586"
+    },
+    {
+      "name": "Trafy Uno Pro",
+      "heroTitle": "Trafy Uno Pro • Hızlı Başlangıç",
+      "heroDesc": "Kurulum, Wi-Fi bağlantısı ve kullanım ipuçları.",
+      "shopUrl": "https://www.shopier.com/s/product/35253512"
+    },
+    {
+      "name": "Trafy Dos",
+      "heroTitle": "Trafy Dos • Hızlı Başlangıç",
+      "heroDesc": "Ön+arka kamera kurulumu ve park modu.",
+      "shopUrl": "https://www.shopier.com/s/product/35254014"
+    },
+    {
+      "name": "Trafy Dos Pro",
+      "heroTitle": "Trafy Dos Pro • Hızlı Başlangıç",
+      "heroDesc": "Gelişmiş ayarlar, park modu ve sorun giderme.",
+      "shopUrl": "https://www.shopier.com/s/product/35256008"
+    },
+    {
+      "name": "Trafy Dos Internet",
+      "heroTitle": "Trafy Dos Internet • Hızlı Başlangıç",
+      "heroDesc": "Wi-Fi + 4G, uygulama ve internet özellikleri.",
+      "shopUrl": ""
+    },
+    {
+      "name": "Trafy Tres",
+      "heroTitle": "Trafy Tres • Hızlı Başlangıç",
+      "heroDesc": "3 kamera sistemi, kurulum ve kullanım.",
+      "shopUrl": "https://www.shopier.com/s/product/35256356"
+    },
+    {
+      "name": "Trafy Tres Pro",
+      "heroTitle": "Trafy Tres Pro • Hızlı Başlangıç",
+      "heroDesc": "Kurulum, Wi-Fi, GPS, park modu ve detaylar.",
+      "shopUrl": ""
+    }
+  ],
+  "baseCards": [
+    {
+      "id": "kutu",
+      "kicker": "KUTU",
+      "title": "Kutudan çıkanlar",
+      "desc": "Kamerayı kurmadan önce kutu içeriğini hızlıca kontrol et.",
+      "bullets": [
+        "Kamera gövdesi",
+        "Güç kablosu (USB / USB-C modele göre değişebilir)",
+        "Montaj aparatı (modele göre)",
+        "Kablo klipsleri"
+      ],
+      "tag": "📦 Kutu İçeriği",
+      "detail": "Eksik parça varsa kuruluma geçmeden önce satıcıyla iletişime geç.",
+      "image": "",
+      "imageAlt": ""
+    },
+    {
+      "id": "montaj",
+      "kicker": "MONTAJ",
+      "title": "Kamerayı nereye takmalıyım?",
+      "desc": "Görüşü kapatmadan en iyi açı: iç dikiz aynasının arkası.",
+      "bullets": [
+        "Camı temizle ve kurula",
+        "Yapıştırmadan önce konumu test et",
+        "Kabloyu tavan döşemesinden gizle"
+      ],
+      "tag": "🧩 Montaj",
+      "detail": "Yapıştırma pedini bir kez yapıştırıp söküp yeniden yapıştırmak tutuşu düşürebilir.",
+      "image": "",
+      "imageAlt": ""
+    },
+    {
+      "id": "sd",
+      "kicker": "KART",
+      "title": "MicroSD kart hazırlığı",
+      "desc": "Sorunsuz kayıt için doğru kart ve doğru format önemli.",
+      "bullets": [
+        "UHS-I / U3 / V30 önerilir",
+        "İlk kullanımda cihazdan formatla",
+        "Düzenli aralıklarla yedek al"
+      ],
+      "tag": "💾 MicroSD",
+      "detail": "Kartı telefonda değil, kameranın menüsünden formatlamak daha stabil çalışır.",
+      "image": "",
+      "imageAlt": ""
+    }
+  ],
+  "overrides": {
+    "Trafy Dos Internet": [
+      {
+        "id": "internet",
+        "kicker": "İNTERNET",
+        "title": "Wi-Fi + 4G birlikte kullanım",
+        "desc": "Dos Internet modelinde uzaktan erişim / veri özellikleri bulunur.",
+        "bullets": [
+          "Wi-Fi adı: A19-01_XXXX",
+          "Varsayılan şifre: 12345678",
+          "Uygulama ile eşleştir",
+          "Mobil internet geçici kapanabilir (normal)"
+        ],
+        "tag": "🌐 Internet",
+        "detail": "Wi-Fi bağlantısında bazı telefonlar mobil veriyi kapatabilir; bağlantı bitince geri açılır.",
+        "image": "",
+        "imageAlt": ""
+      }
+    ],
+    "Trafy Tres Pro": [
+      {
+        "id": "trespro-urun",
+        "kicker": "ÜRÜN",
+        "title": "Trafy Tres Pro nedir?",
+        "desc": "3 kanallı gelişmiş araç içi kamera sistemi.",
+        "bullets": [
+          "Ön + kabin içi tek gövde",
+          "Harici arka kamera",
+          "Park modu desteği"
+        ],
+        "tag": "📷 Ürün Hakkında",
+        "detail": "Bu kartı senin gerçek Tres Pro kılavuzuna göre dolduracağız.",
+        "image": "",
+        "imageAlt": ""
+      }
+    ]
+  }
+}
