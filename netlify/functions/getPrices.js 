@@ -10,22 +10,98 @@ const products = {
   "Trafy Tres": "https://www.shopier.com/s/product/35256356",
 };
 
-exports.handler = async function () {
-  const results = {};
+function normalizePrice(raw) {
+  if (!raw) return null;
 
-  for (const [name, url] of Object.entries(products)) {
+  // Ör: "7.499,00 TL" / "₺7.499,00" / "7499"
+  let s = raw
+    .replace(/\u00a0/g, " ")        // nbsp
+    .replace(/₺/g, "TL")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // İçinde hiç rakam yoksa (ör. "Tükendi") null dön
+  if (!/\d/.test(s)) return null;
+
+  // Bazı sayfalarda fiyat ayrı elementlerde gelebilir -> sadece ilk anlamlı parçayı çekelim
+  // "7.499,00 TL" gibi kalır; yoksa sadece sayı olur.
+  // TL yoksa ekle.
+  if (!/TL/i.test(s)) s = `${s} TL`;
+
+  return s;
+}
+
+function extractPrice($) {
+  // 1) Senin mevcut selector
+  const sel1 = $(".price-value").first().text().trim();
+  const p1 = normalizePrice(sel1);
+  if (p1) return p1;
+
+  // 2) Sık görülen alternatifler (Shopier bazen markup değiştiriyor)
+  const sel2 = $('[class*="price"]').first().text().trim();
+  const p2 = normalizePrice(sel2);
+  if (p2) return p2;
+
+  // 3) Meta üzerinden yakalama ihtimali
+  const meta =
+    $('meta[property="product:price:amount"]').attr("content") ||
+    $('meta[itemprop="price"]').attr("content") ||
+    $('meta[property="og:price:amount"]').attr("content");
+  const p3 = normalizePrice(meta);
+  if (p3) return p3;
+
+  // 4) JSON-LD (structured data) içinden dene
+  const ldJson = $('script[type="application/ld+json"]').first().text();
+  if (ldJson) {
     try {
-      const res = await axios.get(url);
-      const $ = cheerio.load(res.data);
-      const price = $(".price-value").first().text().trim();
-      results[name] = price ? `${price} TL` : "Fiyat bulunamadı";
-    } catch (err) {
-      results[name] = "Hata alındı";
-    }
+      const data = JSON.parse(ldJson);
+      const offers = Array.isArray(data) ? data.find(d => d?.offers)?.offers : data?.offers;
+      const price = offers?.price || offers?.lowPrice;
+      const currency = offers?.priceCurrency || "TL";
+      const p4 = normalizePrice(price ? `${price} ${currency}` : null);
+      if (p4) return p4;
+    } catch (_) {}
   }
+
+  return null;
+}
+
+async function fetchOne(name, url) {
+  try {
+    const res = await axios.get(url, {
+      timeout: 12000,
+      headers: {
+        // Bazı siteler bot korumasında User-Agent isteyebiliyor
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
+        "Accept-Language": "tr-TR,tr;q=0.9,en;q=0.8",
+      },
+    });
+
+    const $ = cheerio.load(res.data);
+    const price = extractPrice($);
+
+    return [name, price || "Fiyat bulunamadı"];
+  } catch (err) {
+    return [name, "Hata alındı"];
+  }
+}
+
+exports.handler = async function () {
+  // Paralel fetch: daha hızlı (5 üründe özellikle hissedilir)
+  const entries = await Promise.all(
+    Object.entries(products).map(([name, url]) => fetchOne(name, url))
+  );
+
+  const results = Object.fromEntries(entries);
 
   return {
     statusCode: 200,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      // Aynı domainden çağırıyorsan şart değil ama eklemek sorun çıkarmaz
+      "Access-Control-Allow-Origin": "*",
+    },
     body: JSON.stringify(results),
   };
 };

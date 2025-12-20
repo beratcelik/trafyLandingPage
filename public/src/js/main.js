@@ -1,56 +1,59 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const tabs = document.querySelectorAll('.tab');
-    const groups = document.querySelectorAll('.detail-group');
+document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".tab");
+    const groups = document.querySelectorAll(".detail-group");
 
     const activate = (filter) => {
-        tabs.forEach(t => t.classList.toggle('active', t.dataset.filter === filter));
-        groups.forEach(g => g.classList.toggle('active', g.dataset.filter === filter));
+        tabs.forEach((t) => t.classList.toggle("active", t.dataset.filter === filter));
+        groups.forEach((g) => g.classList.toggle("active", g.dataset.filter === filter));
     };
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => activate(tab.dataset.filter));
-    });
-
+    tabs.forEach((tab) => tab.addEventListener("click", () => activate(tab.dataset.filter)));
     if (tabs[0]) activate(tabs[0].dataset.filter);
 
-    const detailCards = document.querySelectorAll('.detail-card');
-    const modelDetails = document.querySelectorAll('.model-details');
+    const detailCards = document.querySelectorAll(".detail-card");
+    const modelDetails = document.querySelectorAll(".model-details");
 
-    detailCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const targetId = card.getAttribute('data-target');
+    detailCards.forEach((card) => {
+        card.addEventListener("click", () => {
+            const targetId = card.getAttribute("data-target");
+            modelDetails.forEach((detail) => detail.classList.remove("active"));
 
-            // Tüm model detaylarını gizle
-            modelDetails.forEach(detail => {
-                detail.classList.remove('active');
-            });
-
-            // Sadece ilgili modeli göster
             if (targetId) {
                 const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.classList.add('active');
-                    // scrollIntoView KALDIRILDI
-                }
+                if (targetElement) targetElement.classList.add("active");
             }
         });
     });
-    lucide.createIcons();
-    fetch("/.netlify/functions/getPrices")
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("price-uno").textContent = data["Trafy Uno"];
-            document.getElementById("price-uno-pro").textContent = data["Trafy Uno Pro"];
-            document.getElementById("price-dos").textContent = data["Trafy Dos"];
-            document.getElementById("price-dos-pro").textContent = data["Trafy Dos Pro"];
-            document.getElementById("price-tres").textContent = data["Trafy Tres"];
+
+    // Lucide icons
+    if (window.lucide?.createIcons) lucide.createIcons();
+
+    const setText = (id, text) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+    };
+
+    const setAllFallback = () => {
+        setText("price-uno", "—");
+        setText("price-uno-pro", "—");
+        setText("price-dos", "—");
+        setText("price-dos-pro", "—");
+        setText("price-tres", "—");
+    };
+
+    fetch("/.netlify/functions/getPrices", { cache: "no-store" })
+        .then((res) => {
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+        })
+        .then((data) => {
+            setText("price-uno", data["Trafy Uno"] || "—");
+            setText("price-uno-pro", data["Trafy Uno Pro"] || "—");
+            setText("price-dos", data["Trafy Dos"] || "—");
+            setText("price-dos-pro", data["Trafy Dos Pro"] || "—");
+            setText("price-tres", data["Trafy Tres"] || "—");
         })
         .catch(() => {
-            document.getElementById("price-uno").textContent = "1000 TL";
-            document.getElementById("price-uno-pro").textContent = "2000 TL";
-            document.getElementById("price-dos").textContent = "3000 TL";
-            document.getElementById("price-dos-pro").textContent = "5000 TL";
-            document.getElementById("price-tres").textContent = "7000 TL";
+            setAllFallback();
         });
-
 });
