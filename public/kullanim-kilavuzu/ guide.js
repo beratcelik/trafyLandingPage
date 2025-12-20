@@ -47,9 +47,15 @@
     }
 
     function cardsForModel(modelName) {
-        const extra = overrides?.[modelName] || [];
-        return [...structuredClone(baseCards), ...structuredClone(extra)];
+        // 1) modelCards varsa (full custom set) onu kullan
+        const full = guideData.modelCards?.[modelName];
+        if (Array.isArray(full) && full.length) return structuredClone(full);
+
+        // 2) yoksa baseCards + overrides
+        const extra = guideData.overrides?.[modelName] || [];
+        return [...structuredClone(guideData.baseCards || []), ...structuredClone(extra)];
     }
+
 
     function buildChips() {
         modelSelect.innerHTML = "";

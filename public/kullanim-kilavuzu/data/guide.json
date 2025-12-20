@@ -1,128 +1,450 @@
 {
+  "version": 1,
+  "defaultModel": "Trafy Tres Pro",
   "models": [
     {
       "name": "Trafy Uno",
-      "heroTitle": "Trafy Uno • Hızlı Başlangıç",
-      "heroDesc": "Kurulum, günlük kullanım ve temel ayarlar.",
+      "heroTitle": "Trafy Uno",
+      "heroDesc": "Bu sayfa kart kart ilerleyen hızlı bir kılavuzdur. Parmağınla kaydır, görsellere bak, 2 dakikada kurulumu ve temel kullanımı öğren.",
       "shopUrl": "https://www.shopier.com/s/product/35252586"
     },
     {
       "name": "Trafy Uno Pro",
-      "heroTitle": "Trafy Uno Pro • Hızlı Başlangıç",
-      "heroDesc": "Kurulum, Wi-Fi bağlantısı ve kullanım ipuçları.",
+      "heroTitle": "Trafy Uno Pro",
+      "heroDesc": "Bu sayfa kart kart ilerleyen hızlı bir kılavuzdur. Parmağınla kaydır, görsellere bak, 2 dakikada kurulumu ve temel kullanımı öğren.",
       "shopUrl": "https://www.shopier.com/s/product/35253512"
     },
     {
       "name": "Trafy Dos",
-      "heroTitle": "Trafy Dos • Hızlı Başlangıç",
-      "heroDesc": "Ön+arka kamera kurulumu ve park modu.",
+      "heroTitle": "Trafy Dos",
+      "heroDesc": "Bu sayfa kart kart ilerleyen hızlı bir kılavuzdur. Parmağınla kaydır, görsellere bak, 2 dakikada kurulumu ve temel kullanımı öğren.",
       "shopUrl": "https://www.shopier.com/s/product/35254014"
     },
     {
       "name": "Trafy Dos Pro",
-      "heroTitle": "Trafy Dos Pro • Hızlı Başlangıç",
-      "heroDesc": "Gelişmiş ayarlar, park modu ve sorun giderme.",
+      "heroTitle": "Trafy Dos Pro",
+      "heroDesc": "Bu sayfa kart kart ilerleyen hızlı bir kılavuzdur. Parmağınla kaydır, görsellere bak, 2 dakikada kurulumu ve temel kullanımı öğren.",
       "shopUrl": "https://www.shopier.com/s/product/35256008"
     },
     {
       "name": "Trafy Dos Internet",
-      "heroTitle": "Trafy Dos Internet • Hızlı Başlangıç",
-      "heroDesc": "Wi-Fi + 4G, uygulama ve internet özellikleri.",
+      "heroTitle": "Trafy Dos Internet",
+      "heroDesc": "Bu sayfa kart kart ilerleyen hızlı bir kılavuzdur. Parmağınla kaydır, görsellere bak, 2 dakikada kurulumu ve temel kullanımı öğren.",
       "shopUrl": ""
     },
     {
       "name": "Trafy Tres",
-      "heroTitle": "Trafy Tres • Hızlı Başlangıç",
-      "heroDesc": "3 kamera sistemi, kurulum ve kullanım.",
+      "heroTitle": "Trafy Tres",
+      "heroDesc": "Bu sayfa kart kart ilerleyen hızlı bir kılavuzdur. Parmağınla kaydır, görsellere bak, 2 dakikada kurulumu ve temel kullanımı öğren.",
       "shopUrl": "https://www.shopier.com/s/product/35256356"
     },
     {
       "name": "Trafy Tres Pro",
-      "heroTitle": "Trafy Tres Pro • Hızlı Başlangıç",
-      "heroDesc": "Kurulum, Wi-Fi, GPS, park modu ve detaylar.",
+      "heroTitle": "Trafy Tres Pro",
+      "heroDesc": "Bu sayfa kart kart ilerleyen hızlı bir kılavuzdur. Parmağınla kaydır, görsellere bak, 2 dakikada kurulumu ve temel kullanımı öğren.",
       "shopUrl": ""
     }
   ],
   "baseCards": [
     {
-      "id": "kutu",
+      "id": "kutu-ortak",
       "kicker": "KUTU",
       "title": "Kutudan çıkanlar",
       "desc": "Kamerayı kurmadan önce kutu içeriğini hızlıca kontrol et.",
       "bullets": [
         "Kamera gövdesi",
         "Güç kablosu (USB / USB-C modele göre değişebilir)",
-        "Montaj aparatı (modele göre)",
-        "Kablo klipsleri"
+        "Yapışkanlı / vakumlu montaj aparatı (modele göre)",
+        "Kablo klipsleri ve kullanım kartı"
       ],
       "tag": "📦 Kutu İçeriği",
-      "detail": "Eksik parça varsa kuruluma geçmeden önce satıcıyla iletişime geç.",
+      "detail": "Eksik parça varsa kuruluma geçmeden önce satıcıyla iletişime geç. Montaj pedini yapıştırmadan önce yüzeyi mutlaka temizle.",
       "image": "",
       "imageAlt": ""
     },
     {
-      "id": "montaj",
+      "id": "montaj-ortak",
       "kicker": "MONTAJ",
       "title": "Kamerayı nereye takmalıyım?",
       "desc": "Görüşü kapatmadan en iyi açı: iç dikiz aynasının arkası.",
       "bullets": [
-        "Camı temizle ve kurula",
-        "Yapıştırmadan önce konumu test et",
-        "Kabloyu tavan döşemesinden gizle"
+        "Camı alkol bazlı temizleyiciyle temizle",
+        "Montajı aynanın arkasına hizala",
+        "Kabloyu tavan döşemesinden yan direğe sakla",
+        "Gücü çakmaklık / USB güçten ver"
       ],
-      "tag": "🧩 Montaj",
-      "detail": "Yapıştırma pedini bir kez yapıştırıp söküp yeniden yapıştırmak tutuşu düşürebilir.",
+      "tag": "🔧 Montaj",
+      "detail": "Yapıştırmalı montajda 24 saat tam tutunma süresi idealdir. Aşırı sıcak/soğukta yapıştırma performansı düşebilir.",
       "image": "",
       "imageAlt": ""
     },
     {
-      "id": "sd",
-      "kicker": "KART",
-      "title": "MicroSD kart hazırlığı",
-      "desc": "Sorunsuz kayıt için doğru kart ve doğru format önemli.",
+      "id": "kart-ortak",
+      "kicker": "HAFIZA",
+      "title": "MicroSD kart takma + format",
+      "desc": "Kayıt sorunlarının %80’i karttan kaynaklanır. Kartı doğru seç ve kamerada formatla.",
       "bullets": [
-        "UHS-I / U3 / V30 önerilir",
-        "İlk kullanımda cihazdan formatla",
-        "Düzenli aralıklarla yedek al"
+        "Kartı tak → kamera açıldıktan sonra menüye gir",
+        "Formatla (menü: Storage / Format)",
+        "Döngü kayıt (Loop) açık olmalı",
+        "Öneri: Class 10 / U3 / V30 ve üzeri"
       ],
       "tag": "💾 MicroSD",
-      "detail": "Kartı telefonda değil, kameranın menüsünden formatlamak daha stabil çalışır.",
+      "detail": "Yeni kartı ilk kullanımda mutlaka kamerada formatla. Kart dolunca kayıtlar otomatik en eskiden silinecek şekilde ayarlanır.",
+      "image": "",
+      "imageAlt": ""
+    },
+    {
+      "id": "wifi-ortak",
+      "kicker": "UYGULAMA",
+      "title": "Wi-Fi ile telefondan bağlan",
+      "desc": "Wi-Fi adını kameranın ekranından görürsün. Uygulamadan canlı görüntü, ayar ve indirme yapılır.",
+      "bullets": [
+        "Kamerada Wi-Fi / Hotspot’u aç",
+        "Telefon Wi-Fi’dan kameranın ağına bağlan",
+        "Uygulamayı aç (örn: GoLook / modeline göre)",
+        "Live View ile açı kontrolü yap"
+      ],
+      "tag": "📶 Wi-Fi",
+      "detail": "Telefon internete çıkmayabilir (normal). Ayar bittiğinde tekrar ev/4.5G ağına dön. Bazı telefonlarda 'internet yok' uyarısını görmezden gelebilirsin.",
+      "image": "",
+      "imageAlt": ""
+    },
+    {
+      "id": "menu-ortak",
+      "kicker": "MENÜ",
+      "title": "Temel menü ayarları (önerilen)",
+      "desc": "Bu ayarlar günlük kullanım için en stabil kombinasyondur.",
+      "bullets": [
+        "Resolution: 1080p (veya model destekliyorsa daha yüksek)",
+        "Loop: 1 / 3 / 5 dk",
+        "G-Sensor: Low (çok hassassa Medium)",
+        "Timestamp: Açık"
+      ],
+      "tag": "⚙️ Menü",
+      "detail": "G-Sensor yüksek olursa bozuk yolda dosyaları sürekli kilitleyebilir. Kilitli dosyalar silinmediği için kart çabuk dolar.",
+      "image": "",
+      "imageAlt": ""
+    },
+    {
+      "id": "gunluk-ortak",
+      "kicker": "KULLANIM",
+      "title": "Günlük kullanım",
+      "desc": "Doğru kurulumla kamera sen araca binince kendi işini yapar.",
+      "bullets": [
+        "Aracı çalıştır → kamera otomatik kayıt",
+        "Durdur → kapanma gecikmesi normal",
+        "Önemli anı kilitle (Lock tuşu / uygulama)",
+        "Dosya indirme: uygulamadan veya karttan"
+      ],
+      "tag": "▶️ Kullanım",
+      "detail": "Kilitlenen dosyalar 'event' klasöründe kalabilir. Düzenli aralıklarla kartı yedeklemek iyi fikir.",
+      "image": "",
+      "imageAlt": ""
+    },
+    {
+      "id": "sorun-ortak",
+      "kicker": "SORUN",
+      "title": "Kayıt yok / donma / reset",
+      "desc": "Çoğu problem 3 adımda çözülür.",
+      "bullets": [
+        "MicroSD kartı kamerada formatla",
+        "Farklı güç adaptörü/kablo dene (5V stabil)",
+        "Factory Reset yap → yeniden ayarla"
+      ],
+      "tag": "🛠️ Sorun Giderme",
+      "detail": "Düşük kaliteli araç USB’leri voltaj düşürür. Mümkünse kaliteli çakmaklık adaptörü kullan.",
       "image": "",
       "imageAlt": ""
     }
   ],
-  "overrides": {
-    "Trafy Dos Internet": [
-      {
-        "id": "internet",
-        "kicker": "İNTERNET",
-        "title": "Wi-Fi + 4G birlikte kullanım",
-        "desc": "Dos Internet modelinde uzaktan erişim / veri özellikleri bulunur.",
-        "bullets": [
-          "Wi-Fi adı: A19-01_XXXX",
-          "Varsayılan şifre: 12345678",
-          "Uygulama ile eşleştir",
-          "Mobil internet geçici kapanabilir (normal)"
-        ],
-        "tag": "🌐 Internet",
-        "detail": "Wi-Fi bağlantısında bazı telefonlar mobil veriyi kapatabilir; bağlantı bitince geri açılır.",
-        "image": "",
-        "imageAlt": ""
-      }
-    ],
+  "modelCards": {
     "Trafy Tres Pro": [
       {
         "id": "trespro-urun",
         "kicker": "ÜRÜN",
         "title": "Trafy Tres Pro nedir?",
-        "desc": "3 kanallı gelişmiş araç içi kamera sistemi.",
+        "desc": "3 kanallı, 4K çözünürlüklü, Wi-Fi ve GPS destekli gelişmiş araç içi kamera sistemi.",
         "bullets": [
-          "Ön + kabin içi tek gövde",
-          "Harici arka kamera",
-          "Park modu desteği"
+          "Ön + kabin içi kamera tek gövdede",
+          "Harici arka kamera (kablolu)",
+          "4K + 1080p + 1080p kayıt",
+          "Araç kapalıyken de kayıt (park modu)"
         ],
         "tag": "📷 Ürün Hakkında",
-        "detail": "Bu kartı senin gerçek Tres Pro kılavuzuna göre dolduracağız.",
+        "detail": "Trafy Tres Pro; ön ve kabin içi kamerası gövdeye entegre, arka kamerası harici olan 3 kanallı bir sistemdir. Hardware kit sayesinde araç kapalıyken dahi kayıt yapabilir.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "trespro-kutu",
+        "kicker": "KUTU",
+        "title": "Kutudan çıkanlar",
+        "desc": "Kuruluma başlamadan önce tüm parçaların tam olduğundan emin olun.",
+        "bullets": [
+          "Ana kamera (ön + kabin içi entegre)",
+          "Arka kamera",
+          "Arka kamera bağlantı kablosu",
+          "Hardware kit (Type-C)",
+          "GPS modülü",
+          "Cam filmi + temizlik mendili"
+        ],
+        "tag": "📦 Kutu İçeriği",
+        "detail": "Hafıza kartı kutu içeriğine dahil değildir. Web tabanlı kullanım kılavuzuna QR / web üzerinden erişilir.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "trespro-teknik",
+        "kicker": "TEKNİK",
+        "title": "Teknik özellikler",
+        "desc": "Tres Pro’nun donanımsal kapasitesi ve kayıt detayları.",
+        "bullets": [
+          "Ön kamera: 4K @30fps",
+          "Kabin içi: 1080p",
+          "Arka kamera: 1080p",
+          "İşlemci: SA230D",
+          "Ekran: 3.16” IPS",
+          "microSD max 256GB"
+        ],
+        "tag": "⚙️ Teknik",
+        "detail": "Önerilen hafıza kartı: Class 10 (U3 / V30). GPS modülü kutu içeriğine dahildir.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "trespro-enerji",
+        "kicker": "ENERJİ",
+        "title": "Enerji ve ilk kurulum",
+        "desc": "Kamera araç sigortasına bağlanan hardware kit ile çalışır.",
+        "bullets": [
+          "Type-C kablo ana kameraya bağlanır",
+          "Araç çalışınca otomatik kayıt",
+          "Araç kapalıyken kayıt devam eder",
+          "24 saat park modu desteklenir"
+        ],
+        "tag": "🔌 Enerji",
+        "detail": "Park modu için ek donanıma gerek yoktur. Hardware kit doğrudan sigortaya bağlanır.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "trespro-mod",
+        "kicker": "MOD",
+        "title": "Kayıt ve güvenlik modları",
+        "desc": "Sürüş ve park halindeyken otomatik koruma sağlar.",
+        "bullets": [
+          "Döngüsel video kayıt",
+          "1 / 3 / 5 dk klipler",
+          "G-Sensor ile acil kilit",
+          "Park halinde darbe kaydı"
+        ],
+        "tag": "🛡️ Kayıt Modları",
+        "detail": "Kilitlenen videolar silinmez. G-Sensor hassasiyeti menüden ayarlanabilir.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "trespro-wifi",
+        "kicker": "WIFI",
+        "title": "Telefon ve GoLook uygulaması",
+        "desc": "Kamera telefona doğrudan Wi-Fi ile bağlanır.",
+        "bullets": [
+          "Wi-Fi adı: DVR-XXXXX",
+          "Şifre: 12345678",
+          "Canlı görüntü izleme",
+          "Video & fotoğraf indirme"
+        ],
+        "tag": "📶 Wi-Fi",
+        "detail": "Wi-Fi internet sağlamaz. 'İnternet yok' uyarısı normaldir. Ayarlar GoLook uygulamasından yapılır.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "trespro-guvenlik",
+        "kicker": "GÜVENLİK",
+        "title": "Güvenli kullanım",
+        "desc": "Uzun ömürlü ve sorunsuz kullanım için öneriler.",
+        "bullets": [
+          "Sürüş sırasında ayar yapmayın",
+          "Görüş alanını kapatmayın",
+          "Kartı düzenli kontrol edin",
+          "İlk kullanımda formatlayın"
+        ],
+        "tag": "⚠️ Güvenlik",
+        "detail": "Fabrika ayarlarına dönmek için menüden Factory Reset seçeneğini kullanabilirsiniz.",
+        "image": "",
+        "imageAlt": ""
+      }
+    ],
+    "Trafy Dos Internet": [
+      {
+        "id": "dosint-urun",
+        "kicker": "ÜRÜN",
+        "title": "Trafy Dos Internet nedir?",
+        "desc": "4G bağlantı destekli, çift kameralı ve GPS özellikli gelişmiş araç içi kamera.",
+        "bullets": [
+          "4G üzerinden uzaktan canlı izleme",
+          "Sürüş ve park halinde 24 saat kayıt",
+          "Mobil uygulama ile canlı görüntü, indirme ve paylaşma",
+          "GPS standart olarak dahildir"
+        ],
+        "tag": "📷 Ürün Hakkında",
+        "detail": "Trafy Dos Internet; sürüş sırasında ve park halinde 24 saat kayıt yapabilen, 4G destekli ve GPS özellikli gelişmiş bir araç içi kamera sistemidir.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "dosint-kutu",
+        "kicker": "KUTU",
+        "title": "Kutudan çıkanlar",
+        "desc": "Kuruluma başlamadan önce kutu içeriğini kontrol edin.",
+        "bullets": [
+          "Ana kamera",
+          "Arka kamera",
+          "Arka kamera bağlantı kablosu",
+          "Park modu kablosu (sigorta bağlantılı)",
+          "Cam yapıştırma aparatı",
+          "Lens temizlik mendili"
+        ],
+        "tag": "📦 Kutu İçeriği",
+        "detail": "Çakmaklık adaptörü bulunmaz. Hafıza kartı ayrıca temin edilmelidir.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "dosint-ozellik",
+        "kicker": "ÖZELLİK",
+        "title": "Temel özellikler",
+        "desc": "Günlük kullanım ve uzaktan erişim için tasarlanmış fonksiyonlar.",
+        "bullets": [
+          "Canlı video izleme",
+          "Video indirme ve paylaşma",
+          "Otomatik döngüsel kayıt",
+          "Mobil uygulama ile fotoğraf çekme",
+          "4G bağlantı desteği"
+        ],
+        "tag": "✨ Özellikler",
+        "detail": "Uzaktan canlı izleme ve kamera kontrolü 4G bağlantı ile yapılır.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "dosint-teknik",
+        "kicker": "TEKNİK",
+        "title": "Teknik özellikler",
+        "desc": "Donanım ve kayıt kapasitesi bilgileri.",
+        "bullets": [
+          "İşlemci: Allwinner V853",
+          "Ön kamera: 2K",
+          "Arka kamera: 1080p",
+          "Lens açıları: 140° / 110°",
+          "microSD: 256GB (Class 10+)"
+        ],
+        "tag": "⚙️ Teknik",
+        "detail": "Görüntü sensörü OV2053’tür. Metal boyalı plastik gövdeye sahiptir.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "dosint-tuslar",
+        "kicker": "TUŞ",
+        "title": "Cihaz üzerindeki tuşlar",
+        "desc": "Fiziksel tuşların görevleri.",
+        "bullets": [
+          "OK: kayıt başlat/durdur, onay",
+          "Mode: ekranlar arası geçiş",
+          "Lock: acil durum kaydı (10 sn önce/sonra)",
+          "Power: ekran kapatma / yeniden başlatma",
+          "Yukarı/Aşağı: menü gezinme"
+        ],
+        "tag": "🔘 Tuşlar",
+        "detail": "Lock tuşu ile kilitlenen videolar silinmez.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "dosint-enerji",
+        "kicker": "ENERJİ",
+        "title": "Kurulum ve enerji bağlantısı",
+        "desc": "Bu model çakmaklık adaptörü kullanmaz.",
+        "bullets": [
+          "Park modu kablosu ile sigortaya bağlantı",
+          "Type-C konnektör",
+          "Araç kapalıyken de kayıt",
+          "Akü koruma yazılımı"
+        ],
+        "tag": "🔌 Enerji",
+        "detail": "Akü voltajı belirlenen seviyenin altına düşerse kamera otomatik kapanır.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "dosint-kayit",
+        "kicker": "KAYIT",
+        "title": "Kayıt ve park fonksiyonları",
+        "desc": "Sürüş ve park anlarında otomatik kayıt.",
+        "bullets": [
+          "Otomatik kayıt başlatma",
+          "Döngüsel video kaydı",
+          "G-Sensor ile acil kilit",
+          "Park modunda 20 sn kayıt",
+          "Time-lapse (1 sn = 1 kare)"
+        ],
+        "tag": "🛡️ Kayıt",
+        "detail": "Time-lapse seçenekleri: 12 saat, 24 saat veya kapalı.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "dosint-wifi",
+        "kicker": "WIFI",
+        "title": "Wi-Fi ve mobil uygulama",
+        "desc": "İlk kurulum ve yakın mesafe bağlantı Wi-Fi ile yapılır.",
+        "bullets": [
+          "Wi-Fi adı: A19-01_XXXX",
+          "Varsayılan şifre: 12345678",
+          "Cloud View Genie uygulaması",
+          "Wi-Fi + 4G birlikte çalışır"
+        ],
+        "tag": "📶 Wi-Fi & 4G",
+        "detail": "Wi-Fi bağlantısında mobil internet devre dışı kalabilir; bu normaldir.",
+        "image": "",
+        "imageAlt": ""
+      },
+      {
+        "id": "dosint-sorun",
+        "kicker": "SORUN",
+        "title": "Sık karşılaşılan sorunlar",
+        "desc": "En yaygın problemler ve çözümleri.",
+        "bullets": [
+          "Kayıt yoksa kartı kontrol edin",
+          "Donarsa reset tuşuna basın",
+          "Bulanıksa lensi temizleyin",
+          "Dosya hatasında kartı formatlayın"
+        ],
+        "tag": "🛠️ Destek",
+        "detail": "İlk kullanımda hafıza kartını mutlaka cihaz menüsünden formatlayın.",
+        "image": "",
+        "imageAlt": ""
+      }
+    ]
+  },
+  "overrides": {
+    "Trafy Dos Internet": [
+      {
+        "id": "dosint-sim-ek",
+        "kicker": "İNTERNET",
+        "title": "SIM / internet kurulumu (model: Dos Internet)",
+        "desc": "Bu modelde internet özellikleri için SIM/plan gerekebilir (satın aldığın pakete göre).",
+        "bullets": [
+          "SIM takma yönünü kontrol et",
+          "APN ayarları (gerekirse)",
+          "Uygulamada cihazı eşleştir",
+          "Veri kullanımı: kayıt kalitesine göre artar"
+        ],
+        "tag": "🌐 Internet",
+        "detail": "Bazı paketlerde bulut özelliği kapalı olabilir. Senin satış modeline göre bu kartı daha sonra netleştiririz.",
         "image": "",
         "imageAlt": ""
       }
