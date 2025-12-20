@@ -1,146 +1,5 @@
-// 1) MODELLER
-const MODELS = [
-    "Trafy Uno",
-    "Trafy Uno Pro",
-    "Trafy Dos",
-    "Trafy Dos Pro",
-    "Trafy Dos Internet",
-    "Trafy Tres",
-    "Trafy Tres Pro",
-];
+let GUIDE = null;
 
-// 2) ORTAK KARTLAR
-const BASE_CARDS = [
-    {
-        kicker: "KUTU",
-        title: "Kutudan çıkanlar",
-        desc: "Kamerayı kurmadan önce kutu içeriğini hızlıca kontrol et.",
-        bullets: [
-            "Kamera gövdesi",
-            "Güç kablosu (USB / USB-C modele göre)",
-            "Montaj aparatı",
-            "Kablo klipsleri",
-        ],
-        tag: "📦 Kutu İçeriği",
-        detail:
-            "Eksik parça varsa kuruluma geçmeden önce satıcıyla iletişime geç."
-    },
-    {
-        kicker: "MONTAJ",
-        title: "Kamerayı nereye takmalıyım?",
-        desc: "En ideal konum: iç dikiz aynasının arkası.",
-        bullets: [
-            "Camı temizle",
-            "Kamerayı hizala",
-            "Kabloları gizle",
-            "Gücü bağla",
-        ],
-        tag: "🔧 Montaj",
-        detail:
-            "Yapıştırmalı montajda 24 saat tam tutunma süresi önerilir."
-    },
-    {
-        kicker: "HAFIZA",
-        title: "MicroSD kart",
-        desc: "Kartı ilk kullanımda kamerada formatla.",
-        bullets: [
-            "Class 10 veya üzeri",
-            "256GB’a kadar",
-            "Loop kayıt açık olmalı",
-        ],
-        tag: "💾 MicroSD",
-        detail:
-            "Kart dolunca eski videolar otomatik silinir."
-    },
-];
-
-// 3) MODEL-ÖZEL KARTLAR
-function cardsForModel(model){
-
-    // === Trafy Tres Pro ===
-    if(model === "Trafy Tres Pro"){
-        return [
-            {
-                kicker:"ÜRÜN",
-                title:"Trafy Tres Pro nedir?",
-                desc:"3 kanallı, 4K çözünürlüklü, Wi-Fi ve GPS destekli araç içi kamera.",
-                bullets:[
-                    "4K + 1080p + 1080p",
-                    "Ön + kabin içi entegre",
-                    "Harici arka kamera",
-                    "24 saat park modu"
-                ],
-                tag:"📷 Ürün",
-                detail:"Araç kapalıyken de kayıt yapabilir."
-            },
-            {
-                kicker:"KUTU",
-                title:"Kutudan çıkanlar",
-                desc:"Kutu içeriği listesi.",
-                bullets:[
-                    "Ana kamera",
-                    "Arka kamera",
-                    "Hardware kit (Type-C)",
-                    "GPS modülü",
-                    "Cam filmi & mendil"
-                ],
-                tag:"📦 Kutu",
-                detail:"Hafıza kartı ayrıca temin edilir."
-            }
-        ];
-    }
-
-    // === Trafy Dos Internet ===
-    if(model === "Trafy Dos Internet"){
-        return [
-            {
-                kicker:"ÜRÜN",
-                title:"Trafy Dos Internet nedir?",
-                desc:"4G bağlantı destekli, çift kameralı araç içi kamera.",
-                bullets:[
-                    "4G uzaktan canlı izleme",
-                    "2K ön + 1080p arka kamera",
-                    "24 saat park modu",
-                    "GPS dahili"
-                ],
-                tag:"📷 Ürün",
-                detail:"Wi-Fi yakın mesafe, 4G uzaktan kullanım içindir."
-            },
-            {
-                kicker:"KUTU",
-                title:"Kutudan çıkanlar",
-                desc:"Kurulum için gerekli tüm parçalar.",
-                bullets:[
-                    "Ana kamera",
-                    "Arka kamera",
-                    "Park modu kablosu",
-                    "Yapıştırma aparatı",
-                    "Temizlik mendili"
-                ],
-                tag:"📦 Kutu",
-                detail:"Çakmaklık adaptörü yoktur."
-            },
-            {
-                kicker:"WIFI",
-                title:"Wi-Fi & Cloud View Genie",
-                desc:"Telefon bağlantısı ve uzaktan erişim.",
-                bullets:[
-                    "Wi-Fi: A19-01_XXXX",
-                    "Şifre: 12345678",
-                    "Cloud View Genie uygulaması",
-                    "4G ile uzaktan izleme"
-                ],
-                tag:"📶 Wi-Fi / 4G",
-                detail:"Wi-Fi sırasında mobil internet kapanabilir."
-            }
-        ];
-    }
-
-    // Diğer modeller → ortak kartlar
-    return JSON.parse(JSON.stringify(BASE_CARDS));
-}
-
-// ========== UI ==========
 const modelSelect = document.getElementById("modelSelect");
 const track = document.getElementById("track");
 const dots = document.getElementById("dots");
@@ -150,15 +9,55 @@ const heroTitle = document.getElementById("heroTitle");
 const heroDesc = document.getElementById("heroDesc");
 const search = document.getElementById("search");
 
-let activeModel = "Trafy Tres Pro";
+const dlg = document.getElementById("dlg");
+const dlgTitle = document.getElementById("dlgTitle");
+const dlgText = document.getElementById("dlgText");
+const dlgClose = document.getElementById("dlgClose");
+
+let activeModel = null;
 let allCards = [];
 let filteredCards = [];
 let activeIndex = 0;
 
-// Model chipleri
+function escapeHtml(str){
+    return String(str ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+async function loadGuide(){
+    // JSON yolu: /data/guide.json
+    const res = await fetch("data/guide.json", { cache: "no-store" });
+    if(!res.ok) throw new Error("guide.json yüklenemedi: " + res.status);
+    GUIDE = await res.json();
+
+    activeModel = GUIDE.defaultModel || (GUIDE.models?.[0] ?? "Trafy Tres Pro");
+    setModel(activeModel, true);
+    buildChips();
+
+    // Export JSON (aktif model kartları)
+    const exportBtn = document.getElementById("exportBtn");
+    if(exportBtn){
+        exportBtn.addEventListener("click", (e)=>{
+            e.preventDefault();
+            const payload = {
+                activeModel,
+                cards: cardsForModel(activeModel),
+                version: GUIDE.version
+            };
+            navigator.clipboard.writeText(JSON.stringify(payload, null, 2))
+                .then(()=> alert("JSON panoya kopyalandı ✅"))
+                .catch(()=> alert("Kopyalama başarısız. Tarayıcı izinlerini kontrol et."));
+        });
+    }
+}
+
 function buildChips(){
     modelSelect.innerHTML = "";
-    MODELS.forEach(m=>{
+    (GUIDE.models || []).forEach(m=>{
         const chip = document.createElement("div");
         chip.className = "chip" + (m===activeModel ? " active" : "");
         chip.textContent = m;
@@ -167,7 +66,10 @@ function buildChips(){
     });
 }
 
-// Kartları çiz
+function cardsForModel(model){
+    return (GUIDE.cardsByModel && GUIDE.cardsByModel[model]) ? GUIDE.cardsByModel[model] : [];
+}
+
 function renderCards(cards){
     filteredCards = cards;
     activeIndex = 0;
@@ -180,20 +82,39 @@ function renderCards(cards){
 
         const card = document.createElement("article");
         card.className = "card";
+        card.dataset.index = idx;
 
-        card.innerHTML = `
-      <div class="media"><div class="ph">Görsel buraya</div></div>
-      <div class="content">
-        <div class="kicker">${c.kicker}</div>
-        <h4 class="title">${c.title}</h4>
-        <p class="desc">${c.desc}</p>
-        <ul class="bullets">${(c.bullets||[]).map(b=>`<li>${b}</li>`).join("")}</ul>
-      </div>
-      <div class="foot">
-        <div class="tag">${c.tag}</div>
-        <button class="btn">Detay</button>
-      </div>
+        const media = document.createElement("div");
+        media.className = "media";
+        const ph = document.createElement("div");
+        ph.className = "ph";
+        ph.textContent = "Görsel/Ekran görüntüsü buraya (sonradan eklenecek)";
+        media.appendChild(ph);
+
+        const content = document.createElement("div");
+        content.className = "content";
+        content.innerHTML = `
+      <div class="kicker">${escapeHtml(c.kicker)}</div>
+      <h4 class="title">${escapeHtml(c.title)}</h4>
+      <p class="desc">${escapeHtml(c.desc)}</p>
+      <ul class="bullets">${(c.bullets||[]).map(b=>`<li>${escapeHtml(b)}</li>`).join("")}</ul>
     `;
+
+        const foot = document.createElement("div");
+        foot.className = "foot";
+        const tag = document.createElement("div");
+        tag.className = "tag";
+        tag.textContent = c.tag || "Kart";
+        const btn = document.createElement("button");
+        btn.className = "btn";
+        btn.textContent = "Detay";
+        btn.onclick = ()=> openDetail(c);
+        foot.appendChild(tag);
+        foot.appendChild(btn);
+
+        card.appendChild(media);
+        card.appendChild(content);
+        card.appendChild(foot);
 
         slide.appendChild(card);
         track.appendChild(slide);
@@ -208,39 +129,89 @@ function renderCards(cards){
 }
 
 function updateCarousel(){
+    const n = filteredCards.length;
+    activeIndex = Math.max(0, Math.min(activeIndex, Math.max(0, n-1)));
     track.style.transform = `translateX(${-activeIndex * 100}%)`;
     prevBtn.disabled = activeIndex <= 0;
-    nextBtn.disabled = activeIndex >= filteredCards.length - 1;
-    [...dots.children].forEach((el,i)=>el.classList.toggle("active", i===activeIndex));
+    nextBtn.disabled = activeIndex >= n - 1;
+    [...dots.children].forEach((el, i)=> el.classList.toggle("active", i===activeIndex));
 }
 
 function goTo(i){ activeIndex = i; updateCarousel(); }
-function next(){ if(activeIndex < filteredCards.length-1){ activeIndex++; updateCarousel(); } }
+function next(){ if(activeIndex < filteredCards.length - 1){ activeIndex++; updateCarousel(); } }
 function prev(){ if(activeIndex > 0){ activeIndex--; updateCarousel(); } }
 
-prevBtn.onclick = prev;
-nextBtn.onclick = next;
+prevBtn.addEventListener("click", prev);
+nextBtn.addEventListener("click", next);
 
-// Arama
-search.addEventListener("input", ()=>{
-    const q = search.value.toLowerCase();
-    const filtered = allCards.filter(c =>
-        [c.title,c.desc,(c.bullets||[]).join(" ")].join(" ").toLowerCase().includes(q)
-    );
-    renderCards(filtered);
+window.addEventListener("keydown", (e)=>{
+    if(e.key === "ArrowRight") next();
+    if(e.key === "ArrowLeft") prev();
 });
 
-// Model değiştir
-function setModel(model){
+// Swipe (pointer)
+let startX = 0, isDown = false, moved = false;
+
+track.addEventListener("pointerdown", (e)=>{
+    isDown = true; moved = false; startX = e.clientX;
+    track.setPointerCapture?.(e.pointerId);
+});
+
+track.addEventListener("pointermove", (e)=>{
+    if(!isDown) return;
+    const dx = e.clientX - startX;
+    if(Math.abs(dx) > 10) moved = true;
+});
+
+track.addEventListener("pointerup", (e)=>{
+    if(!isDown) return;
+    isDown = false;
+    const dx = e.clientX - startX;
+    if(!moved) return;
+    if(dx < -40) next();
+    if(dx > 40) prev();
+});
+
+function setModel(model, isInit=false){
     activeModel = model;
+
     heroTitle.textContent = model;
-    heroDesc.textContent = "Kart kart ilerleyen hızlı kullanım kılavuzu.";
+    heroDesc.textContent = GUIDE?.defaultHeroDesc || "";
+
     buildChips();
+
     allCards = cardsForModel(model);
-    renderCards(allCards);
+    applySearch();
+
+    // init sırasında search input temiz kalsın
+    if(!isInit && search) search.value = "";
 }
 
+function openDetail(card){
+    dlgTitle.textContent = card.title;
+    dlgText.textContent = card.detail || "Detay metni yakında eklenecek.";
+    dlg.showModal();
+}
+dlgClose.onclick = ()=> dlg.close();
+
+function applySearch(){
+    const q = (search.value || "").trim().toLowerCase();
+    const filtered = !q ? allCards : allCards.filter(c=>{
+        const hay = [
+            c.kicker, c.title, c.desc, c.tag,
+            ...(c.bullets||[]),
+            c.detail
+        ].join(" ").toLowerCase();
+        return hay.includes(q);
+    });
+    renderCards(filtered);
+}
+
+search.addEventListener("input", applySearch);
+
 // INIT
-buildChips();
-allCards = cardsForModel(activeModel);
-renderCards(allCards);
+loadGuide().catch((err)=>{
+    console.error(err);
+    heroTitle.textContent = "Hata";
+    heroDesc.textContent = "Kılavuz verisi yüklenemedi. Lütfen data/guide.json yolunu kontrol edin.";
+});
