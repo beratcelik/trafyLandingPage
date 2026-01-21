@@ -34,11 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const setAllFallback = () => {
-        setText("price-uno", "—");
-        setText("price-uno-pro", "—");
-        setText("price-dos", "—");
-        setText("price-dos-pro", "—");
-        setText("price-tres", "—");
+        setText("price-uno", "1500 TL");
+        setText("price-uno-pro", "2500 TL");
+        setText("price-dos", "4000 TL");
+        setText("price-dos-pro", "7000 TL");
+        setText("price-dos-internet", "8000 TL");
+        setText("price-tres", "9000 TL");
+        setText("price-tres-pro", "10000 TL");
     };
 
     fetch("/.netlify/functions/getPrices", { cache: "no-store" })
@@ -47,11 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
             return res.json();
         })
         .then((data) => {
-            setText("price-uno", data["Trafy Uno"] || "—");
-            setText("price-uno-pro", data["Trafy Uno Pro"] || "—");
-            setText("price-dos", data["Trafy Dos"] || "—");
-            setText("price-dos-pro", data["Trafy Dos Pro"] || "—");
-            setText("price-tres", data["Trafy Tres"] || "—");
+            setText("price-uno", data["Trafy Uno"] || "1500 TL");
+            setText("price-uno-pro", data["Trafy Uno Pro"] || "2500 TL");
+            setText("price-dos", data["Trafy Dos"] || "4000 TL");
+            setText("price-dos-pro", data["Trafy Dos Pro"] || "7000 TL");
+            setText("price-dos-internet", data["Trafy Dos Internet"] || "8000 TL");
+            setText("price-tres", data["Trafy Tres"] || "9000 TL");
+            setText("price-tres-pro", data["Trafy Tres Pro"] || "10000 TL");
         })
         .catch(() => {
             setAllFallback();

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trafy - Premium Araç İçi Kameralar</title>
 
     <link rel="preload" href="src/css/normalize.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="src/css/normalize.css"></noscript>
+    <noscript>
+        <link rel="stylesheet" href="src/css/normalize.css">
+    </noscript>
     <link rel="stylesheet" href="src/css/style.css">
 
     <!-- ADD LUCIDE ICONS -->
@@ -14,691 +17,1009 @@
 </head>
 
 <body>
-<header>
-    <div class="header-center">
-        <div class="logo-wrapper">
-            <img src="./images/t_logo.png" alt="Trafy Logo" style="height: 64px;">
-        </div>
-        <nav>
-            <a href="#hero">Ana Sayfa</a>
-            <a href="#filter">Araç İçi Kamera</a>
-            <a href="#compare">Karşılaştırma</a>
-            <a href="/kullanim-kilavuzu/" target="_self">Kullanım Kılavuzu</a>
-            <p class="social-link">
-                <a href="https://www.instagram.com/trafykamerasi/" target="_blank">
-                    <i data-lucide="instagram"></i>
-                    Trafy Kamerası
-                </a>
-            </p>
+    <header>
+        <div class="header-center">
+            <div class="logo-wrapper">
+                <img src="./images/t_logo.png" alt="Trafy Logo" style="height: 64px;">
+            </div>
+            <nav>
+                <a href="#hero">Ana Sayfa</a>
+                <a href="#filter">Araç İçi Kamera</a>
+                <a href="#compare">Karşılaştırma</a>
+                <a href="/kullanim-kilavuzu/" target="_self">Kullanım Kılavuzu</a>
+                <p class="social-link">
+                    <a href="https://www.instagram.com/trafykamerasi/" target="_blank">
+                        <i data-lucide="instagram"></i>
+                        Trafy Kamerası
+                    </a>
+                </p>
 
-            <!--            <a href="#pricing">Fiyatlar</a>
+                <!--            <a href="#pricing">Fiyatlar</a>
                         <a href="#about">Hakkımızda</a>
                         <a href="#faq">SSS</a>
                         <a href="#contact">İletişim</a>
                         -->
-        </nav>
-    </div>
-</header>
-
-
-
-
-<main>
-    <section id="hero">
-        <video autoplay muted loop playsinline id="hero-video">
-            <source src="./videos/dashcam_video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-
-        <div class="hero-content">
-            <h1>Trafy</h1>
-            <p>Güvenli ve net bir sürüş deneyimi için şık, gelişmiş araç içi kameralarımızla tanışın.</p>
-            <a href="#filter" class="btn btn-primary">Başlayın</a>
+            </nav>
         </div>
-    </section>
+    </header>
 
-    <section id="filter">
-        <div class="tabs">
-            <div class="tab" data-filter="single">Tek Kameralı</div>
-            <div class="tab" data-filter="dual">İki Kameralı</div>
-            <div class="tab" data-filter="triple">Üç Kameralı</div>
-        </div>
-    </section>
 
-    <section id="details">
-        <div id="group-single" class="detail-group active" data-filter="single">
-            <div class="detail-card" data-target="#trafy-uno-details">
-                <img src="./images/uno/uno_solo.png" alt="Trafy Uno" class="product-image">
-<!--                <span class="new-badge">Yeni</span> -->
-                <h2 class="product-title">Trafy Uno</h2>
-                <h3 class="product-subtitle">Fiyat/Performans Ürünü</h3>
-                <p class="product-description">Şehir içi sürücüler için özel 1080P çözünürlük, 120° geniş açı ve ADAS destekli güvenlik.</p>
-                <p class="product-price">Başlangıç fiyatı: <span id="price-uno">Yükleniyor ... </span></p>
-                <div class="product-buttons">
-                    <a href="#trafy-uno-details" class="btn-primary">Daha Fazla Bilgi</a>
-                    <a href="https://www.shopier.com/s/product/35252586" class="btn-secondary" target="_blank">Satın Al</a>
+
+
+    <main>
+        <section id="hero">
+            <video autoplay muted loop playsinline id="hero-video">
+                <source src="./videos/dashcam_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="hero-content">
+                <h1>Trafy</h1>
+                <p>Güvenli ve net bir sürüş deneyimi için şık, gelişmiş araç içi kameralarımızla tanışın.</p>
+                <a href="#filter" class="btn btn-primary">Başlayın</a>
+            </div>
+        </section>
+
+        <section id="filter">
+            <div class="tabs">
+                <div class="tab" data-filter="single">Tek Kameralı</div>
+                <div class="tab" data-filter="dual">İki Kameralı</div>
+                <div class="tab" data-filter="triple">Üç Kameralı</div>
+            </div>
+        </section>
+
+        <section id="details">
+            <div id="group-single" class="detail-group active" data-filter="single">
+                <div class="detail-card" data-target="#trafy-uno-details">
+                    <img src="./images/uno/uno_solo.png" alt="Trafy Uno" class="product-image">
+                    <!--                <span class="new-badge">Yeni</span> -->
+                    <h2 class="product-title">Trafy Uno</h2>
+                    <h3 class="product-subtitle">Fiyat/Performans Ürünü</h3>
+                    <p class="product-description">Şehir içi sürücüler için özel 1080P çözünürlük, 120° geniş açı ve
+                        ADAS destekli güvenlik.</p>
+                    <p class="product-price">Başlangıç fiyatı: <span id="price-uno">1500 TL</span></p>
+                    <div class="product-buttons">
+                        <a href="#trafy-uno-details" class="btn-secondary">Daha Fazla Bilgi</a>
+                        <a href="https://www.shopier.com/s/product/35252586" class="btn-primary" target="_blank">Satın
+                            Al</a>
+                    </div>
+                </div>
+
+                <div class="detail-card" data-target="#trafy-uno-pro-details">
+                    <img src="./images/unopro/uno_pro_solo.png" alt="Trafy Uno Pro" class="product-image">
+                    <h2 class="product-title">Trafy Uno Pro</h2>
+                    <h3 class="product-subtitle">Profesyonellerin Tercihi</h3>
+                    <p class="product-description">Profesyonel sürücüler için 1080P UHD, WiFi bağlantısı, süper gece
+                        görüşü ve 24 saat park koruması.</p>
+                    <p class="product-price">Başlangıç fiyatı: <span id="price-uno-pro">2500 TL</span></p>
+                    <div class="product-buttons">
+                        <a href="#trafy-uno-pro-details" class="btn-secondary">Daha Fazla Bilgi</a>
+                        <a href="https://www.shopier.com/s/product/35253512" class="btn-primary" target="_blank">Satın
+                            Al</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="group-dual" class="detail-group" data-filter="dual">
+
+                <div class="detail-card" data-target="#trafy-dos-details">
+                    <img src="./images/dos/dos_solo.png" alt="Trafy Dos" class="product-image">
+                    <!--                <span class="new-badge">Yeni</span> -->
+                    <h2 class="product-title">Trafy Dos</h2>
+                    <h3 class="product-subtitle">2K Ön + Arka Kamera</h3>
+                    <p class="product-description">1440P ön kamera, gece görüşü ve Extreme Mode ile hem gündüz hem gece
+                        üstün performans.</p>
+                    <p class="product-price">Başlangıç fiyatı: <span id="price-dos">4000 TL</span></p>
+                    <div class="product-buttons">
+                        <a href="#trafy-dos-details" class="btn-secondary">Daha Fazla Bilgi</a>
+                        <a href="https://www.shopier.com/s/product/35254014" class="btn-primary" target="_blank">Satın
+                            Al</a>
+                    </div>
+                </div>
+
+                <div class="detail-card" data-target="#trafy-dos-pro-details">
+                    <img src="./images/dospro/dos_pro_solo.png" alt="Trafy Dos Pro" class="product-image">
+                    <h2 class="product-title">Trafy Dos Pro</h2>
+                    <h3 class="product-subtitle">4K + GPS + Ekran</h3>
+                    <p class="product-description">4K çözünürlükte ön kamera, 1080P arka kamera, dahili GPS ve ekran ile
+                        her detayı kayıt altına alın.</p>
+                    <p class="product-price">Başlangıç fiyatı: <span id="price-dos-pro">7000 TL</span></p>
+                    <div class="product-buttons">
+                        <a href="#trafy-dos-pro-details" class="btn-secondary">Daha Fazla Bilgi</a>
+                        <a href="https://www.shopier.com/s/product/35256008" class="btn-primary" target="_blank">Satın
+                            Al</a>
+                    </div>
+                </div>
+
+                <div class="detail-card" data-target="#trafy-dos-internet-details">
+                    <img src="./images/dosinternet/dos_internet.png" alt="Trafy Dos Internet" class="product-image">
+                    <span class="new-badge">Yeni</span>
+                    <h2 class="product-title">Trafy Dos Internet</h2>
+                    <h3 class="product-subtitle">Bulut Bağlantılı + 4G LTE</h3>
+                    <p class="product-description">4G LTE bağlantısı ile bulut depolama, uzaktan canlı izleme ve anlık
+                        bildirimler.</p>
+                    <p class="product-price">Başlangıç fiyatı: <span id="price-dos-internet">8000 TL</span></p>
+                    <div class="product-buttons">
+                        <a href="#trafy-dos-internet-details" class="btn-secondary">Daha Fazla Bilgi</a>
+                        <a href="https://www.shopier.com/s/product/35256008" class="btn-primary" target="_blank">Satın
+                            Al</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="group-triple" class="detail-group" data-filter="triple">
+
+                <div class="detail-card" data-target="#trafy-tres-details">
+                    <img src="./images/tres/tres_inner_solo.png" alt="Trafy Tres" class="product-image">
+                    <h2 class="product-title">Trafy Tres</h2>
+                    <h3 class="product-subtitle">3 Açıda Tam Koruma</h3>
+                    <p class="product-description">2K ön kamera, 1080P iç ve arka kameralarla tam kapsamlı kayıt.
+                        512GB’a kadar desteklenen dev hafıza ile her anı yakalayın.</p>
+                    <p class="product-price">Başlangıç fiyatı: <span id="price-tres">9000 TL</span></p>
+                    <div class="product-buttons">
+                        <a href="#trafy-tres-details" class="btn-secondary">Daha Fazla Bilgi</a>
+                        <a href="https://www.shopier.com/s/product/35256356" class="btn-primary" target="_blank">Satın
+                            Al</a>
+                    </div>
+                </div>
+
+                <div class="detail-card" data-target="#trafy-tres-pro-details">
+                    <img src="./images/trespro/tres_pro.png" alt="Trafy Tres Pro" class="product-image">
+                    <h2 class="product-title">Trafy Tres Pro</h2>
+                    <span class="new-badge">Yeni</span>
+                    <h3 class="product-subtitle">4K + WiFi + GPS + Ekran</h3>
+                    <p class="product-description">4K ön kamera, 1080P iç ve arka kameralarla tam kapsamlı kayıt.
+                        WiFi, GPS ve 3.16" IPS ekran ile profesyonel kayıt deneyimi.</p>
+                    <p class="product-price">Başlangıç fiyatı: <span id="price-tres-pro">10000 TL</span></p>
+                    <div class="product-buttons">
+                        <a href="#trafy-tres-pro-details" class="btn-secondary">Daha Fazla Bilgi</a>
+                        <a href="https://www.shopier.com/s/product/35256356" class="btn-primary" target="_blank">Satın
+                            Al</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Sabit detay bölümleri -->
+        <section class="model-details" id="trafy-uno-details">
+            <div class="model-specs">
+
+                <div class="spec-block">
+                    <i data-lucide="camera" class="spec-icon"></i>
+                    <h2>1080P Full HD Video</h2>
+                    <p>1080P çözünürlük ile gündüz ve gece net kayıt performansı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="maximize-2" class="spec-icon"></i>
+                    <h2>140° Geniş Açı Lens</h2>
+                    <p>140° geniş görüş açısı ve F2.0 diyafram açıklığı ile detaylı kayıt.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="wifi" class="spec-icon"></i>
+                    <h2>WiFi ve Mobil Uygulama</h2>
+                    <p>WiFi üzerinden canlı önizleme, video indirme ve paylaşım özellikleri.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="hard-drive" class="spec-icon"></i>
+                    <h2>128GB'a Kadar MicroSD Desteği</h2>
+                    <p>64GB hafıza kartı ile 12 saat kayıt kapasitesi.</p>
+                </div>
+
+
+
+                <div class="spec-block">
+                    <i data-lucide="radar" class="spec-icon"></i>
+                    <h2>ADAS Sürüş Destek Sistemi</h2>
+                    <p>Öndeki araç mesafe algılama, çarpışma uyarısı, yaya çarpışma uyarısı ve şerit takip.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="repeat" class="spec-icon"></i>
+                    <h2>Otomatik Döngüsel Kayıt</h2>
+                    <p>Açılışta otomatik kayıt başlatma ve döngüsel kayıt ile kesintisiz kullanım.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="activity" class="spec-icon"></i>
+                    <h2>Çarpışma Algılama (G-Sensör)</h2>
+                    <p>Çarpışma anında otomatik video kilitleme ile önemli kayıtları koruma.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="smartphone" class="spec-icon"></i>
+                    <h2>Mobil APP ile Fotoğraf Çekimi</h2>
+                    <p>Mobil uygulama üzerinden fotoğraf çekme ve kayıt kontrolü.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="mic" class="spec-icon"></i>
+                    <h2>Ses Kaydı Desteği</h2>
+                    <p>Video kayıtlarında ses kaydı özelliği ile tam kayıt deneyimi.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="box" class="spec-icon"></i>
+                    <h2>Metal Gövde ve Cam Lens</h2>
+                    <p>Dayanıklı metal gövde ve cam lens ile üstün kalite ve uzun ömür.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="cpu" class="spec-icon"></i>
+                    <h2>Lingtong İşlemci</h2>
+                    <p>Güvenilir Lingtong çipset ile stabil performans.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="usb" class="spec-icon"></i>
+                    <h2>USB/Type-C Veri Aktarımı</h2>
+                    <p>Standart USB veya Type-C kablo ile kolay veri aktarımı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="battery" class="spec-icon"></i>
+                    <h2>Düğme Pil Sistemi</h2>
+                    <p>Düğme pil ile ayar ve saat bilgilerini koruma.</p>
+                </div>
+
+            </div>
+
+            <div class="model-summary">
+                <p>Trafy Uno, Lingtong işlemci ile donatılmış, 1080P çözünürlüklü, WiFi bağlantılı ve ADAS sürüş destek
+                    sistemli fiyat/performans şampiyonu bir araç içi kameradır. 140° geniş açı, metal gövde ve cam lens
+                    ile hem şehir içi hem de uzun yol sürücüleri için ideal çözüm.</p>
+            </div>
+
+            <div class="model-cta">
+                <p>Ürün kutusunda: Kamera, bağlantı kablosu ve kullanım kılavuzu bulunmaktadır.</p>
+                <div class="cta-buttons">
+                    <a href="https://www.shopier.com/s/product/35252586" class="btn buy-btn" target="_blank">Şimdi Satın
+                        Al</a>
+                    <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
+                    <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
+                    <a class="btn btn-outline" href="/kullanim-kilavuzu/?model=Trafy%20Uno">Kullanım Kılavuzu</a>
                 </div>
             </div>
+        </section>
+        <section class="model-details" id="trafy-uno-pro-details">
+            <div class="model-specs">
 
-            <div class="detail-card" data-target="#trafy-uno-pro-details">
-                <img src="./images/unopro/uno_pro_solo.png" alt="Trafy Uno Pro" class="product-image">
-                <span class="new-badge">Yeni</span>
-                <h2 class="product-title">Trafy Uno Pro</h2>
-                <h3 class="product-subtitle">Profesyonellerin Tercihi</h3>
-                <p class="product-description">Profesyonel sürücüler için 1080P UHD, WiFi bağlantısı, süper gece görüşü ve 24 saat park koruması.</p>
-                <p class="product-price">Başlangıç fiyatı: <span id="price-uno-pro">Yükleniyor ... </span></p>
-                <div class="product-buttons">
-                    <a href="#trafy-uno-pro-details" class="btn-primary">Daha Fazla Bilgi</a>
-                    <a href="https://www.shopier.com/s/product/35253512" class="btn-secondary" target="_blank">Satın Al</a>
+                <div class="spec-block">
+                    <i data-lucide="camera" class="spec-icon"></i>
+                    <h2>1080P UHD Video Kalitesi</h2>
+                    <p>Gündüz, gece ve zorlu koşullarda net ve canlı kayıt deneyimi.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="wifi" class="spec-icon"></i>
+                    <h2>WiFi Bağlantısı ve Mobil Kontrol</h2>
+                    <p>10 metreye kadar kablosuz erişim ve mobil uygulama üzerinden kontrol kolaylığı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="moon" class="spec-icon"></i>
+                    <h2>Süper Gece Görüşü</h2>
+                    <p>Düşük ışıkta bile detaylı ve net kayıt performansı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="repeat" class="spec-icon"></i>
+                    <h2>Otomatik Döngüsel Kayıt</h2>
+                    <p>Eski videoları silerek yeni kayıt alanı açan akıllı sistem.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="activity" class="spec-icon"></i>
+                    <h2>G-Sensör & 24 Saat Park Modu</h2>
+                    <p>Darbe algılayarak video koruma ve park halindeyken güvenlik sağlama.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="radar" class="spec-icon"></i>
+                    <h2>ADAS Sürüş Destek Sistemi</h2>
+                    <p>Öndeki araç hareketi, takip mesafesi ve şerit dışı uyarılarla akıllı sürüş desteği.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="settings" class="spec-icon"></i>
+                    <h2>1296P / 1080P Seçilebilir Video Çözünürlüğü</h2>
+                    <p>İhtiyacınıza uygun çözünürlük ayarlarıyla esnek kullanım.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="maximize-2" class="spec-icon"></i>
+                    <h2>160° Ultra Geniş Görüş Açısı</h2>
+                    <p>Daha geniş sahaları kaydederek daha fazla alanı kapsayan koruma.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="hard-drive" class="spec-icon"></i>
+                    <h2>64GB - 256GB MicroSD Kart Desteği</h2>
+                    <p>Uzun süreli kayıtlar için büyük hafıza seçenekleri.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="box" class="spec-icon"></i>
+                    <h2>Metal Gövde ve Cam Lens</h2>
+                    <p>Üstün malzeme kalitesi ile dayanıklılık ve netlik bir arada.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="battery-charging" class="spec-icon"></i>
+                    <h2>USB Güç Desteği (5V, 1A)</h2>
+                    <p>Kolay ve güvenli enerji bağlantısı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="clock" class="spec-icon"></i>
+                    <h2>30 FPS Kayıt Hızı</h2>
+                    <p>Pürüzsüz ve net görüntü akışı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="cable" class="spec-icon"></i>
+                    <h2>3.2 Metre Uzunlukta Kablo</h2>
+                    <p>Kolay montaj ve rahat kurulum için ideal uzunluk.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="shield-check" class="spec-icon"></i>
+                    <h2>2 Yıl Garanti</h2>
+                    <p>Trafy kalitesi ve destek güvencesiyle içiniz rahat olsun.</p>
+                </div>
+
+            </div>
+
+            <div class="model-summary">
+                <p>Trafy Uno Pro, yalnızca ön görüntü kaydı yapmak isteyen kullanıcılar için geliştirilen, yüksek
+                    performanslı ve ileri teknolojilerle donatılmış bir araç içi kamerasıdır. Trafy Uno'nun gelişmiş
+                    versiyonu olan Uno Pro, daha geniş açı, daha net görüntü, daha akıllı özellikler ve daha fazla
+                    güvenlik sunar.</p>
+            </div>
+
+            <div class="model-cta">
+                <p>Ürün kutusunda: Kamera, bağlantı kablosu ve kullanım kılavuzu bulunmaktadır.</p>
+                <div class="cta-buttons">
+                    <a href="https://www.shopier.com/s/product/35253512" class="btn buy-btn" target="_blank">Şimdi Satın
+                        Al</a>
+                    <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
+                    <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
                 </div>
             </div>
+        </section>
+        <section class="model-details" id="trafy-dos-details">
+            <div class="model-specs">
 
-        </div>
+                <div class="spec-block">
+                    <i data-lucide="camera" class="spec-icon"></i>
+                    <h2>Ultra Net 2K Görüntü Kalitesi</h2>
+                    <p>1440P çözünürlük ve çift kamera kaydı ile her anı detaylı şekilde kaydedin.</p>
+                </div>
 
-        <div id="group-dual" class="detail-group" data-filter="dual">
+                <div class="spec-block">
+                    <i data-lucide="wifi" class="spec-icon"></i>
+                    <h2>WiFi Bağlantısı ve Mobil Uygulama</h2>
+                    <p>Canlı izleme, video indirme ve anında paylaşım kolaylığı.</p>
+                </div>
 
-            <div class="detail-card" data-target="#trafy-dos-details">
-                <img src="./images/dos/dos_solo.png" alt="Trafy Dos" class="product-image">
-<!--                <span class="new-badge">Yeni</span> -->
-                <h2 class="product-title">Trafy Dos</h2>
-                <h3 class="product-subtitle">2K Ön + Arka Kamera</h3>
-                <p class="product-description">1440P ön kamera, gece görüşü ve Extreme Mode ile hem gündüz hem gece üstün performans.</p>
-                <p class="product-price">Başlangıç fiyatı: <span id="price-dos">Yükleniyor ... </span></p>
-                <div class="product-buttons">
-                    <a href="#trafy-dos-details" class="btn-primary">Daha Fazla Bilgi</a>
-                    <a href="https://www.shopier.com/s/product/35254014" class="btn-secondary" target="_blank">Satın Al</a>
+                <div class="spec-block">
+                    <i data-lucide="moon" class="spec-icon"></i>
+                    <h2>Geliştirilmiş Gece Görüşü</h2>
+                    <p>Düşük ışık koşullarında bile net ve detaylı kayıt.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="cloud-snow" class="spec-icon"></i>
+                    <h2>Aşırı Hava Modu</h2>
+                    <p>Yağmur, kar ve zor hava şartlarında kesintisiz kayıt güvencesi.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="activity" class="spec-icon"></i>
+                    <h2>Görüntü Sabitleme ve Yavaş Çekim</h2>
+                    <p>Sarsıntısız kayıtlar ve olağanüstü detaylar için yavaş çekim modu.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="repeat" class="spec-icon"></i>
+                    <h2>Otomatik Döngüsel Kayıt</h2>
+                    <p>Eski kayıtları silerek sürekli yeni kayıt alanı açar.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="shield-off" class="spec-icon"></i>
+                    <h2>24 Saat Park Gözetimi</h2>
+                    <p>Park halindeyken darbe algılayarak otomatik kayıt yapar ve koruma sağlar.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="radar" class="spec-icon"></i>
+                    <h2>G-Sensör Destekli Çarpma Algılama</h2>
+                    <p>Çarpışmaları algılayarak önemli videoları otomatik koruma altına alır.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="maximize-2" class="spec-icon"></i>
+                    <h2>140° Geniş Lens Açısı</h2>
+                    <p>Ön ve arka kameralarla geniş sahaları detaylı olarak kaydeder.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="box" class="spec-icon"></i>
+                    <h2>Metal Gövde ve Cam Lens</h2>
+                    <p>Yüksek dayanıklılık ve optik netlik sunan üst düzey malzeme kalitesi.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="cable" class="spec-icon"></i>
+                    <h2>3.5 Metre Uzunlukta Kablo</h2>
+                    <p>Ön ve arka kameralar için esnek ve rahat montaj imkanı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="battery-charging" class="spec-icon"></i>
+                    <h2>Geniş Güç Uyumluluğu</h2>
+                    <p>ACC (5V-12V, 2A) destekli stabil güç girişi ile güvenli kullanım.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="hard-drive" class="spec-icon"></i>
+                    <h2>256GB’a Kadar MicroSD Kart Desteği</h2>
+                    <p>Uzun süreli kayıtlar için geniş hafıza kapasitesi.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="smartphone" class="spec-icon"></i>
+                    <h2>Gelişmiş Uygulama Özellikleri</h2>
+                    <p>Canlı izleme, anlık kontrol, video indirme ve paylaşım özellikleri.</p>
+                </div>
+
+            </div>
+
+            <div class="model-summary">
+                <p>Trafy Dos, Trafy Uno Pro’nun üst versiyonu olarak geliştirilen, ön ve arka kamera desteği, 2K ultra
+                    net video kalitesi, 24 saat park gözetimi ve gelişmiş gece görüşü gibi üstün özelliklerle donatılmış
+                    yeni nesil bir araç kamerasıdır. Araç içi güvenliği bir üst seviyeye taşıyan Trafy Dos, hem
+                    profesyonel sürücüler hem de kişisel kullanıcılar için tasarlanmıştır.</p>
+            </div>
+
+            <div class="model-cta">
+                <p>Ürün kutusunda: Ön kamera, arka kamera, bağlantı kabloları ve kullanım kılavuzu bulunmaktadır.</p>
+                <div class="cta-buttons">
+                    <a href="https://www.shopier.com/s/product/35254014" class="btn buy-btn" target="_blank">Şimdi Satın
+                        Al</a>
+                    <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
+                    <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
                 </div>
             </div>
+        </section>
+        <section class="model-details" id="trafy-dos-pro-details">
+            <div class="model-specs">
 
-            <div class="detail-card" data-target="#trafy-dos-pro-details">
-                <img src="./images/dospro/dos_pro_solo.png" alt="Trafy Dos Pro" class="product-image">
-                <span class="new-badge">Yeni</span>
-                <h2 class="product-title">Trafy Dos Pro</h2>
-                <h3 class="product-subtitle">4K + GPS + Ekran</h3>
-                <p class="product-description">4K çözünürlükte ön kamera, 1080P arka kamera, dahili GPS ve ekran ile her detayı kayıt altına alın.</p>
-                <p class="product-price">Başlangıç fiyatı: <span id="price-dos-pro">Yükleniyor ... </span></p>
-                <div class="product-buttons">
-                    <a href="#trafy-dos-pro-details" class="btn-primary">Daha Fazla Bilgi</a>
-                    <a href="https://www.shopier.com/s/product/35256008" class="btn-secondary" target="_blank">Satın Al</a>
+                <div class="spec-block">
+                    <i data-lucide="camera" class="spec-icon"></i>
+                    <h2>4K + 1080P Ultra HD Çift Kamera</h2>
+                    <p>Ön ve arka kameralarla ultra net kayıt, her açıyı güven altına alın.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="map-pin" class="spec-icon"></i>
+                    <h2>Dahili GPS Takibi</h2>
+                    <p>Sürüş güzergahınızı ve hız bilgilerinizi otomatik kaydedin.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="wifi" class="spec-icon"></i>
+                    <h2>WiFi ile Canlı İzleme</h2>
+                    <p>Mobil uygulama üzerinden anlık görüntü izleme ve video paylaşımı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="monitor" class="spec-icon"></i>
+                    <h2>Dahili Ekran</h2>
+                    <p>Anında görüntüleme ve ayarlara doğrudan erişim imkanı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="shield-off" class="spec-icon"></i>
+                    <h2>24 Saat Park Gözetimi</h2>
+                    <p>Çarpma algılama ile park halindeyken aracınız koruma altında.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="repeat" class="spec-icon"></i>
+                    <h2>Otomatik Döngüsel Kayıt</h2>
+                    <p>Eski videoları otomatik silerek sürekli kayıt alanı sağlar.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="radar" class="spec-icon"></i>
+                    <h2>ADAS Sürüş Destek Sistemi</h2>
+                    <p>Şerit ihlali, takip mesafesi ve öndeki araç uyarıları ile sürüş güvenliği.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="settings" class="spec-icon"></i>
+                    <h2>4K / 1080P Seçilebilir Video Kalitesi</h2>
+                    <p>Ön kamera 4K, arka kamera 1080P kayıt özelliğiyle yüksek netlik.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="maximize-2" class="spec-icon"></i>
+                    <h2>135° + 110° Lens Açıları</h2>
+                    <p>Ön ve arka kameralarla geniş görüş açısı ile daha fazla alanı kaydedin.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="box" class="spec-icon"></i>
+                    <h2>Altın Kaplama ve Cam Lens</h2>
+                    <p>Premium tasarım ve üst düzey dayanıklılık sunan malzeme kalitesi.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="hard-drive" class="spec-icon"></i>
+                    <h2>256GB’a Kadar MicroSD Desteği</h2>
+                    <p>Uzun süreli kayıtlar için geniş hafıza kapasitesi.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="battery" class="spec-icon"></i>
+                    <h2>Bataryasız, Araç Bağlantılı Kullanım</h2>
+                    <p>Güvenli ve doğrudan araç bağlantısı ile kesintisiz enerji.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="plug-zap" class="spec-icon"></i>
+                    <h2>USB ve ACC Destekli Bağlantı</h2>
+                    <p>Çift güç seçeneği ile esnek bağlantı imkanı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="smartphone" class="spec-icon"></i>
+                    <h2>Mobil Uygulama Özellikleri</h2>
+                    <p>Canlı izleme, fotoğraf çekimi, video kaydı ve anlık paylaşım kolaylığı.</p>
+                </div>
+
+            </div>
+
+            <div class="model-summary">
+                <p>Trafy Dos Pro, Trafy Dos modelinin tüm özelliklerini geliştirerek bir üst seviyeye taşıyan premium
+                    sınıf bir araç içi kameradır. 4K + 1080P çözünürlükte kayıt, GPS sürüş güzergahı takibi, dahili
+                    ekran, ADAS sürüş destek sistemi ve mobil uygulama entegrasyonu ile Trafy Dos Pro, sürüş güvenliği
+                    ve konforunu bir arada sunar.</p>
+            </div>
+
+            <div class="model-cta">
+                <p>Ürün kutusunda: Ön ve arka kamera, bağlantı kabloları, GPS modülü ve kullanım kılavuzu bulunmaktadır.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://www.shopier.com/s/product/35256008" class="btn buy-btn" target="_blank">Şimdi Satın
+                        Al</a>
+                    <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
+                    <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
                 </div>
             </div>
+        </section>
+        <section class="model-details" id="trafy-dos-internet-details">
+            <div class="model-specs">
 
-        </div>
+                <div class="spec-block">
+                    <i data-lucide="camera" class="spec-icon"></i>
+                    <h2>2K + 1080P Çift Kamera</h2>
+                    <p>2K ön kamera (140°) ve 1080P arka kamera (110°) ile geniş açılı ultra net kayıt.</p>
+                </div>
 
-        <div id="group-triple" class="detail-group" data-filter="triple">
+                <div class="spec-block">
+                    <i data-lucide="signal" class="spec-icon"></i>
+                    <h2>4G LTE Bağlantısı</h2>
+                    <p>B1, B3, B5, B8, B38, B39, B40, B41 network bandları ile geniş kapsama alanı.</p>
+                </div>
 
-            <div class="detail-card" data-target="#trafy-tres-details">
-                <img src="./images/tres/tres_inner_solo.png" alt="Trafy Tres" class="product-image">
-                <span class="new-badge">Yeni</span>
-                <h2 class="product-title">Trafy Tres</h2>
-                <h3 class="product-subtitle">3 Açıda Tam Koruma</h3>
-                <p class="product-description">2K ön kamera, 1080P iç ve arka kameralarla tam kapsamlı kayıt. 512GB’a kadar desteklenen dev hafıza ile her anı yakalayın.</p>
-                <p class="product-price">Başlangıç fiyatı: <span id="price-tres">Yükleniyor ... </span></p>
-                <div class="product-buttons">
-                    <a href="#trafy-tres-details" class="btn-primary">Daha Fazla Bilgi</a>
-                    <a href="https://www.shopier.com/s/product/35256356" class="btn-secondary" target="_blank">Satın Al</a>
+                <div class="spec-block">
+                    <i data-lucide="smartphone" class="spec-icon"></i>
+                    <h2>Mobil Uygulama ile Canlı İzleme</h2>
+                    <p>Ücretsiz mobil uygulama ile canlı video izleme, fotoğraf çekimi ve video indirme.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="map-pin" class="spec-icon"></i>
+                    <h2>Dahili GPS</h2>
+                    <p>Standart GPS konfigürasyonu ile konum takibi ve sürüş güzergahı kaydı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="cpu" class="spec-icon"></i>
+                    <h2>Allwinner V853 İşlemci</h2>
+                    <p>Güçlü Allwinner V853 çipset ile hızlı işleme ve kesintisiz kayıt performansı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="camera" class="spec-icon"></i>
+                    <h2>OV2053 Sensör</h2>
+                    <p>Yüksek kaliteli OV2053 görüntü sensörü ile net ve detaylı kayıtlar.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="shield-off" class="spec-icon"></i>
+                    <h2>24 Saat Park Gözetimi (ACC)</h2>
+                    <p>ACC destekli 24 saat park izleme ile aracınız sürekli koruma altında.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="radar" class="spec-icon"></i>
+                    <h2>ADAS Sürüş Destek Sistemi</h2>
+                    <p>Öndeki araç mesafe algılama ve şerit takip uyarısı ile güvenli sürüş.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="repeat" class="spec-icon"></i>
+                    <h2>Otomatik Döngüsel Kayıt</h2>
+                    <p>Açılışta otomatik kayıt başlatma ve döngüsel kayıt ile kesintisiz kullanım.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="activity" class="spec-icon"></i>
+                    <h2>G-Sensör Koruması</h2>
+                    <p>Çarpışma anında otomatik video kilitleme ile önemli kayıtları koruma.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="hard-drive" class="spec-icon"></i>
+                    <h2>256GB'a Kadar Hafıza Desteği</h2>
+                    <p>Maksimum 256GB MicroSD kart desteği ile uzun süreli kayıt kapasitesi.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="clock" class="spec-icon"></i>
+                    <h2>Tarih ve Saat Damgası</h2>
+                    <p>Tüm videolarda tarih ve saat bilgisi ile kayıtlarınızı kolayca takip edin.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="box" class="spec-icon"></i>
+                    <h2>Metal Boyalı Plastik Gövde</h2>
+                    <p>Dayanıklı metal boyalı plastik malzeme ile uzun ömürlü kullanım.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="battery" class="spec-icon"></i>
+                    <h2>Düğme Pil Sistemi</h2>
+                    <p>Düğme pil ile ayar ve saat bilgilerini koruma.</p>
+                </div>
+
+            </div>
+
+            <div class="model-summary">
+                <p>Trafy Dos Internet, Allwinner V853 işlemci ve OV2053 sensör ile donatılmış, 4G LTE bağlantılı yeni
+                    nesil araç kamerasıdır.
+                    2K+1080P çözünürlük, GPS takibi, ADAS sürüş destek sistemi ve mobil uygulama ile uzaktan canlı
+                    izleme özellikleri sunar.
+                    Hem bireysel kullanıcılar hem de filo yöneticileri için ideal çözüm.</p>
+            </div>
+
+            <div class="model-cta">
+                <p>Ürün kutusunda: Ön ve arka kamera, 4G LTE modülü, bağlantı kabloları ve kullanım kılavuzu
+                    bulunmaktadır.</p>
+                <div class="cta-buttons">
+                    <a href="https://www.shopier.com/s/product/35256008" class="btn buy-btn" target="_blank">Şimdi Satın
+                        Al</a>
+                    <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
+                    <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
                 </div>
             </div>
+        </section>
+        <section class="model-details" id="trafy-tres-details">
+            <div class="model-specs">
 
-        </div>
+                <div class="spec-block">
+                    <i data-lucide="camera" class="spec-icon"></i>
+                    <h2>Üçlü Kamera Sistemi</h2>
+                    <p>Ön (2K - 140°), iç (1080P - 110°) ve arka (1080P - 120°) açılarla tam kapsama alanı sağlar.</p>
+                </div>
 
-    </section>
+                <div class="spec-block">
+                    <i data-lucide="moon" class="spec-icon"></i>
+                    <h2>Gece Görüşü ve Kabin Kaydı</h2>
+                    <p>6 katmanlı F/2.0 lens ve WDR teknolojisi ile düşük ışıkta net kayıt imkanı.</p>
+                </div>
 
-    <!-- Sabit detay bölümleri -->
-    <section class="model-details" id="trafy-uno-details">
-        <div class="model-specs">
+                <div class="spec-block">
+                    <i data-lucide="bus" class="spec-icon"></i>
+                    <h2>Ticari Kullanıma Uygun</h2>
+                    <p>Minibüs, otobüs ve filo araçları için profesyonel kayıt çözümleri.</p>
+                </div>
 
-            <div class="spec-block">
-                <i data-lucide="camera" class="spec-icon"></i>
-                <h2>1080P veya 720P</h2>
-                <p>Full HD çözünürlük ile gündüz ve gece net kayıt performansı.</p>
+                <div class="spec-block">
+                    <i data-lucide="shield-alert" class="spec-icon"></i>
+                    <h2>Kaza Anı Kaydı ve G-Sensör</h2>
+                    <p>Çarpışma anında otomatik video kilitleme ile güçlü kanıt sağlar.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="repeat" class="spec-icon"></i>
+                    <h2>Döngüsel Kayıt ve 512GB Hafıza</h2>
+                    <p>Eski kayıtları silerek sürekli yeni kayıt alanı sunar, büyük hafıza desteği ile birleşir.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="wifi" class="spec-icon"></i>
+                    <h2>Mobil Uygulama ve WiFi Bağlantısı</h2>
+                    <p>Canlı izleme, indirme ve anlık kontrol mobil cihazlardan erişilebilir.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="shield-off" class="spec-icon"></i>
+                    <h2>24 Saat Park Gözetimi ve Hareket Algılama</h2>
+                    <p>Park halinde darbe ve hareket algılayarak otomatik kayıt başlatır.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="layout" class="spec-icon"></i>
+                    <h2>Kompakt Tasarım ve Kolay Kurulum</h2>
+                    <p>Dikiz aynası arkasına gizli montaj ile estetik ve pratik kullanım.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="settings" class="spec-icon"></i>
+                    <h2>Teknik Özellikler</h2>
+                    <p>2K + 1080P çözünürlük, 140°/110°/120° lens açıları, metal gövde ve cam lens ile üst seviye
+                        performans.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="hard-drive" class="spec-icon"></i>
+                    <h2>512GB’a Kadar Hafıza Desteği</h2>
+                    <p>Uzun yolculuklar ve sürekli kullanım için devasa depolama kapasitesi.</p>
+                </div>
+
             </div>
 
-            <div class="spec-block">
-                <i data-lucide="move-diagonal" class="spec-icon"></i>
-                <h2>120° Geniş Açı</h2>
-                <p>Yola ve çevreye geniş perspektifle bakış sağlayan lens teknolojisi.</p>
+            <div class="model-summary">
+                <p>Trafy Tres, Trafy markasının en gelişmiş araç kamerasıdır. Ön, arka ve iç kabin olmak üzere 3 farklı
+                    açıdan aynı anda kayıt yapar. İster bireysel kullanımda anılarınızı kaydedin, ister ticari
+                    araçlarınızın güvenliğini sağlayın – Trafy Tres her ihtiyaca hitap eder.</p>
             </div>
 
-            <div class="spec-block">
-                <i data-lucide="sd-card" class="spec-icon"></i>
-                <h2>64GB’a Kadar MicroSD Desteği</h2>
-                <p>Uzun yolculuklarda bile yeterli depolama alanı.</p>
+            <div class="model-cta">
+                <p>Ürün kutusunda: Ön, arka ve iç kamera, bağlantı kabloları ve kullanım kılavuzu bulunmaktadır.</p>
+                <div class="cta-buttons">
+                    <a href="https://www.shopier.com/s/product/35256356" class="btn buy-btn" target="_blank">Şimdi Satın
+                        Al</a>
+                    <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
+                    <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
+                </div>
+            </div>
+        </section>
+        <section class="model-details" id="trafy-tres-pro-details">
+            <div class="model-specs">
+
+                <div class="spec-block">
+                    <i data-lucide="camera" class="spec-icon"></i>
+                    <h2>4K + 1080P×2 Üçlü Kamera</h2>
+                    <p>4K 3840×2160@30fps ön kamera, 1080P iç ve arka kameralarla ultra net kayıt deneyimi.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="monitor" class="spec-icon"></i>
+                    <h2>3.16" IPS LCD Ekran</h2>
+                    <p>Dahili IPS LCD ekran ile anında görüntüleme ve kolay ayar kontrolü.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="wifi" class="spec-icon"></i>
+                    <h2>WiFi Bağlantısı</h2>
+                    <p>Kablosuz bağlantı ile mobil uygulama üzerinden canlı izleme ve video paylaşımı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="map-pin" class="spec-icon"></i>
+                    <h2>Dahili GPS</h2>
+                    <p>GPS modülü ile sürüş güzergahınızı ve hız bilgilerinizi otomatik kaydedin.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="cpu" class="spec-icon"></i>
+                    <h2>SA230D İşlemci</h2>
+                    <p>Güçlü SA230D CPU ile hızlı işleme ve kesintisiz 4K kayıt performansı.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="camera" class="spec-icon"></i>
+                    <h2>GC4653 Sensör</h2>
+                    <p>Yüksek kaliteli GC4653 görüntü sensörü ile net ve detaylı kayıtlar.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="hard-drive" class="spec-icon"></i>
+                    <h2>256GB'a Kadar MicroSD Desteği</h2>
+                    <p>C10 veya üzeri Mini SD kart desteği ile geniş kayıt kapasitesi.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="shield-off" class="spec-icon"></i>
+                    <h2>24 Saat Park Gözetimi</h2>
+                    <p>Park halinde darbe ve hareket algılayarak otomatik kayıt başlatır.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="repeat" class="spec-icon"></i>
+                    <h2>Otomatik Döngüsel Kayıt</h2>
+                    <p>Eski kayıtları silerek sürekli yeni kayıt alanı sağlar.</p>
+                </div>
+
+                <div class="spec-block">
+                    <i data-lucide="bus" class="spec-icon"></i>
+                    <h2>Ticari Kullanıma Uygun</h2>
+                    <p>Minibüs, otobüs ve filo araçları için profesyonel kayıt çözümleri.</p>
+                </div>
+
             </div>
 
-            <div class="spec-block">
-                <i data-lucide="radar" class="spec-icon"></i>
-                <h2>ADAS Sürüş Asistanı</h2>
-                <p>Öndeki araç hareket uyarısı, takip mesafesi uyarısı ve şerit takip desteği.</p>
+            <div class="model-summary">
+                <p>Trafy Tres Pro, 4K çözünürlük, WiFi bağlantısı, GPS takibi ve 3.16" IPS ekran ile donatılmış premium
+                    araç kamerasıdır.
+                    SA230D işlemci ve GC4653 sensör ile profesyonel kayıt kalitesi sunar. Ön, arka ve iç kabin olmak
+                    üzere 3 farklı
+                    açıdan aynı anda kayıt yaparak tam koruma sağlar.</p>
             </div>
 
-            <div class="spec-block">
-                <i data-lucide="smartphone" class="spec-icon"></i>
-                <h2>Android Navigasyon Uyumlu</h2>
-                <p>Aracınızın sistemleriyle kolay entegrasyon.</p>
+            <div class="model-cta">
+                <p>Ürün kutusunda: Ön, arka ve iç kamera, bağlantı kabloları ve kullanım kılavuzu bulunmaktadır.</p>
+                <div class="cta-buttons">
+                    <a href="https://www.shopier.com/s/product/35256356" class="btn buy-btn" target="_blank">Şimdi Satın
+                        Al</a>
+                    <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
+                    <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
+                </div>
             </div>
+        </section>
 
-            <div class="spec-block">
-                <i data-lucide="shield" class="spec-icon"></i>
-                <h2>Kompakt ve Sağlam Tasarım</h2>
-                <p>ABS gövde, PC lens ve araçla çalışır, bataryaya ihtiyaç duymaz.</p>
+
+        <section id="compare" class="comparison-table">
+            <h2 class="comparison-title">Özelliklerin Karşılaştırması</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Özellikler</th>
+                            <th>Trafy Uno</th>
+                            <th>Trafy Uno Pro</th>
+                            <th>Trafy Dos</th>
+                            <th>Trafy Dos Pro</th>
+                            <th>Trafy Dos Internet</th>
+                            <th>Trafy Tres</th>
+                            <th>Trafy Tres Pro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Çözünürlük</td>
+                            <td>1080P HD</td>
+                            <td>1296P / 1080P</td>
+                            <td>2K / 1440P</td>
+                            <td>4K (Ön) + 1080P (Arka)</td>
+                            <td>2K (Ön) + 1080P (Arka)</td>
+                            <td>2K (Ön) + 1080P (İç & Arka)</td>
+                            <td>4K (Ön) + 1080P (İç & Arka)</td>
+                        </tr>
+                        <tr>
+                            <td>Gece Görüşü</td>
+                            <td>Temel</td>
+                            <td>Gelişmiş</td>
+                            <td>Gelişmiş+</td>
+                            <td>Profesyonel</td>
+                            <td>Standart</td>
+                            <td>Premium 6 Katmanlı Lens</td>
+                            <td>Premium 6 Katmanlı Lens</td>
+                        </tr>
+                        <tr>
+                            <td>GPS</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Dahili GPS</td>
+                            <td>Dahili GPS</td>
+                            <td>Yok</td>
+                            <td>Dahili GPS</td>
+                        </tr>
+                        <tr>
+                            <td>Park Modu</td>
+                            <td>Gelişmiş G-Sensörlü</td>
+                            <td>24 Saat G-Sensörlü</td>
+                            <td>24 Saat ACC Destekli</td>
+                            <td>24 Saat ACC + G-Sensörlü</td>
+                            <td>24 Saat ACC + G-Sensörlü</td>
+                            <td>24 Saat Hareket Algılamalı</td>
+                            <td>24 Saat Hareket Algılamalı</td>
+                        </tr>
+                        <tr>
+                            <td>Hafıza Desteği</td>
+                            <td>128GB'a kadar</td>
+                            <td>64GB - 256GB'a kadar</td>
+                            <td>256GB'a kadar</td>
+                            <td>256GB'a kadar</td>
+                            <td>256GB'a kadar</td>
+                            <td>512GB'a kadar</td>
+                            <td>256GB'a kadar</td>
+                        </tr>
+                        <tr>
+                            <td>Mobil Uygulama</td>
+                            <td>WiFi + Mobil Uygulama</td>
+                            <td>WiFi + Mobil Uygulama</td>
+                            <td>WiFi + Mobil Uygulama</td>
+                            <td>WiFi + Mobil Uygulama</td>
+                            <td>4G LTE + WiFi + Mobil Uygulama</td>
+                            <td>WiFi + Mobil Uygulama</td>
+                            <td>WiFi + Mobil Uygulama</td>
+                        </tr>
+                        <tr>
+                            <td>Fiyat</td>
+                            <td>1500 TL</td>
+                            <td>2500 TL</td>
+                            <td>4000 TL</td>
+                            <td>7000 TL</td>
+                            <td>8000 TL</td>
+                            <td>9000 TL</td>
+                            <td>10000 TL</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><a href="https://www.shopier.com/s/product/35252586" class="btn compare-buy-btn"
+                                    target="_blank">Şimdi Satın Al</a></td>
+                            <td><a href="https://www.shopier.com/s/product/35253512" class="btn compare-buy-btn"
+                                    target="_blank">Şimdi Satın Al</a></td>
+                            <td><a href="https://www.shopier.com/s/product/35254014" class="btn compare-buy-btn"
+                                    target="_blank">Şimdi Satın Al</a></td>
+                            <td><a href="https://www.shopier.com/s/product/35256008" class="btn compare-buy-btn"
+                                    target="_blank">Şimdi Satın Al</a></td>
+                            <td><a href="https://www.shopier.com/s/product/35256008" class="btn compare-buy-btn"
+                                    target="_blank">Şimdi Satın Al</a></td>
+                            <td><a href="https://www.shopier.com/s/product/35256356" class="btn compare-buy-btn"
+                                    target="_blank">Şimdi Satın Al</a></td>
+                            <td><a href="https://www.shopier.com/s/product/35256356" class="btn compare-buy-btn"
+                                    target="_blank">Şimdi Satın Al</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </section>
 
-        </div>
-
-        <div class="model-summary">
-            <p>Trafy Uno, şehir içi ve uzun yol sürücülerine özel tasarlanmış, 1080P çözünürlüklü, akıllı sürüş destek özellikleriyle donatılmış fiyat/performans şampiyonu bir araç içi kameradır.</p>
-        </div>
-
-        <div class="model-cta">
-            <p>Ürün kutusunda: Kamera, bağlantı kablosu ve kullanım kılavuzu bulunmaktadır.</p>
-            <div class="cta-buttons">
-                <a href="https://www.shopier.com/s/product/35252586" class="btn buy-btn" target="_blank">Şimdi Satın Al</a>
-                <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
-                <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
-                <a class="btn btn-outline" href="/kullanim-kilavuzu/?model=Trafy%20Uno">Kullanım Kılavuzu</a>
+        <section id="restart-selection" class="restart-selection">
+            <div class="restart-container">
+                <h2 class="restart-title">Karar Veremedin mi?</h2>
+                <p>Yeni Trafy araç içi kameranı seçmeye yeniden başla!</p>
+                <a href="#filter" class="btn btn-outline">Yeniden Başla</a>
             </div>
-        </div>
-    </section>
-    <section class="model-details" id="trafy-uno-pro-details">
-        <div class="model-specs">
+        </section>
 
-            <div class="spec-block">
-                <i data-lucide="camera" class="spec-icon"></i>
-                <h2>1080P UHD Video Kalitesi</h2>
-                <p>Gündüz, gece ve zorlu koşullarda net ve canlı kayıt deneyimi.</p>
-            </div>
 
-            <div class="spec-block">
-                <i data-lucide="wifi" class="spec-icon"></i>
-                <h2>WiFi Bağlantısı ve Mobil Kontrol</h2>
-                <p>10 metreye kadar kablosuz erişim ve mobil uygulama üzerinden kontrol kolaylığı.</p>
-            </div>
 
-            <div class="spec-block">
-                <i data-lucide="moon" class="spec-icon"></i>
-                <h2>Süper Gece Görüşü</h2>
-                <p>Düşük ışıkta bile detaylı ve net kayıt performansı.</p>
-            </div>
 
-            <div class="spec-block">
-                <i data-lucide="repeat" class="spec-icon"></i>
-                <h2>Otomatik Döngüsel Kayıt</h2>
-                <p>Eski videoları silerek yeni kayıt alanı açan akıllı sistem.</p>
-            </div>
 
-            <div class="spec-block">
-                <i data-lucide="activity" class="spec-icon"></i>
-                <h2>G-Sensör & 24 Saat Park Modu</h2>
-                <p>Darbe algılayarak video koruma ve park halindeyken güvenlik sağlama.</p>
-            </div>
 
-            <div class="spec-block">
-                <i data-lucide="radar" class="spec-icon"></i>
-                <h2>ADAS Sürüş Destek Sistemi</h2>
-                <p>Öndeki araç hareketi, takip mesafesi ve şerit dışı uyarılarla akıllı sürüş desteği.</p>
-            </div>
+    </main>
 
-            <div class="spec-block">
-                <i data-lucide="settings" class="spec-icon"></i>
-                <h2>1296P / 1080P Seçilebilir Video Çözünürlüğü</h2>
-                <p>İhtiyacınıza uygun çözünürlük ayarlarıyla esnek kullanım.</p>
-            </div>
+    <footer>
+        <p>&copy; 2025 Trafy. Tüm hakları saklıdır.</p>
+        <br>
+        <p class="social-link">
+            <a href="https://www.instagram.com/trafykamerasi/" target="_blank">
+                <i data-lucide="instagram"></i>
+                Trafy Kamerası
+            </a>
+        </p>
+    </footer>
 
-            <div class="spec-block">
-                <i data-lucide="maximize-2" class="spec-icon"></i>
-                <h2>160° Ultra Geniş Görüş Açısı</h2>
-                <p>Daha geniş sahaları kaydederek daha fazla alanı kapsayan koruma.</p>
-            </div>
 
-            <div class="spec-block">
-                <i data-lucide="hard-drive" class="spec-icon"></i>
-                <h2>64GB - 256GB MicroSD Kart Desteği</h2>
-                <p>Uzun süreli kayıtlar için büyük hafıza seçenekleri.</p>
-            </div>
 
-            <div class="spec-block">
-                <i data-lucide="box" class="spec-icon"></i>
-                <h2>Metal Gövde ve Cam Lens</h2>
-                <p>Üstün malzeme kalitesi ile dayanıklılık ve netlik bir arada.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="battery-charging" class="spec-icon"></i>
-                <h2>USB Güç Desteği (5V, 1A)</h2>
-                <p>Kolay ve güvenli enerji bağlantısı.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="clock" class="spec-icon"></i>
-                <h2>30 FPS Kayıt Hızı</h2>
-                <p>Pürüzsüz ve net görüntü akışı.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="cable" class="spec-icon"></i>
-                <h2>3.2 Metre Uzunlukta Kablo</h2>
-                <p>Kolay montaj ve rahat kurulum için ideal uzunluk.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="shield-check" class="spec-icon"></i>
-                <h2>2 Yıl Garanti</h2>
-                <p>Trafy kalitesi ve destek güvencesiyle içiniz rahat olsun.</p>
-            </div>
-
-        </div>
-
-        <div class="model-summary">
-            <p>Trafy Uno Pro, yalnızca ön görüntü kaydı yapmak isteyen kullanıcılar için geliştirilen, yüksek performanslı ve ileri teknolojilerle donatılmış bir araç içi kamerasıdır. Trafy Uno'nun gelişmiş versiyonu olan Uno Pro, daha geniş açı, daha net görüntü, daha akıllı özellikler ve daha fazla güvenlik sunar.</p>
-        </div>
-
-        <div class="model-cta">
-            <p>Ürün kutusunda: Kamera, bağlantı kablosu ve kullanım kılavuzu bulunmaktadır.</p>
-            <div class="cta-buttons">
-                <a href="https://www.shopier.com/s/product/35253512" class="btn buy-btn" target="_blank">Şimdi Satın Al</a>
-                <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
-                <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
-            </div>
-        </div>
-    </section>
-    <section class="model-details" id="trafy-dos-details">
-        <div class="model-specs">
-
-            <div class="spec-block">
-                <i data-lucide="camera" class="spec-icon"></i>
-                <h2>Ultra Net 2K Görüntü Kalitesi</h2>
-                <p>1440P çözünürlük ve çift kamera kaydı ile her anı detaylı şekilde kaydedin.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="wifi" class="spec-icon"></i>
-                <h2>WiFi Bağlantısı ve Mobil Uygulama</h2>
-                <p>Canlı izleme, video indirme ve anında paylaşım kolaylığı.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="moon" class="spec-icon"></i>
-                <h2>Geliştirilmiş Gece Görüşü</h2>
-                <p>Düşük ışık koşullarında bile net ve detaylı kayıt.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="cloud-snow" class="spec-icon"></i>
-                <h2>Aşırı Hava Modu</h2>
-                <p>Yağmur, kar ve zor hava şartlarında kesintisiz kayıt güvencesi.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="activity" class="spec-icon"></i>
-                <h2>Görüntü Sabitleme ve Yavaş Çekim</h2>
-                <p>Sarsıntısız kayıtlar ve olağanüstü detaylar için yavaş çekim modu.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="repeat" class="spec-icon"></i>
-                <h2>Otomatik Döngüsel Kayıt</h2>
-                <p>Eski kayıtları silerek sürekli yeni kayıt alanı açar.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="shield-off" class="spec-icon"></i>
-                <h2>24 Saat Park Gözetimi</h2>
-                <p>Park halindeyken darbe algılayarak otomatik kayıt yapar ve koruma sağlar.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="radar" class="spec-icon"></i>
-                <h2>G-Sensör Destekli Çarpma Algılama</h2>
-                <p>Çarpışmaları algılayarak önemli videoları otomatik koruma altına alır.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="maximize-2" class="spec-icon"></i>
-                <h2>140° Geniş Lens Açısı</h2>
-                <p>Ön ve arka kameralarla geniş sahaları detaylı olarak kaydeder.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="box" class="spec-icon"></i>
-                <h2>Metal Gövde ve Cam Lens</h2>
-                <p>Yüksek dayanıklılık ve optik netlik sunan üst düzey malzeme kalitesi.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="cable" class="spec-icon"></i>
-                <h2>3.5 Metre Uzunlukta Kablo</h2>
-                <p>Ön ve arka kameralar için esnek ve rahat montaj imkanı.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="battery-charging" class="spec-icon"></i>
-                <h2>Geniş Güç Uyumluluğu</h2>
-                <p>ACC (5V-12V, 2A) destekli stabil güç girişi ile güvenli kullanım.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="hard-drive" class="spec-icon"></i>
-                <h2>256GB’a Kadar MicroSD Kart Desteği</h2>
-                <p>Uzun süreli kayıtlar için geniş hafıza kapasitesi.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="smartphone" class="spec-icon"></i>
-                <h2>Gelişmiş Uygulama Özellikleri</h2>
-                <p>Canlı izleme, anlık kontrol, video indirme ve paylaşım özellikleri.</p>
-            </div>
-
-        </div>
-
-        <div class="model-summary">
-            <p>Trafy Dos, Trafy Uno Pro’nun üst versiyonu olarak geliştirilen, ön ve arka kamera desteği, 2K ultra net video kalitesi, 24 saat park gözetimi ve gelişmiş gece görüşü gibi üstün özelliklerle donatılmış yeni nesil bir araç kamerasıdır. Araç içi güvenliği bir üst seviyeye taşıyan Trafy Dos, hem profesyonel sürücüler hem de kişisel kullanıcılar için tasarlanmıştır.</p>
-        </div>
-
-        <div class="model-cta">
-            <p>Ürün kutusunda: Ön kamera, arka kamera, bağlantı kabloları ve kullanım kılavuzu bulunmaktadır.</p>
-            <div class="cta-buttons">
-                <a href="https://www.shopier.com/s/product/35254014" class="btn buy-btn" target="_blank">Şimdi Satın Al</a>
-                <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
-                <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
-            </div>
-        </div>
-    </section>
-    <section class="model-details" id="trafy-dos-pro-details">
-        <div class="model-specs">
-
-            <div class="spec-block">
-                <i data-lucide="camera" class="spec-icon"></i>
-                <h2>4K + 1080P Ultra HD Çift Kamera</h2>
-                <p>Ön ve arka kameralarla ultra net kayıt, her açıyı güven altına alın.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="map-pin" class="spec-icon"></i>
-                <h2>Dahili GPS Takibi</h2>
-                <p>Sürüş güzergahınızı ve hız bilgilerinizi otomatik kaydedin.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="wifi" class="spec-icon"></i>
-                <h2>WiFi ile Canlı İzleme</h2>
-                <p>Mobil uygulama üzerinden anlık görüntü izleme ve video paylaşımı.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="monitor" class="spec-icon"></i>
-                <h2>Dahili Ekran</h2>
-                <p>Anında görüntüleme ve ayarlara doğrudan erişim imkanı.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="shield-off" class="spec-icon"></i>
-                <h2>24 Saat Park Gözetimi</h2>
-                <p>Çarpma algılama ile park halindeyken aracınız koruma altında.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="repeat" class="spec-icon"></i>
-                <h2>Otomatik Döngüsel Kayıt</h2>
-                <p>Eski videoları otomatik silerek sürekli kayıt alanı sağlar.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="radar" class="spec-icon"></i>
-                <h2>ADAS Sürüş Destek Sistemi</h2>
-                <p>Şerit ihlali, takip mesafesi ve öndeki araç uyarıları ile sürüş güvenliği.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="settings" class="spec-icon"></i>
-                <h2>4K / 1080P Seçilebilir Video Kalitesi</h2>
-                <p>Ön kamera 4K, arka kamera 1080P kayıt özelliğiyle yüksek netlik.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="maximize-2" class="spec-icon"></i>
-                <h2>135° + 110° Lens Açıları</h2>
-                <p>Ön ve arka kameralarla geniş görüş açısı ile daha fazla alanı kaydedin.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="box" class="spec-icon"></i>
-                <h2>Altın Kaplama ve Cam Lens</h2>
-                <p>Premium tasarım ve üst düzey dayanıklılık sunan malzeme kalitesi.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="hard-drive" class="spec-icon"></i>
-                <h2>256GB’a Kadar MicroSD Desteği</h2>
-                <p>Uzun süreli kayıtlar için geniş hafıza kapasitesi.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="battery" class="spec-icon"></i>
-                <h2>Bataryasız, Araç Bağlantılı Kullanım</h2>
-                <p>Güvenli ve doğrudan araç bağlantısı ile kesintisiz enerji.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="plug-zap" class="spec-icon"></i>
-                <h2>USB ve ACC Destekli Bağlantı</h2>
-                <p>Çift güç seçeneği ile esnek bağlantı imkanı.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="smartphone" class="spec-icon"></i>
-                <h2>Mobil Uygulama Özellikleri</h2>
-                <p>Canlı izleme, fotoğraf çekimi, video kaydı ve anlık paylaşım kolaylığı.</p>
-            </div>
-
-        </div>
-
-        <div class="model-summary">
-            <p>Trafy Dos Pro, Trafy Dos modelinin tüm özelliklerini geliştirerek bir üst seviyeye taşıyan premium sınıf bir araç içi kameradır. 4K + 1080P çözünürlükte kayıt, GPS sürüş güzergahı takibi, dahili ekran, ADAS sürüş destek sistemi ve mobil uygulama entegrasyonu ile Trafy Dos Pro, sürüş güvenliği ve konforunu bir arada sunar.</p>
-        </div>
-
-        <div class="model-cta">
-            <p>Ürün kutusunda: Ön ve arka kamera, bağlantı kabloları, GPS modülü ve kullanım kılavuzu bulunmaktadır.</p>
-            <div class="cta-buttons">
-                <a href="https://www.shopier.com/s/product/35256008" class="btn buy-btn" target="_blank">Şimdi Satın Al</a>
-                <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
-                <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
-            </div>
-        </div>
-    </section>
-    <section class="model-details" id="trafy-tres-details">
-        <div class="model-specs">
-
-            <div class="spec-block">
-                <i data-lucide="camera" class="spec-icon"></i>
-                <h2>Üçlü Kamera Sistemi</h2>
-                <p>Ön (2K - 140°), iç (1080P - 110°) ve arka (1080P - 120°) açılarla tam kapsama alanı sağlar.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="moon" class="spec-icon"></i>
-                <h2>Gece Görüşü ve Kabin Kaydı</h2>
-                <p>6 katmanlı F/2.0 lens ve WDR teknolojisi ile düşük ışıkta net kayıt imkanı.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="bus" class="spec-icon"></i>
-                <h2>Ticari Kullanıma Uygun</h2>
-                <p>Minibüs, otobüs ve filo araçları için profesyonel kayıt çözümleri.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="shield-alert" class="spec-icon"></i>
-                <h2>Kaza Anı Kaydı ve G-Sensör</h2>
-                <p>Çarpışma anında otomatik video kilitleme ile güçlü kanıt sağlar.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="repeat" class="spec-icon"></i>
-                <h2>Döngüsel Kayıt ve 512GB Hafıza</h2>
-                <p>Eski kayıtları silerek sürekli yeni kayıt alanı sunar, büyük hafıza desteği ile birleşir.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="wifi" class="spec-icon"></i>
-                <h2>Mobil Uygulama ve WiFi Bağlantısı</h2>
-                <p>Canlı izleme, indirme ve anlık kontrol mobil cihazlardan erişilebilir.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="shield-off" class="spec-icon"></i>
-                <h2>24 Saat Park Gözetimi ve Hareket Algılama</h2>
-                <p>Park halinde darbe ve hareket algılayarak otomatik kayıt başlatır.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="layout" class="spec-icon"></i>
-                <h2>Kompakt Tasarım ve Kolay Kurulum</h2>
-                <p>Dikiz aynası arkasına gizli montaj ile estetik ve pratik kullanım.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="settings" class="spec-icon"></i>
-                <h2>Teknik Özellikler</h2>
-                <p>2K + 1080P çözünürlük, 140°/110°/120° lens açıları, metal gövde ve cam lens ile üst seviye performans.</p>
-            </div>
-
-            <div class="spec-block">
-                <i data-lucide="hard-drive" class="spec-icon"></i>
-                <h2>512GB’a Kadar Hafıza Desteği</h2>
-                <p>Uzun yolculuklar ve sürekli kullanım için devasa depolama kapasitesi.</p>
-            </div>
-
-        </div>
-
-        <div class="model-summary">
-            <p>Trafy Tres, Trafy markasının en gelişmiş araç kamerasıdır. Ön, arka ve iç kabin olmak üzere 3 farklı açıdan aynı anda kayıt yapar. İster bireysel kullanımda anılarınızı kaydedin, ister ticari araçlarınızın güvenliğini sağlayın – Trafy Tres her ihtiyaca hitap eder.</p>
-        </div>
-
-        <div class="model-cta">
-            <p>Ürün kutusunda: Ön, arka ve iç kamera, bağlantı kabloları ve kullanım kılavuzu bulunmaktadır.</p>
-            <div class="cta-buttons">
-                <a href="https://www.shopier.com/s/product/35256356" class="btn buy-btn" target="_blank">Şimdi Satın Al</a>
-                <a href="#filter" class="btn btn-outline">Yukarı Dön</a>
-                <a href="#compare" class="btn btn-outline">Özelliklere Göre Bak</a>
-            </div>
-        </div>
-    </section>
-
-
-    <section id="compare" class="comparison-table">
-        <h2 class="comparison-title">Özelliklerin Karşılaştırması</h2>
-
-        <div class="table-container">
-            <table>
-                <thead>
-                <tr>
-                    <th>Özellikler</th>
-                    <th>Trafy Uno</th>
-                    <th>Trafy Uno Pro</th>
-                    <th>Trafy Dos</th>
-                    <th>Trafy Dos Pro</th>
-                    <th>Trafy Tres</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Çözünürlük</td>
-                    <td>1080P HD</td>
-                    <td>1296P / 1080P</td>
-                    <td>2K / 1440P</td>
-                    <td>4K (Ön) + 1080P (Arka)</td>
-                    <td>2K (Ön) + 1080P (İç & Arka)</td>
-                </tr>
-                <tr>
-                    <td>Gece Görüşü</td>
-                    <td>Temel</td>
-                    <td>Gelişmiş</td>
-                    <td>Gelişmiş+</td>
-                    <td>Profesyonel</td>
-                    <td>Premium 6 Katmanlı Lens</td>
-                </tr>
-                <tr>
-                    <td>GPS</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>Dahili GPS</td>
-                    <td>Yok</td>
-                </tr>
-                <tr>
-                    <td>Park Modu</td>
-                    <td>Gelişmiş G-Sensörlü</td>
-                    <td>24 Saat G-Sensörlü</td>
-                    <td>24 Saat ACC Destekli</td>
-                    <td>24 Saat ACC + G-Sensörlü</td>
-                    <td>24 Saat Hareket Algılamalı</td>
-                </tr>
-                <tr>
-                    <td>Hafıza Desteği</td>
-                    <td>64GB'a kadar</td>
-                    <td>64GB - 256GB'a kadar</td>
-                    <td>256GB'a kadar</td>
-                    <td>256GB'a kadar</td>
-                    <td>512GB'a kadar</td>
-                </tr>
-                <tr>
-                    <td>Mobil Uygulama</td>
-                    <td>Android Navigasyon Üzerinden</td>
-                    <td>WiFi + Mobil Uygulama</td>
-                    <td>WiFi + Mobil Uygulama</td>
-                    <td>WiFi + Mobil Uygulama</td>
-                    <td>WiFi + Mobil Uygulama</td>
-                </tr>
-                <tr>
-                    <td>Fiyat</td>
-                    <td>1000 TL</td>
-                    <td>2000 TL</td>
-                    <td>3000 TL</td>
-                    <td>5000 TL</td>
-                    <td>7000 TL</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><a href="https://www.shopier.com/s/product/35252586" class="btn compare-buy-btn" target="_blank">Şimdi Satın Al</a></td>
-                    <td><a href="https://www.shopier.com/s/product/35253512" class="btn compare-buy-btn" target="_blank">Şimdi Satın Al</a></td>
-                    <td><a href="https://www.shopier.com/s/product/35254014" class="btn compare-buy-btn" target="_blank">Şimdi Satın Al</a></td>
-                    <td><a href="https://www.shopier.com/s/product/35256008" class="btn compare-buy-btn" target="_blank">Şimdi Satın Al</a></td>
-                    <td><a href="https://www.shopier.com/s/product/35256356" class="btn compare-buy-btn" target="_blank">Şimdi Satın Al</a></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section id="restart-selection" class="restart-selection">
-        <div class="restart-container">
-            <h2 class="restart-title">Karar Veremedin mi?</h2>
-            <p>Yeni Trafy araç içi kameranı seçmeye yeniden başla!</p>
-            <a href="#filter" class="btn btn-outline">Yeniden Başla</a>
-        </div>
-    </section>
-
-
-
-
-
-
-</main>
-
-<footer>
-    <p>&copy; 2025 Trafy. Tüm hakları saklıdır.</p>
-    <br>
-    <p class="social-link">
-        <a href="https://www.instagram.com/trafykamerasi/" target="_blank">
-            <i data-lucide="instagram"></i>
-            Trafy Kamerası
-        </a>
-    </p>
-</footer>
-
-
-
-<script src="src/js/main.js"></script>
+    <script src="src/js/main.js"></script>
 </body>
+
 </html>

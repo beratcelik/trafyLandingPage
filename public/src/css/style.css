@@ -1,17 +1,53 @@
 /* Genel Sıfırlama */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: #000; background: #fff; }
-a { text-decoration: none; color: inherit; }
-header, main, footer {
-    width: 100%;
-    margin: 0; /* No centering */
-    max-width: none; /* Remove limitation */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.btn { display: inline-block; padding: .75rem 1.5rem; border: 1px solid #000; border-radius: 999px; font-size: 1rem; font-weight: 600; transition: background .3s, color .3s; }
-.btn:hover { background: #000; color: #fff; }
-.hidden { display: none; }
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: #000;
+    background: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header,
+main,
+footer {
+    width: 100%;
+    margin: 0;
+    /* No centering */
+    max-width: none;
+    /* Remove limitation */
+}
+
+.btn {
+    display: inline-block;
+    padding: .75rem 1.5rem;
+    border: 1px solid #000;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background .3s, color .3s;
+}
+
+.btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+.hidden {
+    display: none;
+}
 
 /* Header */
 header {
@@ -23,7 +59,8 @@ header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     display: flex;
-    justify-content: center; /* 👈 Center everything horizontally */
+    justify-content: center;
+    /* 👈 Center everything horizontally */
     align-items: center;
     padding: 0 2rem;
     z-index: 100;
@@ -66,12 +103,16 @@ nav a {
 
 
 /* Bölümler */
-section { padding: 80px 2rem 40px; }
+section {
+    padding: 80px 2rem 40px;
+}
+
 #hero {
     width: 100vw;
     height: 80vh;
     position: relative;
-    overflow: hidden; /* 🧹 Hide overflow to keep it clean */
+    overflow: hidden;
+    /* 🧹 Hide overflow to keep it clean */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,13 +130,16 @@ section { padding: 80px 2rem 40px; }
     height: auto;
     z-index: 0;
     transform: translate(-50%, -50%);
-    object-fit: cover; /* 🧡 This makes it behave like a background! */
-    filter: brightness(60%); /* 🔥 Optional: Darken a bit for better text visibility */
+    object-fit: cover;
+    /* 🧡 This makes it behave like a background! */
+    filter: brightness(60%);
+    /* 🔥 Optional: Darken a bit for better text visibility */
 }
 
 .hero-content {
     position: relative;
-    z-index: 1; /* 🚀 Always above the video */
+    z-index: 1;
+    /* 🚀 Always above the video */
     color: white;
 }
 
@@ -116,10 +160,28 @@ section { padding: 80px 2rem 40px; }
 
 
 /* Filtre */
-#filter { text-align: center; }
-.tabs { display: inline-flex; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; }
-.tab { padding: .75rem 1.5rem; background: #f9f9f9; cursor: pointer; font-weight: 500; }
-.tab.active { background: #000; color: #fff; }
+#filter {
+    text-align: center;
+}
+
+.tabs {
+    display: inline-flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tab {
+    padding: .75rem 1.5rem;
+    background: #f9f9f9;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.tab.active {
+    background: #000;
+    color: #fff;
+}
 
 /* Detay Grupları */
 #details {
@@ -130,15 +192,17 @@ section { padding: 80px 2rem 40px; }
 }
 
 .detail-group {
-    display: none; /* hide by default */
-    flex-wrap: wrap;
+    display: none;
+    /* hide by default */
+    flex-wrap: nowrap;
     justify-content: center;
     gap: 4rem;
     max-width: 1200px;
 }
 
 .detail-group.active {
-    display: flex; /* show when active */
+    display: flex;
+    /* show when active */
 }
 
 
@@ -149,10 +213,13 @@ section { padding: 80px 2rem 40px; }
     border: none;
     padding: 2rem 1rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease;
     max-width: 400px;
     flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .detail-card:hover {
@@ -162,17 +229,23 @@ section { padding: 80px 2rem 40px; }
 .product-image {
     width: 100%;
     max-width: 300px;
-    margin: 0 auto 1.5rem;
+    height: 250px;
+    object-fit: contain;
+    margin: 0 auto;
+    margin-bottom: auto;
 }
 
 .new-badge {
-    display: inline-block;
-    font-size: 0.9rem;
-    color: #c45600;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.85rem;
+    color: #fff;
+    background: #c45600;
     font-weight: 600;
-    margin-bottom: 0.5rem;
-    text-align: center;
-    width: 100%; /* NEW */
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    z-index: 10;
 }
 
 
@@ -208,6 +281,7 @@ section { padding: 80px 2rem 40px; }
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 .btn-primary {
@@ -246,14 +320,40 @@ section { padding: 80px 2rem 40px; }
     }
 }
 
-.detail-card h2 { font-size: 1.5rem; margin-bottom: .5rem; }
-.detail-card h3 { font-size: 1.125rem; color: #555; margin-bottom: 1rem; }
-.detail-card h4 { font-size: 1rem; margin-top: 1rem; margin-bottom: .5rem; }
-.detail-card ul { list-style: disc inside; margin-left: .5rem; margin-bottom: 1rem; }
-.detail-card p { margin-bottom: 1rem; }
+.detail-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+}
+
+.detail-card h3 {
+    font-size: 1.125rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.detail-card h4 {
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+}
+
+.detail-card ul {
+    list-style: disc inside;
+    margin-left: .5rem;
+    margin-bottom: 1rem;
+}
+
+.detail-card p {
+    margin-bottom: 1rem;
+}
 
 /* Footer */
-footer { text-align: center; padding: 2rem; font-size: .9rem; color: #777; }
+footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: .9rem;
+    color: #777;
+}
 
 
 .model-details {
@@ -383,7 +483,7 @@ footer { text-align: center; padding: 2rem; font-size: .9rem; color: #777; }
     padding: 2rem 1rem;
     background: #fafafa;
     border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     transition: all 0.5s ease, transform 0.3s ease;
     opacity: 0;
     transform: translateY(30px);
@@ -391,7 +491,7 @@ footer { text-align: center; padding: 2rem; font-size: .9rem; color: #777; }
 
 /* Kartlar hover olduğunda hafif yükseliyor */
 .comparison-item:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transform: translateY(-5px);
 }
 
@@ -448,14 +548,14 @@ footer { text-align: center; padding: 2rem; font-size: .9rem; color: #777; }
     min-width: 260px;
     background: #fff;
     border-radius: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 2rem;
     text-align: center;
     transition: all 0.3s ease;
 }
 
 .feature-card:hover {
-    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
 }
 
@@ -522,7 +622,8 @@ table {
     min-width: 900px;
 }
 
-th, td {
+th,
+td {
     padding: 1.5rem 1rem;
     border-bottom: 1px solid #eee;
     font-size: 1rem;
@@ -543,7 +644,8 @@ thead {
     background: #f9f9f9;
 }
 
-td:first-child, th:first-child {
+td:first-child,
+th:first-child {
     text-align: left;
 }
 
@@ -557,7 +659,8 @@ td:first-child, th:first-child {
 }
 
 .buy-btn {
-    background-color: #007aff; /* Apple tarzı mavi */
+    background-color: #007aff;
+    /* Apple tarzı mavi */
     color: #fff;
     border: none;
 }
@@ -594,6 +697,7 @@ td:first-child, th:first-child {
 .compare-buy-btn:hover {
     background-color: #005bb5;
 }
+
 /* Yeniden Başlama Bölümü */
 .restart-selection {
     padding: 4rem 2rem;
@@ -634,6 +738,7 @@ td:first-child, th:first-child {
 .restart-btn:hover {
     background-color: #005bb5;
 }
+
 /* GENERAL BUTTON BASE */
 .btn {
     display: inline-block;
@@ -669,6 +774,7 @@ td:first-child, th:first-child {
     background-color: #007aff;
     color: white;
 }
+
 .cta-buttons {
     display: flex;
     gap: 1rem;
@@ -702,11 +808,13 @@ td:first-child, th:first-child {
     font-weight: 400;
     color: #555;
 }
+
 .spec-icon {
     width: 48px;
     height: 48px;
     margin-bottom: 1rem;
-    color: #0071e3; /* Soft blue like Apple's icons */
+    color: #0071e3;
+    /* Soft blue like Apple's icons */
 }
 
 
@@ -723,6 +831,8 @@ td:first-child, th:first-child {
     height: 18px;
     stroke-width: 1.8;
 }
+
 .social-link a:hover {
-    color: darkblue; /* Instagram-ish pink */
+    color: darkblue;
+    /* Instagram-ish pink */
 }
