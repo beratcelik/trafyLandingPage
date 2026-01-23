@@ -22,7 +22,8 @@
             <div class="logo-wrapper">
                 <img src="./images/t_logo.png" alt="Trafy Logo" style="height: 64px;">
             </div>
-            <nav>
+
+            <nav class="desktop-nav">
                 <a href="#hero">Ana Sayfa</a>
                 <a href="#filter">Araç İçi Kamera</a>
                 <a href="#compare">Karşılaştırma</a>
@@ -33,14 +34,25 @@
                         Trafy Kamerası
                     </a>
                 </p>
-
-                <!--            <a href="#pricing">Fiyatlar</a>
-                        <a href="#about">Hakkımızda</a>
-                        <a href="#faq">SSS</a>
-                        <a href="#contact">İletişim</a>
-                        -->
             </nav>
+
+            <button class="menu-toggle" aria-label="Menüyü Aç">
+                <i data-lucide="menu"></i>
+            </button>
         </div>
+
+        <nav class="mobile-nav">
+            <a href="#hero">Ana Sayfa</a>
+            <a href="#filter">Araç İçi Kamera</a>
+            <a href="#compare">Karşılaştırma</a>
+            <a href="/kullanim-kilavuzu/" target="_self">Kullanım Kılavuzu</a>
+            <p class="social-link">
+                <a href="https://www.instagram.com/trafykamerasi/" target="_blank">
+                    <i data-lucide="instagram"></i>
+                    Trafy Kamerası
+                </a>
+            </p>
+        </nav>
     </header>
 
 
@@ -1020,6 +1032,31 @@
 
 
     <script src="src/js/main.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (mobileNav.classList.contains('active')) {
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        });
+
+        // Close mobile menu when clicking a link
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                menuToggle.querySelector('i').setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+    </script>
 </body>
 
 </html>

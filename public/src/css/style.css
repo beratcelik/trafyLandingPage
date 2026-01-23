@@ -818,6 +818,126 @@ th:first-child {
 }
 
 
+/* Hide toggle and mobile nav on desktop */
+.menu-toggle {
+    display: none;
+}
+
+.mobile-nav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        padding: 0.5rem 1rem;
+    }
+
+    .header-center {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0;
+    }
+
+    .logo-wrapper img {
+        height: 48px;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        color: #000;
+    }
+
+    .mobile-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #fff;
+        padding: 1rem;
+        border-top: 1px solid #eee;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .mobile-nav.active {
+        display: flex;
+    }
+
+    .mobile-nav a {
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #f5f5f5;
+    }
+
+    .mobile-nav .social-link {
+        padding: 1rem;
+    }
+
+    #hero {
+        height: 60vh;
+        padding: 1rem;
+    }
+
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    .detail-group {
+        flex-wrap: wrap;
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+
+    .detail-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .comparison-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    th,
+    td {
+        padding: 1rem 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .spec-block h2 {
+        font-size: 1.5rem;
+    }
+
+    .spec-block p {
+        font-size: 0.95rem;
+    }
+
+    .spec-block {
+        gap: 2rem;
+    }
+
+    .model-specs {
+        gap: 3rem;
+    }
+}
+
 .social-link a {
     display: inline-flex;
     align-items: center;
