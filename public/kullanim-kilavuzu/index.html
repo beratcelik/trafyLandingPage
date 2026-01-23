@@ -13,7 +13,7 @@
 <body>
     <header class="topbar">
         <div class="topbar-inner">
-            <div class="brand">
+            <div class="brand" onclick="setModel('Hoşgeldiniz')" style="cursor: pointer">
                 <div class="dot"></div>
                 <h1>Trafy • Web Kılavuz</h1>
             </div>
@@ -31,7 +31,7 @@
     <main class="wrap">
         <section class="hero">
             <div>
-                <h2 id="heroTitle">Trafy Tres Pro</h2>
+                <h2 id="heroTitle">Hoşgeldiniz</h2>
                 <p id="heroDesc">
                     Bu sayfa kart kart ilerleyen hızlı bir kılavuzdur. Parmağınla kaydır, görsellere bak,
                     2 dakikada kurulumu ve temel kullanımı öğren.
@@ -45,6 +45,10 @@
                 <div class="pill">🛠️ Sorun Giderme</div>
             </div>
         </section>
+
+        <div id="productGrid" class="product-grid" style="display:none">
+            <!-- Grid items injected by JS -->
+        </div>
 
         <div class="section-head">
             <h3 id="sectionTitle">Hızlı Başlangıç Kartları</h3>
@@ -81,6 +85,7 @@
     <script>
         // 1) MODELLER
         const MODELS = [
+            "Hoşgeldiniz",
             "Trafy Uno",
             "Trafy Uno Pro",
             "Trafy Dos",
@@ -228,23 +233,24 @@
         const dlgText = document.getElementById("dlgText");
         const dlgClose = document.getElementById("dlgClose");
 
-        let activeModel = "Trafy Tres Pro";
+        let activeModel = "Hoşgeldiniz";
         let allCards = [];
         let filteredCards = [];
         let activeIndex = 0;
 
         function buildChips() {
             modelSelect.innerHTML = "";
-            MODELS.forEach(m => {
-                const chip = document.createElement("div");
-                chip.className = "chip" + (m === activeModel ? " active" : "");
-                chip.textContent = m;
-                chip.onclick = () => setModel(m);
-                modelSelect.appendChild(chip);
-            });
+            // Tabs removed as per request.
+            // Navigation is now handling via Welcome Page (Title Link)
         }
 
+
         function cardsForModel(model) {
+            // Hoşgeldiniz Ekranı
+            if (model === "Hoşgeldiniz") {
+                return []; // Kart yok, sadece karşılama metni
+            }
+
             // Trafy Tres Pro için tamamen özelleştirilmiş kart seti
             if (model === "Trafy Tres Pro") {
                 return [
@@ -475,6 +481,132 @@
                 ];
             }
 
+            // Trafy Uno için özel düzenleme (Kutu içeriği farklı)
+            if (model === "Trafy Uno") {
+                const cards = JSON.parse(JSON.stringify(BASE_CARDS));
+                // Kart 0: Kutudan çıkanlar
+                cards[0].bullets = [
+                    "Trafy Uno Kamera",
+                    "USB-A/Type-C kablo",
+                    "Kullanma Kılavuzu Kare kodu"
+                ];
+                // Kart 1: Montaj
+                cards[1].desc = "Görüşü kapatmadan en iyi açı: iç dikiz aynasının arkası.";
+                cards[1].bullets = [
+                    "Camı alkol bazlı bir temizleyiciyle temizleyin",
+                    "Kamerayı aynanın arkasına hizalayın",
+                    "Kameranın üzerindeki kırmızı jelatini çıkarın",
+                    "Kırmızı jelatinin altından çıkan yapışkan yüzeyi temizlemiş olduğunuz yüzeye yapıştırın",
+                    "Kabloyu tavan döşemesinden geçirerek ön panele ulaştırın",
+                    "Kabloyu aracın USB girişine takın"
+                ];
+                // Kart 2: Hafıza
+                cards[2].desc = "Class 10 / U3 / V30 ve üzeri bir MicroSD kart temin edin.";
+                cards[2].bullets = [
+                    "Önerilen kart hafızası 16GB ve 64GB arasıdır",
+                    "Kartı takın.",
+                    "Kameranın Wi-Fi'na bağlanın.",
+                    "Kamera Ayarları→ SD Kartı Biçimlendir."
+                ];
+                // Kart 3: Uygulama (Wi-Fi)
+                cards[3].desc = "Uygulamadan canlı görüntü, ayar ve indirme yapılır. Wi-Fi adı 'CarDV...' şeklindedir.";
+                cards[3].bullets = [
+                    "Viidure mobil uygulamasını indirin (<a href='https://play.google.com/store/apps/details?id=com.vidure.app' target='_blank'>Android</a> / <a href='https://apps.apple.com/tr/app/viidure/id1489090807' target='_blank'>iOS</a>)",
+                    "Uygulamayı açıp 'Kamera Ekle' diyin",
+                    "Kurulumda konum, bluetooth ve diğer izinleri verin",
+                    "Wi-Fi Ağı: CarDV_... ve şifresi: 12345678",
+                    "'İnternet yok' uyarısında 'Her zaman bağlan'ı seçin"
+                ];
+                cards[3].detail = "Viidure İndir:<br><a href='https://play.google.com/store/apps/details?id=com.vidure.app' target='_blank'>Android İndir</a><br><a href='https://apps.apple.com/tr/app/viidure/id1489090807' target='_blank'>iOS İndir</a><br><br>Kurulumda konum ve bluetooth izinlerini vermeyi unutmayın.";
+
+                // Kart 4: Menü
+                cards[4].bullets = [
+                    "Ses Kaydı: Açık",
+                    "Hoparlör Sesi: Kapalı",
+                    "Video Çözünürlüğü: 1080FHD",
+                    "Döngü Kayıt Seçenekleri: 1dk",
+                    "Çarpışma algılama: Düşük",
+                    "Diğer ayarları olduğu gibi bırakın"
+                ];
+
+                // Kart 5: Günlük Kullanım
+                cards[5].desc = "Doğru kurulumla kamera kontak çevrilince otomatik çalışmaya başlar.";
+                cards[5].bullets = [
+                    "Aracı çalıştırdığınızda kayıt otomatik başlar",
+                    "Kontağı kapattığınızda kayıt otomatik kapanır",
+                    "Görüntülere uygulamadan veya karttan erişilebilir"
+                ];
+
+                // Kart 6: Sorun Giderme
+                cards[6].bullets = [
+                    "Açılmıyorsa: LED ışığı ve güç kablosunu kontrol edin",
+                    "Kayıt Yoksa: Class 10 (16-64GB) kart kullanın ve formatlayın",
+                    "Bulanık Görüntü: Lens jelatinini sökün ve lensi temizleyin",
+                    "Kart takınca kapanıyorsa: Normaldir, cihaz kendini korur",
+                    "Mobilde siyah ekran: Telefon belleğini temizleyin (1080p sorunu)"
+                ];
+                return cards;
+            }
+
+            // Trafy Uno Pro için özel düzenleme
+            if (model === "Trafy Uno Pro") {
+                const cards = JSON.parse(JSON.stringify(BASE_CARDS));
+                // Kart 0: Kutudan çıkanlar
+                cards[0].bullets = [
+                    "Trafy Uno Pro Kamera",
+                    "USB-A/Type-C kablo",
+                    "Kullanma Kılavuzu Kare kodu"
+                ];
+                // Kart 1: Montaj
+                cards[1].desc = "Görüşü kapatmadan en iyi açı: iç dikiz aynasının arkası.";
+                cards[1].bullets = [
+                    "Camı alkol bazlı bir temizleyiciyle temizleyin",
+                    "Kamerayı aynanın arkasına hizalayın",
+                    "Kameranın üzerindeki kırmızı jelatini çıkarın",
+                    "Kırmızı jelatinin altından çıkan yapışkan yüzeyi temizlemiş olduğunuz yüzeye yapıştırın",
+                    "Kabloyu tavan döşemesinden geçirerek ön panele ulaştırın",
+                    "Kabloyu aracın USB girişine takın"
+                ];
+                // Kart 2: Hafıza
+                cards[2].desc = "Class 10 / U3 / V30 ve üzeri bir MicroSD kart temin edin.";
+                cards[2].bullets = [
+                    "Önerilen kart hafızası 32GB ve 128GB arasıdır",
+                    "Kartı takın.",
+                    "Kameranın Wi-Fi'na bağlanın.",
+                    "Kamera Ayarları→ SD Kartı Biçimlendir."
+                ];
+                // Kart 3: Uygulama (Wi-Fi)
+                cards[3].desc = "Uygulamadan canlı görüntü, ayar ve indirme yapılır. Wi-Fi adı 'fvDvr...' ya da 'HiDvr...' şeklindedir.";
+                cards[3].bullets = [
+                    "Go Look mobil uygulamasını indirin (<a href='https://play.google.com/store/apps/details?id=com.damoa.dv' target='_blank'>Android</a> / <a href='https://apps.apple.com/tr/app/golook/id6451399477' target='_blank'>iOS</a>)",
+                    "Uygulamayı açıp 'Kamera Ekle' diyin",
+                    "Kurulumda konum, bluetooth ve diğer izinleri verin",
+                    "Wi-Fi Ağı: fvDvr... ya da HiDvr... ve şifresi: 12345678",
+                    "'İnternet yok' uyarısında 'Her zaman bağlan'ı seçin"
+                ];
+                cards[3].detail = "GoLook İndir:<br><a href='https://play.google.com/store/apps/details?id=com.damoa.dv' target='_blank'>Android Uygulaması</a><br><a href='https://apps.apple.com/tr/app/golook/id6451399477' target='_blank'>iOS Uygulaması</a><br><br>Kurulumda konum ve bluetooth izinlerini vermeyi unutmayın.";
+
+                // Kart 4: Menü
+                cards[4].title = "Temel menü ayarları (önerilen)";
+                cards[4].desc = "Bu ayarlar günlük kullanım için en stabil kombinasyondur.";
+                cards[4].bullets = [
+                    "Video Çözünürlüğü: 1920x1080",
+                    "Kayıt Anahtarı: Açık",
+                    "Video Süresi (Loop): 1 Dakika",
+                    "Hoparlör sesi: Kapalı",
+                    "diğer bütün ayarlar fabrika ayarlarındaki gibi kalsın"
+                ];
+                // Kart 5: Günlük Kullanım
+                cards[5].desc = "Doğru kurulumla kamera kontak çevrilince otomatik çalışmaya başlar.";
+                cards[5].bullets = [
+                    "Aracı çalıştırdığınızda kayıt otomatik başlar",
+                    "Kontağı kapattığınızda kayıt otomatik kapanır",
+                    "Görüntülere uygulamadan veya karttan erişilebilir"
+                ];
+
+                return cards.slice(0, 6);
+            }
+
             // Diğer modeller: ortak kartlar + varsa ekler
             const base = JSON.parse(JSON.stringify(BASE_CARDS));
             const extras = MODEL_OVERRIDES[model] ? JSON.parse(JSON.stringify(MODEL_OVERRIDES[model])) : [];
@@ -508,7 +640,7 @@
           <div class="kicker">${escapeHtml(c.kicker)}</div>
           <h4 class="title">${escapeHtml(c.title)}</h4>
           <p class="desc">${escapeHtml(c.desc)}</p>
-          <ul class="bullets">${(c.bullets || []).map(b => `<li>${escapeHtml(b)}</li>`).join("")}</ul>
+          <ul class="bullets">${(c.bullets || []).map(b => `<li>${b}</li>`).join("")}</ul>
         `;
 
                 const foot = document.createElement("div");
@@ -565,13 +697,18 @@
 
         track.addEventListener("pointerdown", (e) => {
             isDown = true; moved = false; startX = e.clientX;
-            track.setPointerCapture?.(e.pointerId);
+            // Removed: track.setPointerCapture?.(e.pointerId);
         });
 
         track.addEventListener("pointermove", (e) => {
             if (!isDown) return;
             const dx = e.clientX - startX;
-            if (Math.abs(dx) > 10) moved = true;
+            if (Math.abs(dx) > 10) {
+                if (!moved) {
+                    track.setPointerCapture?.(e.pointerId);
+                    moved = true;
+                }
+            }
         });
 
         track.addEventListener("pointerup", (e) => {
@@ -583,19 +720,98 @@
             if (dx > 40) prev();
         });
 
+        const sectionHead = document.querySelector(".section-head");
+        const carousel = document.querySelector(".carousel");
+        const productGrid = document.getElementById("productGrid");
+
         function setModel(model) {
             activeModel = model;
             heroTitle.textContent = model;
-            heroDesc.textContent =
-                "Bu sayfa kart kart ilerleyen hızlı bir kılavuzdur. Parmağınla kaydır, görsellere bak, 2 dakikada kurulumu ve temel kullanımı öğren.";
+
+            if (model === "Hoşgeldiniz") {
+                heroDesc.textContent = "Trafy Kamerası Kurulum ve Kullanma Kılavuzu";
+                // Hoşgeldiniz sayfasında carousel ve başlıkları gizle, gridi göster
+                if (sectionHead) sectionHead.style.display = "none";
+                if (carousel) carousel.style.display = "none";
+                if (dots) dots.style.display = "none";
+                if (productGrid) {
+                    productGrid.style.display = "grid";
+                    renderProductGrid();
+                }
+            } else {
+                heroDesc.textContent = "Bu sayfa kart kart ilerleyen hızlı bir kılavuzdur. Parmağınla kaydır, görsellere bak, 2 dakikada kurulumu ve temel kullanımı öğren.";
+                // Diğer sayfalarda carousel göster, gridi gizle
+                if (sectionHead) sectionHead.style.display = "flex";
+                if (carousel) carousel.style.display = "flex";
+                if (dots) dots.style.display = "flex";
+                if (productGrid) productGrid.style.display = "none";
+            }
+
             buildChips();
             allCards = cardsForModel(model);
             applySearch();
         }
 
+        function renderProductGrid() {
+            if (productGrid.children.length > 0) return; // Already rendered
+
+            const IMG_MAP = {
+                "Trafy Uno": "images/uno/uno_solo.png",
+                "Trafy Uno Pro": "images/unopro/uno_pro_solo.png",
+                "Trafy Dos": "images/dos/dos_solo.png",
+                "Trafy Dos Pro": "images/dospro/dos_pro_solo.png",
+                "Trafy Dos Internet": "images/dosinternet/dos_internet.png",
+                "Trafy Tres": "images/tres/tres_outer_solo.png",
+                "Trafy Tres Pro": "images/trespro/tres_pro.png"
+            };
+
+            const groups = [
+                { class: "grid-row-2", items: ["Trafy Uno", "Trafy Uno Pro"] },
+                { class: "grid-row-3", items: ["Trafy Dos", "Trafy Dos Pro", "Trafy Dos Internet"] },
+                { class: "grid-row-2", items: ["Trafy Tres", "Trafy Tres Pro"] }
+            ];
+
+            groups.forEach(group => {
+                const row = document.createElement("div");
+                row.className = "product-row " + group.class;
+
+                group.items.forEach(p => {
+                    const item = document.createElement("div");
+                    item.className = "prod-item";
+                    item.onclick = () => setModel(p);
+
+                    const imgBox = document.createElement("div");
+                    imgBox.className = "prod-img";
+
+                    const imgPath = IMG_MAP[p];
+                    if (imgPath) {
+                        const img = document.createElement("img");
+                        img.src = imgPath;
+                        img.alt = p;
+                        img.style.width = "100%";
+                        img.style.height = "100%";
+                        img.style.objectFit = "contain";
+                        img.style.padding = "10px";
+                        imgBox.appendChild(img);
+                    } else {
+                        imgBox.textContent = "Görsel"; // Fallback
+                    }
+
+                    const title = document.createElement("div");
+                    title.className = "prod-title";
+                    title.textContent = p;
+
+                    item.appendChild(imgBox);
+                    item.appendChild(title);
+                    row.appendChild(item);
+                });
+                productGrid.appendChild(row);
+            });
+        }
+
         function openDetail(card) {
             dlgTitle.textContent = card.title;
-            dlgText.textContent = card.detail || "Detay metni yakında eklenecek.";
+            dlgText.innerHTML = card.detail || "Detay metni yakında eklenecek.";
             dlg.showModal();
         }
         dlgClose.onclick = () => dlg.close();
@@ -637,9 +853,7 @@
         }
 
         // INIT
-        allCards = cardsForModel(activeModel);
-        buildChips();
-        renderCards(allCards);
+        setModel(activeModel);
     </script>
 </body>
 
