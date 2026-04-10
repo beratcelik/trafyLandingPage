@@ -607,6 +607,39 @@
                 return cards.slice(0, 6);
             }
 
+            // Trafy Dos Pro için özel düzenleme
+            if (model === "Trafy Dos Pro") {
+                const cards = JSON.parse(JSON.stringify(BASE_CARDS));
+                // Kart 0: Kutudan çıkanlar
+                cards[0].bullets = [
+                    "Trafy Dos Pro kamera",
+                    "Trafy Dos Pro arka kamera",
+                    "ACC kablo",
+                    "GPS modülü",
+                    "Kullanma Kılavuzu Kare kodu"
+                ];
+                // Kart 1: Montaj
+                cards[1].desc = "Görüşü kapatmadan en iyi açı: iç dikiz aynasının arkası. Arka kamera ise arka camın ortasına, görüşü engellemeyecek bir yere takılmalıdır.";
+                cards[1].bullets = [
+                    "Cama yapıştırmadan önce camları alkol bazlı bir temizleyiciyle temizleyin",
+                    "Ön kamerayı aynanın arkasına, arka kamerayı arka camın ortasına hizalayın",
+                    "Kameraları camın iç yüzeyine, araç içinde kalacak şekilde monte edilecek",
+                    "Kameranın üzerindeki kırmızı jelatini çıkarın",
+                    "Yapışkan yüzeyi temizlemiş olduğunuz bölgeye sıkıca yapıştırın",
+                    "Kabloları tavan döşemesinden geçirerek araç sigortasına ulaştırın",
+                    "ACC kablosunu önce araç sigortasına, sonra GPS modülüne ve en son ana kameraya bağlayın. Arka kamera doğrudan ana kameraya bağlanır"
+                ];
+                // Kart 2: Hafıza
+                cards[2].desc = "Class 10 / U3 / V30 ve üzeri bir MicroSD kart temin edin.";
+                cards[2].bullets = [
+                    "Önerilen kart hafızası 64GB ve 256GB arasıdır",
+                    "Kartı takın.",
+                    "Kameranın Wi-Fi'na bağlanın.",
+                    "Kamera Ayarları→ SD Kartı Biçimlendir."
+                ];
+                return cards;
+            }
+
             // Diğer modeller: ortak kartlar + varsa ekler
             const base = JSON.parse(JSON.stringify(BASE_CARDS));
             const extras = MODEL_OVERRIDES[model] ? JSON.parse(JSON.stringify(MODEL_OVERRIDES[model])) : [];
