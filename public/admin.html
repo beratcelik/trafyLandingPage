@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trafy - Admin</title>
+    <link rel="stylesheet" href="src/css/normalize.css">
+    <link rel="stylesheet" href="src/css/style.css?v=20260410f">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<header>
+    <div class="header-center">
+        <div class="logo-wrapper">
+            <a href="/"><img src="./images/t_logo.png" alt="Trafy Logo" style="height: 64px;"></a>
+        </div>
+        <nav>
+            <a href="/">Ana Sayfa</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Giris -->
+    <section class="admin-section" id="admin-login">
+        <div class="admin-container">
+            <h1>Admin Paneli</h1>
+            <div class="form-group">
+                <label for="admin-key">Admin Anahtari</label>
+                <input type="password" id="admin-key" placeholder="Admin sifrenizi girin">
+            </div>
+            <button type="button" class="btn btn-primary" id="login-btn">Giris Yap</button>
+        </div>
+    </section>
+
+    <!-- Panel -->
+    <section class="admin-section hidden" id="admin-panel">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1>Admin Paneli</h1>
+                <button type="button" class="btn btn-outline" id="logout-btn">Cikis</button>
+            </div>
+
+            <!-- Sekmeler -->
+            <div class="admin-tabs">
+                <button type="button" class="admin-tab active" data-tab="orders">Siparisler</button>
+                <button type="button" class="admin-tab" data-tab="products">Urunler &amp; Stok</button>
+            </div>
+
+            <!-- URUNLER SEKMESI -->
+            <div class="admin-tab-content hidden" id="tab-products">
+                <div class="admin-filters">
+                    <h2 style="margin:0;flex:1;">Urun Listesi</h2>
+                    <button type="button" class="btn btn-primary" id="refresh-products-btn">Yenile</button>
+                </div>
+                <div class="admin-products" id="products-list">
+                    <p class="admin-empty">Yukleniyor...</p>
+                </div>
+            </div>
+
+            <!-- SIPARISLER SEKMESI -->
+            <div class="admin-tab-content" id="tab-orders">
+            <!-- Filtreler -->
+            <div class="admin-filters">
+                <select id="filter-status">
+                    <option value="">Tum Durumlar</option>
+                    <option value="ODEME_BEKLENIYOR">Odeme Bekleniyor</option>
+                    <option value="ODEME_ONAYLANDI">Odeme Onaylandi</option>
+                    <option value="HAZIRLANIYOR">Hazirlaniyor</option>
+                    <option value="KARGODA">Kargoda</option>
+                    <option value="TESLIM_EDILDI">Teslim Edildi</option>
+                    <option value="IPTAL">Iptal</option>
+                </select>
+                <button type="button" class="btn btn-primary" id="refresh-btn">Yenile</button>
+            </div>
+
+            <!-- Siparis Listesi -->
+            <div class="admin-orders" id="orders-list">
+                <p class="admin-empty">Yukleniyor...</p>
+            </div>
+            </div><!-- /tab-orders -->
+
+            <!-- Siparis Detay Modal -->
+            <div class="admin-modal hidden" id="order-modal">
+                <div class="admin-modal-content">
+                    <div class="admin-modal-header">
+                        <h2>Siparis Detay: <span id="modal-order-id"></span></h2>
+                        <button type="button" class="modal-close" id="close-modal">&times;</button>
+                    </div>
+                    <div class="admin-modal-body">
+                        <div class="modal-section">
+                            <h4>Urun</h4>
+                            <p id="modal-product"></p>
+                            <p id="modal-total"></p>
+                        </div>
+                        <div class="modal-section">
+                            <h4>Musteri</h4>
+                            <p id="modal-name"></p>
+                            <p id="modal-phone"></p>
+                            <p id="modal-email"></p>
+                            <p>TCKN: <span id="modal-tckn"></span></p>
+                            <p id="modal-address"></p>
+                            <p id="modal-note"></p>
+                        </div>
+                        <div class="modal-section">
+                            <h4>E-Arsiv Fatura</h4>
+                            <p id="modal-invoice">-</p>
+                        </div>
+                        <div class="modal-section">
+                            <h4>Durum Guncelle</h4>
+                            <select id="modal-status">
+                                <option value="ODEME_BEKLENIYOR">Odeme Bekleniyor</option>
+                                <option value="ODEME_ONAYLANDI">Odeme Onaylandi</option>
+                                <option value="HAZIRLANIYOR">Hazirlaniyor</option>
+                                <option value="KARGODA">Kargoda</option>
+                                <option value="TESLIM_EDILDI">Teslim Edildi</option>
+                                <option value="IPTAL">Iptal</option>
+                            </select>
+                        </div>
+                        <div class="modal-section">
+                            <h4>Kargo Bilgisi</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="modal-carrier">Kargo Firmasi</label>
+                                    <input type="text" id="modal-carrier" placeholder="Yurtici, Aras, MNG...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="modal-tracking">Takip Numarasi</label>
+                                    <input type="text" id="modal-tracking" placeholder="Kargo takip no">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-modal-footer">
+                        <button type="button" class="btn btn-primary" id="save-order-btn">Kaydet</button>
+                        <button type="button" class="btn btn-outline" id="cancel-modal-btn">Iptal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="src/js/admin.js?v=20260410f"></script>
+</body>
+</html>

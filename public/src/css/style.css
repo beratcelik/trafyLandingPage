@@ -355,6 +355,18 @@ footer {
     color: #777;
 }
 
+.payment-provider {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.payment-provider img {
+    max-height: 110px;
+    width: auto;
+    opacity: 0.9;
+}
+
 
 .model-details {
     display: none;
@@ -820,11 +832,18 @@ th:first-child {
 
 /* Hide toggle and mobile nav on desktop */
 .menu-toggle {
-    display: none;
+    display: none !important;
 }
 
 .mobile-nav {
-    display: none;
+    display: none !important;
+}
+
+@media (min-width: 769px) {
+    .mobile-nav,
+    .menu-toggle {
+        display: none !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -859,7 +878,7 @@ th:first-child {
     }
 
     .mobile-nav {
-        display: none;
+        display: none !important;
         flex-direction: column;
         width: 100%;
         background: #fff;
@@ -869,7 +888,11 @@ th:first-child {
     }
 
     .mobile-nav.active {
-        display: flex;
+        display: flex !important;
+    }
+
+    .menu-toggle {
+        display: flex !important;
     }
 
     .mobile-nav a {
@@ -955,4 +978,797 @@ th:first-child {
 .social-link a:hover {
     color: darkblue;
     /* Instagram-ish pink */
+}/* ========================================
+   CHECKOUT SAYFASI
+   ======================================== */
+
+.checkout-section {
+    padding: 120px 20px 60px;
+    min-height: 80vh;
+}
+
+.checkout-container {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Adim Gostergesi */
+.step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 40px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+}
+
+.step.active, .step.completed {
+    opacity: 1;
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.step.active .step-number {
+    background: #007aff;
+    color: #fff;
+}
+
+.step.completed .step-number {
+    background: #22c55e;
+    color: #fff;
+}
+
+.step span {
+    font-size: 0.8rem;
+    color: #555;
+    white-space: nowrap;
+}
+
+.step-line {
+    flex: 1;
+    height: 2px;
+    background: #e0e0e0;
+    margin: 0 12px;
+    margin-bottom: 24px;
+    min-width: 40px;
+    max-width: 80px;
+}
+
+/* Checkout Adimlar */
+.checkout-step {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.checkout-step h2 {
+    margin-bottom: 24px;
+    font-size: 1.4rem;
+    color: #111;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Siparis Ozeti Karti */
+.order-summary-card {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+}
+
+.checkout-product-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.order-summary-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #111;
+}
+
+.product-unit-price {
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.qty-btn:hover {
+    border-color: #007aff;
+    color: #007aff;
+}
+
+.quantity-selector input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 4px;
+    font-size: 1rem;
+}
+
+.order-total {
+    font-size: 1.1rem;
+    color: #111;
+}
+
+/* Form Stilleri */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #007aff;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.input-error {
+    border-color: #ef4444 !important;
+}
+
+.form-error {
+    color: #ef4444;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: block;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Checkout Butonlar */
+.checkout-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.checkout-next,
+.checkout-pay {
+    margin-top: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.checkout-pay {
+    background: #22c55e;
+    border-color: #22c55e;
+}
+
+.checkout-pay:hover {
+    background: #16a34a;
+    border-color: #16a34a;
+}
+
+/* Onay Karti */
+.confirmation-card {
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+.confirmation-section {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.confirmation-section:last-child {
+    border-bottom: none;
+}
+
+.confirmation-section h4 {
+    color: #007aff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.confirmation-section p {
+    color: #333;
+    margin: 4px 0;
+}
+
+.confirm-total {
+    font-size: 1.1rem;
+    margin-top: 8px;
+}
+
+.secure-note {
+    text-align: center;
+    color: #777;
+    font-size: 0.8rem;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Sonuc Kartlari */
+.result-card {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.result-card h2 {
+    margin: 16px 0 12px;
+}
+
+.result-card p {
+    color: #555;
+    margin: 8px 0;
+}
+
+.result-card .btn {
+    margin: 8px;
+}
+
+/* Yukleniyor Overlay */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    z-index: 10;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e0e0e0;
+    border-top-color: #007aff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   TRACKING SAYFASI
+   ======================================== */
+
+.tracking-section {
+    padding: 120px 20px 60px;
+    min-height: 80vh;
+}
+
+.tracking-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.tracking-container h1 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.tracking-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 32px;
+}
+
+.tracking-search {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.tracking-search input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+.tracking-search input:focus {
+    outline: none;
+    border-color: #007aff;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+/* Tracking Kart */
+.tracking-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.tracking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.tracking-header h3 {
+    color: #111;
+}
+
+.tracking-date {
+    color: #777;
+    font-size: 0.85rem;
+}
+
+.tracking-product {
+    margin-bottom: 28px;
+    color: #333;
+}
+
+/* Durum Adim Takipcisi */
+.tracking-steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 28px 0;
+    position: relative;
+}
+
+.tracking-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    z-index: 1;
+}
+
+.tracking-step-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    transition: all 0.3s;
+}
+
+.tracking-step-icon i {
+    width: 20px;
+    height: 20px;
+}
+
+.tracking-step.active .tracking-step-icon {
+    background: #007aff;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+}
+
+.tracking-step.completed .tracking-step-icon {
+    background: #22c55e;
+    color: #fff;
+}
+
+.tracking-step span {
+    font-size: 0.7rem;
+    color: #777;
+    text-align: center;
+    max-width: 70px;
+}
+
+.tracking-step.active span,
+.tracking-step.completed span {
+    color: #111;
+    font-weight: 600;
+}
+
+.tracking-step-line {
+    flex: 1;
+    height: 2px;
+    background: #e0e0e0;
+    margin-top: 22px;
+    min-width: 10px;
+}
+
+.tracking-step-line.completed {
+    background: #22c55e;
+}
+
+/* Kargo Bilgisi */
+.cargo-info {
+    background: #f0fdf4;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.cargo-info h4 {
+    color: #22c55e;
+    margin-bottom: 8px;
+}
+
+/* Iptal Durumu */
+.cancelled-info {
+    text-align: center;
+    padding: 20px;
+    color: #ef4444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+/* Hata */
+.tracking-error {
+    text-align: center;
+    padding: 20px;
+    background: #fef2f2;
+    border-radius: 12px;
+    color: #ef4444;
+}
+
+/* ========================================
+   ADMIN SAYFASI
+   ======================================== */
+
+.admin-section {
+    padding: 120px 20px 60px;
+    min-height: 80vh;
+}
+
+.admin-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.admin-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.admin-filters select {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.admin-empty {
+    text-align: center;
+    color: #777;
+    padding: 40px;
+}
+
+/* Admin Tablo */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.admin-table th {
+    background: #f5f5f5;
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 0.85rem;
+    color: #555;
+    font-weight: 600;
+}
+
+.admin-table td {
+    padding: 12px 14px;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.admin-table tr:hover {
+    background: #fafafa;
+}
+
+.btn-sm {
+    padding: 4px 12px !important;
+    font-size: 0.8rem !important;
+}
+
+/* Durum Badge */
+.status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-odeme_bekleniyor { background: #fef3c7; color: #b45309; }
+.status-odeme_onaylandi { background: #d1fae5; color: #065f46; }
+.status-hazirlaniyor { background: #dbeafe; color: #1e40af; }
+.status-kargoda { background: #e0e7ff; color: #3730a3; }
+.status-teslim_edildi { background: #d1fae5; color: #065f46; }
+.status-iptal { background: #fee2e2; color: #b91c1c; }
+
+/* Admin Modal */
+.admin-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.admin-modal-content {
+    background: #fff;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.admin-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #eee;
+}
+
+.admin-modal-header h2 {
+    font-size: 1.1rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    padding: 4px;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.admin-modal-body {
+    padding: 24px;
+}
+
+.modal-section {
+    margin-bottom: 20px;
+}
+
+.modal-section h4 {
+    color: #007aff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.modal-section p {
+    color: #333;
+    margin: 4px 0;
+}
+
+.admin-modal-footer {
+    display: flex;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid #eee;
+    justify-content: flex-end;
+}
+
+/* ========================================
+   RESPONSIVE - CHECKOUT / TRACKING / ADMIN
+   ======================================== */
+
+@media (max-width: 768px) {
+    .order-summary-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .checkout-product-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-buttons {
+        flex-direction: column;
+    }
+
+    .tracking-steps {
+        gap: 4px;
+    }
+
+    .tracking-step span {
+        font-size: 0.6rem;
+        max-width: 55px;
+    }
+
+    .tracking-step-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .tracking-step-icon i {
+        width: 16px;
+        height: 16px;
+    }
+
+    .admin-table {
+        font-size: 0.8rem;
+    }
+
+    .admin-table th, .admin-table td {
+        padding: 8px;
+    }
+
+    .admin-modal-content {
+        margin: 10px;
+    }
+
+    .step span {
+        font-size: 0.7rem;
+    }
+}
+
+/* ===== Admin Tabs ===== */
+.admin-tabs {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 1.5rem;
+}
+
+.admin-tab {
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.admin-tab:hover {
+    color: #111;
+}
+
+.admin-tab.active {
+    color: #111;
+    border-bottom-color: #111;
+}
+
+.admin-tab-content.hidden {
+    display: none;
+}
+
+.admin-products input[type="number"] {
+    padding: 0.4rem 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.admin-products code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    color: #374151;
 }

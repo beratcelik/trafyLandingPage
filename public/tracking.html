@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trafy - Siparis Takibi</title>
+    <link rel="stylesheet" href="src/css/normalize.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<header>
+    <div class="header-center">
+        <div class="logo-wrapper">
+            <a href="/"><img src="./images/t_logo.png" alt="Trafy Logo" style="height: 64px;"></a>
+        </div>
+        <nav>
+            <a href="/">Ana Sayfa</a>
+            <a href="tracking.html">Siparis Takibi</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="tracking-section">
+        <div class="tracking-container">
+            <h1>Siparis Takibi</h1>
+            <p class="tracking-subtitle">Siparis numaranizi girerek siparisinizin durumunu ogrenebilirsiniz.</p>
+
+            <div class="tracking-search">
+                <input type="text" id="order-id-input" placeholder="Siparis numarasi (ornek: TRF-20260409-A3K7)" maxlength="17">
+                <button type="button" class="btn btn-primary" id="track-btn">Sorgula</button>
+            </div>
+
+            <!-- Sonuc -->
+            <div id="tracking-result" class="hidden">
+                <div class="tracking-card">
+                    <div class="tracking-header">
+                        <h3>Siparis: <span id="track-order-id"></span></h3>
+                        <span class="tracking-date" id="track-date"></span>
+                    </div>
+
+                    <div class="tracking-product">
+                        <p><strong id="track-product"></strong> x <span id="track-qty"></span></p>
+                        <p>Toplam: <strong id="track-total"></strong></p>
+                    </div>
+
+                    <!-- Durum Adim Takipcisi -->
+                    <div class="tracking-steps">
+                        <div class="tracking-step" data-status="ODEME_BEKLENIYOR">
+                            <div class="tracking-step-icon"><i data-lucide="clock"></i></div>
+                            <span>Odeme Bekleniyor</span>
+                        </div>
+                        <div class="tracking-step-line"></div>
+                        <div class="tracking-step" data-status="ODEME_ONAYLANDI">
+                            <div class="tracking-step-icon"><i data-lucide="credit-card"></i></div>
+                            <span>Odeme Onaylandi</span>
+                        </div>
+                        <div class="tracking-step-line"></div>
+                        <div class="tracking-step" data-status="HAZIRLANIYOR">
+                            <div class="tracking-step-icon"><i data-lucide="package"></i></div>
+                            <span>Hazirlaniyor</span>
+                        </div>
+                        <div class="tracking-step-line"></div>
+                        <div class="tracking-step" data-status="KARGODA">
+                            <div class="tracking-step-icon"><i data-lucide="truck"></i></div>
+                            <span>Kargoda</span>
+                        </div>
+                        <div class="tracking-step-line"></div>
+                        <div class="tracking-step" data-status="TESLIM_EDILDI">
+                            <div class="tracking-step-icon"><i data-lucide="check-circle"></i></div>
+                            <span>Teslim Edildi</span>
+                        </div>
+                    </div>
+
+                    <!-- Kargo Bilgisi -->
+                    <div id="cargo-info" class="cargo-info hidden">
+                        <h4>Kargo Bilgisi</h4>
+                        <p>Kargo Firmasi: <strong id="track-carrier"></strong></p>
+                        <p>Takip No: <strong id="track-tracking-number"></strong></p>
+                    </div>
+
+                    <!-- Fatura Bilgisi -->
+                    <div id="invoice-info" class="cargo-info hidden">
+                        <h4>E-Arsiv Fatura</h4>
+                        <p>Fatura No: <strong id="track-invoice-number"></strong></p>
+                        <a id="track-invoice-pdf" href="#" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:0.5rem;">
+                            <i data-lucide="file-text" style="width:16px;height:16px;"></i>
+                            Faturayi Goruntule
+                        </a>
+                    </div>
+
+                    <!-- Iptal durumu -->
+                    <div id="cancelled-info" class="cancelled-info hidden">
+                        <i data-lucide="x-circle" style="width:24px;height:24px;"></i>
+                        <p>Bu siparis iptal edilmistir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hata -->
+            <div id="tracking-error" class="tracking-error hidden">
+                <p id="track-error-msg"></p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Trafy. Tum haklari saklidir.</p>
+</footer>
+
+<script src="src/js/tracking.js"></script>
+</body>
+</html>

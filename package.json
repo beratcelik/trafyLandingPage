@@ -1,21 +1,26 @@
 {
-  "name": "trafylandingpage",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "trafy-landing",
+  "version": "2.0.0",
+  "description": "Trafy dashcam landing page with Param payment integration",
+  "main": "server.js",
   "scripts": {
-    "start": "lite-server",
-    "start:guide": "lite-server -c bs-config-guide.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "node server.js",
+    "init-db": "node scripts/initDb.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "lite-server": "^2.6.1"
-  },
   "dependencies": {
     "axios": "^1.10.0",
-    "cheerio": "^1.1.0"
+    "better-sqlite3": "^11.0.0",
+    "cheerio": "^1.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.0",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^8.0.0",
+    "soap": "^1.1.0"
   }
 }

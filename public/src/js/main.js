@@ -33,6 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (el) el.textContent = text;
     };
 
+    const formatTL = (kurus) => {
+        const tl = kurus / 100;
+        return new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 }).format(tl) + ' TL';
+    };
+
     const setAllFallback = () => {
         setText("price-uno", "1500 TL");
         setText("price-uno-pro", "2500 TL");
@@ -43,19 +48,27 @@ document.addEventListener("DOMContentLoaded", () => {
         setText("price-tres-pro", "10000 TL");
     };
 
-    fetch("/.netlify/functions/getPrices", { cache: "no-store" })
+    // Admin panelinden yonetilen fiyatlari DB'den cek
+    fetch("/api/products", { cache: "no-store" })
         .then((res) => {
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             return res.json();
         })
-        .then((data) => {
-            setText("price-uno", data["Trafy Uno"] || "1500 TL");
-            setText("price-uno-pro", data["Trafy Uno Pro"] || "2500 TL");
-            setText("price-dos", data["Trafy Dos"] || "4000 TL");
-            setText("price-dos-pro", data["Trafy Dos Pro"] || "7000 TL");
-            setText("price-dos-internet", data["Trafy Dos Internet"] || "8000 TL");
-            setText("price-tres", data["Trafy Tres"] || "9000 TL");
-            setText("price-tres-pro", data["Trafy Tres Pro"] || "10000 TL");
+        .then((products) => {
+            const map = {};
+            products.forEach(p => { map[p.slug] = p; });
+            products.forEach(p => {
+                setText(`price-${p.slug}`, formatTL(p.price));
+                setText(`compare-price-${p.slug}`, formatTL(p.price));
+            });
+            // Stokta olmayan urunlerin kartini/linkini isaretle
+            document.querySelectorAll('[data-product-slug]').forEach(el => {
+                const slug = el.dataset.productSlug;
+                const p = map[slug];
+                if (p && !p.inStock) {
+                    el.classList.add('out-of-stock');
+                }
+            });
         })
         .catch(() => {
             setAllFallback();

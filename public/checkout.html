@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trafy - Siparis</title>
+    <link rel="stylesheet" href="src/css/normalize.css">
+    <link rel="stylesheet" href="src/css/style.css?v=20260410f">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<header>
+    <div class="header-center">
+        <div class="logo-wrapper">
+            <a href="/"><img src="./images/t_logo.png" alt="Trafy Logo" style="height: 64px;"></a>
+        </div>
+        <nav>
+            <a href="/">Ana Sayfa</a>
+            <a href="tracking.html">Siparis Takibi</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Adim Gostergesi -->
+    <section class="checkout-section">
+        <div class="checkout-container">
+            <div class="step-indicator">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <span>Siparis Ozeti</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <span>Bilgileriniz</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <span>Onay</span>
+                </div>
+            </div>
+
+            <!-- Adim 1: Siparis Ozeti -->
+            <div class="checkout-step" id="step-1">
+                <h2>Siparis Ozeti</h2>
+                <div class="order-summary-card">
+                    <img id="product-image" src="" alt="" class="checkout-product-image">
+                    <div class="order-summary-info">
+                        <h3 id="product-name"></h3>
+                        <p class="product-unit-price">Birim fiyat: <span id="product-price"></span></p>
+                        <div class="quantity-selector">
+                            <label for="quantity">Adet:</label>
+                            <button type="button" class="qty-btn" id="qty-minus">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="10" readonly>
+                            <button type="button" class="qty-btn" id="qty-plus">+</button>
+                        </div>
+                        <p class="order-total">Toplam: <strong id="total-price"></strong></p>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary checkout-next" id="to-step-2">Devam Et</button>
+            </div>
+
+            <!-- Adim 2: Musteri Bilgileri -->
+            <div class="checkout-step hidden" id="step-2">
+                <h2>Teslimat Bilgileri</h2>
+                <form id="customer-form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Ad Soyad *</label>
+                        <input type="text" id="name" name="name" required minlength="2" maxlength="100" placeholder="Adiniz Soyadiniz">
+                        <span class="form-error"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Telefon *</label>
+                            <input type="tel" id="phone" name="phone" required pattern="05\d{9}" placeholder="05xxxxxxxxx" maxlength="11">
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-posta *</label>
+                            <input type="email" id="email" name="email" required placeholder="ornek@email.com">
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tckn">T.C. Kimlik No *</label>
+                        <input type="text" id="tckn" name="tckn" required pattern="\d{11}" maxlength="11" inputmode="numeric" placeholder="11 haneli TC Kimlik No">
+                        <span class="form-hint">E-Arsiv faturaniz icin gereklidir.</span>
+                        <span class="form-error"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">Sehir *</label>
+                            <input type="text" id="city" name="city" required minlength="2" maxlength="50" placeholder="Istanbul">
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="district">Ilce *</label>
+                            <input type="text" id="district" name="district" required minlength="2" maxlength="50" placeholder="Kadikoy">
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Adres *</label>
+                        <textarea id="address" name="address" required minlength="10" maxlength="500" rows="3" placeholder="Mahalle, sokak, bina no, daire no"></textarea>
+                        <span class="form-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="note">Siparis Notu (opsiyonel)</label>
+                        <textarea id="note" name="note" maxlength="500" rows="2" placeholder="Varsa eklemek istediginiz not"></textarea>
+                    </div>
+                    <div class="checkout-buttons">
+                        <button type="button" class="btn btn-outline checkout-back" id="back-to-1">Geri</button>
+                        <button type="button" class="btn btn-primary checkout-next" id="to-step-3">Devam Et</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Adim 3: Onay -->
+            <div class="checkout-step hidden" id="step-3">
+                <h2>Siparis Onayi</h2>
+                <div class="confirmation-card">
+                    <div class="confirmation-section">
+                        <h4>Urun</h4>
+                        <p><span id="confirm-product"></span> x <span id="confirm-qty"></span></p>
+                        <p class="confirm-total">Toplam: <strong id="confirm-total"></strong></p>
+                    </div>
+                    <div class="confirmation-section">
+                        <h4>Teslimat Bilgileri</h4>
+                        <p id="confirm-name"></p>
+                        <p id="confirm-phone"></p>
+                        <p id="confirm-email"></p>
+                        <p id="confirm-tckn"></p>
+                        <p id="confirm-address"></p>
+                    </div>
+                    <div class="confirmation-section" id="confirm-note-section" style="display:none;">
+                        <h4>Not</h4>
+                        <p id="confirm-note"></p>
+                    </div>
+                </div>
+                <div class="checkout-buttons">
+                    <button type="button" class="btn btn-outline checkout-back" id="back-to-2">Geri</button>
+                    <button type="button" class="btn btn-primary checkout-pay" id="pay-btn">
+                        <i data-lucide="lock" style="width:16px;height:16px;"></i>
+                        Guvenli Odemeye Git
+                    </button>
+                </div>
+                <p class="secure-note"><i data-lucide="shield-check" style="width:14px;height:14px;"></i> Odemeniz Param 3D Secure ile guvence altindadir. Kart bilgileriniz sunucumuzda saklanmaz.</p>
+            </div>
+
+            <!-- Odeme Sonucu -->
+            <div class="checkout-step hidden" id="step-result">
+                <div id="result-success" class="result-card success hidden">
+                    <i data-lucide="check-circle" style="width:64px;height:64px;color:#22c55e;"></i>
+                    <h2>Odemeniz Basariyla Alindi!</h2>
+                    <p>Siparis numaraniz: <strong id="result-order-id"></strong></p>
+                    <p>Siparisiniz en kisa surede haziranacak ve kargoya verilecektir.</p>
+                    <a href="tracking.html" class="btn btn-primary">Siparis Takibi</a>
+                    <a href="/" class="btn btn-outline">Ana Sayfa</a>
+                </div>
+                <div id="result-fail" class="result-card fail hidden">
+                    <i data-lucide="x-circle" style="width:64px;height:64px;color:#ef4444;"></i>
+                    <h2>Odeme Basarisiz</h2>
+                    <p id="result-error"></p>
+                    <p>Siparis numaraniz: <strong id="result-fail-order-id"></strong></p>
+                    <button type="button" class="btn btn-primary" onclick="location.reload()">Tekrar Dene</button>
+                    <a href="/" class="btn btn-outline">Ana Sayfa</a>
+                </div>
+            </div>
+
+            <!-- Yukleniyor overlay -->
+            <div class="loading-overlay hidden" id="loading">
+                <div class="spinner"></div>
+                <p>Odeme sayfasina yonlendiriliyorsunuz...</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Trafy. Tum haklari saklidir.</p>
+</footer>
+
+<script src="src/js/checkout.js?v=20260410f"></script>
+</body>
+</html>

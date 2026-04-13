@@ -1,5 +1,12 @@
 node_modules
+.env
+db/database.sqlite
 .git
 .idea
+.netlify
+netlify
+nginx.conf
+nginx.conf.example
+CLAUDE.md
 *.md
 bs-config*.json
