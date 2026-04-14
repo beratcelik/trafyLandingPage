@@ -66,7 +66,24 @@ function initDatabase() {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+
+    CREATE TABLE IF NOT EXISTS career_applications (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      phone TEXT,
+      position TEXT,
+      linkedin TEXT,
+      message TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
   `);
+
+  // career_applications icin migrasyon (eski DB'ye linkedin ekle)
+  const careerCols = database.prepare("PRAGMA table_info(career_applications)").all().map(c => c.name);
+  if (!careerCols.includes('linkedin')) {
+    database.exec('ALTER TABLE career_applications ADD COLUMN linkedin TEXT');
+  }
   // Migrasyon: mevcut veritabanlarina yeni sutunlari ekle
   const existingCols = database.prepare("PRAGMA table_info(orders)").all().map(c => c.name);
   const addCol = (name, type) => {
@@ -288,6 +305,29 @@ function countRecentOrders(phone, email, minutes = 60) {
   return stmt.get(phone, email, `-${minutes} minutes`).count;
 }
 
+// ===== Kariyer basvurulari =====
+
+function createCareerApplication(data) {
+  const stmt = getDb().prepare(
+    'INSERT INTO career_applications (name, email, phone, position, linkedin, message) VALUES (?, ?, ?, ?, ?, ?)'
+  );
+  const r = stmt.run(
+    String(data.name || '').trim().slice(0, 200),
+    String(data.email || '').trim().slice(0, 200),
+    String(data.phone || '').trim().slice(0, 50),
+    String(data.position || '').trim().slice(0, 100),
+    String(data.linkedin || '').trim().slice(0, 300),
+    String(data.message || '').trim().slice(0, 4000)
+  );
+  return { id: r.lastInsertRowid };
+}
+
+function getAllCareerApplications() {
+  return getDb()
+    .prepare('SELECT id, name, email, phone, position, linkedin, message, created_at FROM career_applications ORDER BY created_at DESC')
+    .all();
+}
+
 module.exports = {
   initDatabase,
   getDb,
@@ -305,5 +345,8 @@ module.exports = {
   decrementStock,
   incrementStock,
   commitStockForOrder,
-  releaseStockForOrder
+  releaseStockForOrder,
+  // Kariyer
+  createCareerApplication,
+  getAllCareerApplications
 };

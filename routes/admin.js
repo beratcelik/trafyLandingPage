@@ -4,7 +4,8 @@ const adminAuth = require('../middleware/adminAuth');
 const {
   getAllOrders, getOrderFull, updateOrderStatus,
   getAllProducts, getProduct, updateProduct,
-  commitStockForOrder, releaseStockForOrder
+  commitStockForOrder, releaseStockForOrder,
+  getAllCareerApplications
 } = require('../services/dbService');
 
 // Tum admin route'lari auth gerektiriyor
@@ -115,6 +116,11 @@ router.post('/products/:slug', (req, res) => {
 
   updateProduct(req.params.slug, fields);
   res.json({ success: true, product: getProduct(req.params.slug) });
+});
+
+// GET /api/admin/career-applications -- Tum kariyer basvurulari
+router.get('/career-applications', (req, res) => {
+  res.json(getAllCareerApplications());
 });
 
 module.exports = router;

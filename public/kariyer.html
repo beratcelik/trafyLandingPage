@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kariyer — Trafy</title>
+    <link rel="stylesheet" href="src/css/normalize.css">
+    <link rel="stylesheet" href="src/css/style.css?v=20260414c">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div id="layout-header"></div>
+
+    <main>
+        <article class="content-page">
+            <h1 class="page-title">Kariyer Fırsatları</h1>
+            <p class="page-subtitle">Trafy ekibine katılın. Türkiye'nin yerli araç içi kamera markasını birlikte büyütelim.</p>
+
+            <h2>Neden Trafy'de Çalışmalısınız?</h2>
+            <ul>
+                <li><strong>Hızlı büyüyen ekip:</strong> Kararlar hızlı alınır, etkisi hızlı görülür.</li>
+                <li><strong>Gerçek etki:</strong> Kullandığınız her ürün, trafikte bir sürücüye güven veriyor.</li>
+                <li><strong>Yerli marka:</strong> Sıfırdan Türkiye'de kurulmuş, büyüyen bir iş yapıyoruz.</li>
+                <li><strong>Esnek çalışma:</strong> Pozisyona göre hibrit / uzaktan çalışma mümkün.</li>
+            </ul>
+
+            <h2>Açık Pozisyonlar</h2>
+
+            <div class="job-card">
+                <h3>Satış Temsilcisi</h3>
+                <p class="job-meta">Tam zamanlı · İstanbul (hibrit)</p>
+                <p><strong>Ne yapacaksın?</strong> Potansiyel bayi ve kurumsal müşterilerle ilk teması kurmak, fiyat teklifi hazırlamak, satış sürecini anlaşmaya kadar yönetmek.</p>
+                <p><strong>Ne arıyoruz?</strong></p>
+                <ul>
+                    <li>B2B satışta en az 1 yıl deneyim</li>
+                    <li>Otomotiv, elektronik veya aksesuar sektörü tecrübesi (tercih)</li>
+                    <li>İyi düzeyde yazılı/sözlü iletişim</li>
+                    <li>CRM (HubSpot, Pipedrive vb.) kullanımına yatkınlık</li>
+                </ul>
+            </div>
+
+            <div class="job-card">
+                <h3>Teknik / Kurulum Uzmanı</h3>
+                <p class="job-meta">Tam zamanlı · İstanbul (saha)</p>
+                <p><strong>Ne yapacaksın?</strong> Kurumsal filo müşterilerinde toplu araç içi kamera kurulumlarını yönetmek, montaj partnerlerine teknik eğitim vermek, sahadan gelen teknik soruları çözmek.</p>
+                <p><strong>Ne arıyoruz?</strong></p>
+                <ul>
+                    <li>Oto elektrik veya oto aksesuar montajında 2+ yıl deneyim</li>
+                    <li>12V/24V araç elektrik sistemlerine hakimiyet</li>
+                    <li>Ehliyet (B sınıfı)</li>
+                    <li>Müşteri odaklı yaklaşım</li>
+                </ul>
+            </div>
+
+            <div class="job-card">
+                <h3>Pazarlama Uzmanı</h3>
+                <p class="job-meta">Tam zamanlı · Uzaktan</p>
+                <p><strong>Ne yapacaksın?</strong> Sosyal medya (Instagram, TikTok, YouTube) içerik stratejisini planlamak, performans pazarlama kampanyalarını yönetmek, marka metin ve görsellerini hazırlamak.</p>
+                <p><strong>Ne arıyoruz?</strong></p>
+                <ul>
+                    <li>Dijital pazarlamada 2+ yıl deneyim</li>
+                    <li>Meta Ads ve Google Ads deneyimi</li>
+                    <li>Temel görsel tasarım yetkinliği (Canva, Figma)</li>
+                    <li>Analitik düşünme, veriye dayalı karar alma</li>
+                </ul>
+            </div>
+
+            <div class="job-card">
+                <h3>Müşteri Hizmetleri Uzmanı</h3>
+                <p class="job-meta">Tam zamanlı · Uzaktan</p>
+                <p><strong>Ne yapacaksın?</strong> WhatsApp ve e-posta kanallarından gelen müşteri sorularını yanıtlamak, ürün önerileri yapmak, sipariş ve iade süreçlerini takip etmek.</p>
+                <p><strong>Ne arıyoruz?</strong></p>
+                <ul>
+                    <li>Müşteri destek veya çağrı merkezi deneyimi</li>
+                    <li>Sabırlı, çözüm odaklı iletişim</li>
+                    <li>Mesai saatleri içinde hızlı yanıt süresi</li>
+                    <li>Temel Excel ve CRM kullanımı</li>
+                </ul>
+            </div>
+
+            <div class="job-card">
+                <h3>Diğer Pozisyonlar</h3>
+                <p class="job-meta">Spekülatif başvuru</p>
+                <p>Yukarıdaki pozisyonlardan biri size uymuyor ancak Trafy'de çalışmak istiyorsanız, "Diğer" seçeneğini seçerek başvurun. İlgi duyduğunuz alanı mesaj bölümünde belirtin.</p>
+            </div>
+
+            <h2 id="basvuru">Başvuru Formu</h2>
+            <p>Aşağıdaki formu doldurun, başvurunuz ekibimize iletilir. Uygun gördüğümüz adaylara 1 hafta içinde dönüş yapıyoruz.</p>
+
+            <form id="kariyer-page-form" class="kariyer-page-form" autocomplete="on">
+                <!-- Honeypot: botlari yakalamak icin gorunmeyen alan. Insan doldurmaz. -->
+                <div class="hp-field" aria-hidden="true">
+                    <label for="kp-website">Web siteniz</label>
+                    <input type="text" id="kp-website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="kp-name">Ad Soyad *</label>
+                    <input type="text" id="kp-name" placeholder="Adınız Soyadınız" required>
+                </div>
+                <div class="form-group">
+                    <label for="kp-email">E-posta *</label>
+                    <input type="email" id="kp-email" placeholder="ornek@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="kp-phone">Telefon</label>
+                    <input type="tel" id="kp-phone" placeholder="05xx xxx xx xx">
+                </div>
+                <div class="form-group">
+                    <label for="kp-linkedin">LinkedIn Profili</label>
+                    <input type="url" id="kp-linkedin" placeholder="https://www.linkedin.com/in/...">
+                </div>
+                <div class="form-group">
+                    <label for="kp-position">İlgilendiğiniz Pozisyon *</label>
+                    <select id="kp-position" required>
+                        <option value="Satış Temsilcisi">Satış Temsilcisi</option>
+                        <option value="Teknik / Kurulum Uzmanı">Teknik / Kurulum Uzmanı</option>
+                        <option value="Pazarlama Uzmanı">Pazarlama Uzmanı</option>
+                        <option value="Müşteri Hizmetleri Uzmanı">Müşteri Hizmetleri Uzmanı</option>
+                        <option value="Diğer">Diğer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="kp-message">Hakkınızda / Mesajınız</label>
+                    <textarea id="kp-message" rows="5" placeholder="Kendinizden ve neden Trafy'de çalışmak istediğinizden kısaca bahsedin..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary kariyer-submit-btn">Başvuruyu Gönder</button>
+            </form>
+
+            <div id="kariyer-page-success" class="kariyer-success hidden">
+                <i data-lucide="check-circle-2"></i>
+                <p>Başvurunuz alındı! En kısa sürede sizinle iletişime geçeceğiz.</p>
+            </div>
+        </article>
+    </main>
+
+    <div id="layout-footer"></div>
+    <script src="src/js/layout.js?v=20260414c"></script>
+    <script src="src/js/kariyer-page.js?v=20260414c"></script>
+</body>
+</html>

@@ -10,7 +10,7 @@
     <noscript>
         <link rel="stylesheet" href="src/css/normalize.css">
     </noscript>
-    <link rel="stylesheet" href="src/css/style.css?v=20260410g">
+    <link rel="stylesheet" href="src/css/style.css?v=20260414c">
 
     <!-- ADD LUCIDE ICONS -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -26,15 +26,7 @@
             <nav class="desktop-nav">
                 <a href="#hero">Ana Sayfa</a>
                 <a href="#filter">Araç İçi Kamera</a>
-                <a href="#compare">Karşılaştırma</a>
                 <a href="/kullanim-kilavuzu/" target="_self">Kullanım Kılavuzu</a>
-                <a href="tracking.html">Sipariş Takibi</a>
-                <p class="social-link">
-                    <a href="https://www.instagram.com/trafykamerasi/" target="_blank">
-                        <i data-lucide="instagram"></i>
-                        Trafy Kamerası
-                    </a>
-                </p>
             </nav>
 
             <button class="menu-toggle" aria-label="Menüyü Aç">
@@ -45,15 +37,7 @@
         <nav class="mobile-nav">
             <a href="#hero">Ana Sayfa</a>
             <a href="#filter">Araç İçi Kamera</a>
-            <a href="#compare">Karşılaştırma</a>
             <a href="/kullanim-kilavuzu/" target="_self">Kullanım Kılavuzu</a>
-            <a href="tracking.html">Sipariş Takibi</a>
-            <p class="social-link">
-                <a href="https://www.instagram.com/trafykamerasi/" target="_blank">
-                    <i data-lucide="instagram"></i>
-                    Trafy Kamerası
-                </a>
-            </p>
         </nav>
     </header>
 
@@ -997,51 +981,108 @@
 
 
 
+        <!-- Destek Bolumu -->
+        <section class="support-section" id="destek">
+            <h2>Size Yardımcı Olalım</h2>
+            <p class="support-subtitle">Satın alma öncesi soru sormak veya satış sonrası destek almak için bize WhatsApp ve Instagram üzerinden ulaşabilirsiniz.</p>
+            <div class="support-channels">
+                <a href="https://wa.me/905554005342" target="_blank" rel="noopener" class="support-card support-whatsapp">
+                    <i data-lucide="message-circle"></i>
+                    <span class="support-label">WhatsApp Destek</span>
+                    <span class="support-value">Hemen Yazın</span>
+                </a>
+                <a href="https://www.instagram.com/trafykamerasi/" target="_blank" rel="noopener" class="support-card support-instagram">
+                    <i data-lucide="instagram"></i>
+                    <span class="support-label">Instagram</span>
+                    <span class="support-value">@trafykamerasi</span>
+                </a>
+            </div>
+        </section>
+
     </main>
 
+    <!-- Sabit (floating) WhatsApp destek butonu -->
+    <a href="https://wa.me/905554005342" target="_blank" rel="noopener" class="support-fab" aria-label="WhatsApp Destek">
+        <i data-lucide="message-circle"></i>
+    </a>
+
     <footer>
-        <p>&copy; 2025 Trafy. Tüm hakları saklıdır.</p>
-        <p><a href="tracking.html" style="color: inherit;">Sipariş Takibi</a></p>
-        <br>
-        <p class="social-link">
-            <a href="https://www.instagram.com/trafykamerasi/" target="_blank">
-                <i data-lucide="instagram"></i>
-                Trafy Kamerası
-            </a>
-        </p>
-        <div class="payment-provider">
-            <img src="./images/param_logo.png" alt="Param ile Güvenli Öde" />
+        <div class="footer-grid">
+
+            <!-- Sütun 1: Destek -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Destek</h4>
+                <ul class="footer-links">
+                    <li><a href="tracking.html">Sipariş Takibi</a></li>
+                    <li><a href="/kullanim-kilavuzu/" target="_self">Kullanım Kılavuzu</a></li>
+                    <li><a href="garanti.html">Garanti</a></li>
+                    <li><a href="sss.html">Sıkça Sorulan Sorular</a></li>
+                </ul>
+            </div>
+
+            <!-- Sütun 2: İş Ortaklığı -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">İş Ortaklığı</h4>
+                <ul class="footer-links">
+                    <li><a href="bayi.html">Bayi Olun</a></li>
+                    <li><a href="montaj-partneri.html">Montaj Partneri Olun</a></li>
+                    <li><a href="toptan.html">Toptan Satın Alın</a></li>
+                    <li><a href="kurumsal.html">Kurumsal Alışveriş</a></li>
+                </ul>
+            </div>
+
+            <!-- Sütun 3: Trafy Hakkında -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Trafy Hakkında</h4>
+                <ul class="footer-links">
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="trafy-kulubu.html">Trafy Kulübü</a></li>
+                    <li><a href="kariyer.html">Kariyer Fırsatları</a></li>
+                    <li>
+                        <a href="https://wa.me/905554005342" target="_blank" rel="noopener">
+                            İletişim — WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sütun 4: Sosyal Medya -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Bizi Takip Edin</h4>
+                <ul class="footer-links footer-social">
+                    <li>
+                        <a href="https://www.instagram.com/trafykamerasi/" target="_blank" rel="noopener">
+                            <i data-lucide="instagram"></i>
+                            @trafykamerasi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://t.me/trafy_kulubu" target="_blank" rel="noopener">
+                            <i data-lucide="send"></i>
+                            trafy_kulubu
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://whatsapp.com/channel/0029VbCDkE3IyPtVNhtYL10Y" target="_blank" rel="noopener">
+                            <i data-lucide="message-circle"></i>
+                            WhatsApp Kanalı
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Alt Bar -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Trafy. Tüm hakları saklıdır.</p>
+            <div class="payment-provider">
+                <img src="./images/param_logo.png" alt="Param ile Güvenli Öde" />
+            </div>
         </div>
     </footer>
 
-
-
-    <script src="src/js/main.js?v=20260410g"></script>
-    <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileNav = document.querySelector('.mobile-nav');
-
-        menuToggle.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            if (mobileNav.classList.contains('active')) {
-                icon.setAttribute('data-lucide', 'x');
-            } else {
-                icon.setAttribute('data-lucide', 'menu');
-            }
-            lucide.createIcons();
-        });
-
-        // Close mobile menu when clicking a link
-        mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                menuToggle.querySelector('i').setAttribute('data-lucide', 'menu');
-                lucide.createIcons();
-            });
-        });
-    </script>
+    <script src="src/js/main.js?v=20260414c"></script>
+    <script src="src/js/mobile-nav.js?v=20260414c"></script>
 </body>
 
 </html>

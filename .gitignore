@@ -2,3 +2,21 @@ node_modules
 
 # Local Netlify folder
 .netlify
+
+# Secrets - ASLA COMMIT ETME
+.env
+.env.local
+.env.*.local
+
+# Database (SQLite) - production data
+db/*.sqlite
+db/*.sqlite-*
+
+# Loglar
+*.log
+server.log
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/

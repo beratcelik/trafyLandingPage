@@ -348,23 +348,585 @@ section {
 }
 
 /* Footer */
+/* ===== Footer ===== */
 footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: .9rem;
-    color: #777;
+    background: #f9f9f9;
+    border-top: 1px solid #e5e7eb;
+    padding: 4rem 2rem 0;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+}
+
+.footer-col-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.footer-links a {
+    color: #555;
+    font-size: 0.88rem;
+    transition: color 0.15s;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #000;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-social i {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* Alt bar */
+.footer-bottom {
+    border-top: 1px solid #e5e7eb;
+    padding: 1.5rem 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.footer-bottom p {
+    color: #999;
+    font-size: 0.82rem;
+    margin: 0;
 }
 
 .payment-provider {
-    margin-top: 1.5rem;
     display: flex;
-    justify-content: center;
+    align-items: center;
 }
 
 .payment-provider img {
-    max-height: 110px;
+    max-height: 90px;
     width: auto;
     opacity: 0.9;
+}
+
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* ===== Kariyer Modal ===== */
+.kariyer-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.kariyer-modal-overlay.hidden {
+    display: none;
+}
+
+.kariyer-modal {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.kariyer-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.kariyer-modal-header h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.kariyer-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+    line-height: 1;
+    padding: 0.25rem;
+}
+
+.kariyer-intro {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.kariyer-submit-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.kariyer-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #1a7f37;
+}
+
+.kariyer-success.hidden {
+    display: none;
+}
+
+.kariyer-success i {
+    width: 48px;
+    height: 48px;
+    color: #1a7f37;
+}
+
+.kariyer-success p {
+    margin: 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* ===== WhatsApp floating destek butonu ===== */
+.support-fab {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: #25D366;
+    color: #fff;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    z-index: 900;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+}
+
+.support-fab:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.support-fab i {
+    width: 28px;
+    height: 28px;
+}
+
+/* ===== Destek (satis oncesi & sonrasi) bolumu ===== */
+.support-section {
+    background: #f9f9f9;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.support-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #111;
+}
+
+.support-section .support-subtitle {
+    color: #555;
+    font-size: 1rem;
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+}
+
+.support-channels {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.support-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1.75rem 1.25rem;
+    text-decoration: none;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.support-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+    border-color: #d1d5db;
+}
+
+.support-card i {
+    width: 32px;
+    height: 32px;
+    color: #111;
+}
+
+.support-card.support-whatsapp i { color: #25D366; }
+.support-card.support-instagram i { color: #E4405F; }
+
+.support-card .support-label {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.support-card .support-value {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 520px) {
+    .support-channels { grid-template-columns: 1fr; }
+    .support-fab { bottom: 1rem; right: 1rem; }
+}
+
+/* ===== Icerik Sayfalari (Hakkimizda, Garanti, SSS, vb.) ===== */
+.content-page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 4rem;
+    color: #333;
+    line-height: 1.7;
+}
+
+.content-page .page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.5rem;
+}
+
+.content-page .page-subtitle {
+    color: #666;
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+}
+
+.content-page h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #111;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.content-page h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.content-page p {
+    margin-bottom: 1rem;
+}
+
+.content-page ul {
+    margin: 0 0 1.25rem 1.25rem;
+    padding: 0;
+}
+
+.content-page ul li {
+    margin-bottom: 0.5rem;
+}
+
+.content-page .info-card {
+    background: #f9f9f9;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.content-page .info-card strong { color: #111; }
+
+.content-page .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* FAQ accordion */
+.faq-item {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 0;
+}
+
+.faq-question {
+    font-weight: 600;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+.faq-question::-webkit-details-marker { display: none; }
+
+.faq-question::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: #666;
+    transition: transform 0.2s ease;
+}
+
+details[open] .faq-question::after {
+    content: '–';
+}
+
+.faq-item .faq-answer {
+    margin-top: 0.75rem;
+    color: #555;
+}
+
+/* Kariyer is ilani kartlari */
+.job-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-card:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.job-card h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    color: #111;
+}
+
+.job-card .job-meta {
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin: 0 0 0.75rem;
+}
+
+.job-card p { margin-bottom: 0.5rem; }
+
+.job-card ul {
+    margin: 0.5rem 0 0 1.25rem;
+}
+
+/* Kariyer sayfasi form stili */
+.kariyer-page-form {
+    background: #f9f9f9;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 1rem;
+}
+
+.kariyer-page-form.hidden { display: none; }
+
+.kariyer-page-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.kariyer-page-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #333;
+}
+
+.kariyer-page-form input,
+.kariyer-page-form select,
+.kariyer-page-form textarea {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: #fff;
+    font-family: inherit;
+}
+
+.kariyer-page-form input:focus,
+.kariyer-page-form select:focus,
+.kariyer-page-form textarea:focus {
+    outline: none;
+    border-color: #111;
+}
+
+/* Honeypot alani: gercek kullanicidan tamamen gizli, DOM'da bulunur */
+.hp-field {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Trafy Kulubu sayfasi */
+.klub-quote {
+    border-left: 4px solid #111;
+    padding: 0.75rem 1.25rem;
+    margin: 1.5rem 0 2rem;
+    background: #f9f9f9;
+    font-style: italic;
+    color: #333;
+}
+
+.klub-quote p { margin: 0; font-size: 1.1rem; }
+
+.klub-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.klub-feature {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.klub-feature-icon {
+    font-size: 1.5rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.klub-feature h3 {
+    font-size: 1.05rem;
+    margin: 0 0 0.35rem;
+    color: #111;
+    font-weight: 600;
+}
+
+.klub-feature p { margin: 0; color: #555; font-size: 0.95rem; }
+
+.klub-process {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.klub-step {
+    background: #f9f9f9;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem 0.75rem;
+    text-align: center;
+}
+
+.klub-step-icon {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+.klub-step strong { color: #111; display: block; margin-bottom: 0.25rem; }
+.klub-step p { margin: 0; font-size: 0.85rem; color: #555; }
+
+.klub-join {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.klub-join-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 1.75rem 1rem;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.klub-join-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.klub-join-card i { width: 32px; height: 32px; color: #fff; }
+.klub-join-label { font-weight: 600; font-size: 1.1rem; }
+.klub-join-sub { font-size: 0.85rem; opacity: 0.9; }
+
+.klub-whatsapp { background: #25D366; }
+.klub-telegram { background: #229ED9; }
+
+@media (max-width: 640px) {
+    .klub-features, .klub-join { grid-template-columns: 1fr; }
+    .klub-process { grid-template-columns: repeat(2, 1fr); }
 }
 
 

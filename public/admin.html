@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trafy - Admin</title>
     <link rel="stylesheet" href="src/css/normalize.css">
-    <link rel="stylesheet" href="src/css/style.css?v=20260410f">
+    <link rel="stylesheet" href="src/css/style.css?v=20260414c">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -46,6 +46,18 @@
             <div class="admin-tabs">
                 <button type="button" class="admin-tab active" data-tab="orders">Siparisler</button>
                 <button type="button" class="admin-tab" data-tab="products">Urunler &amp; Stok</button>
+                <button type="button" class="admin-tab" data-tab="careers">Kariyer Basvurulari</button>
+            </div>
+
+            <!-- KARIYER SEKMESI -->
+            <div class="admin-tab-content hidden" id="tab-careers">
+                <div class="admin-filters">
+                    <h2 style="margin:0;flex:1;">Kariyer Basvurulari</h2>
+                    <button type="button" class="btn btn-primary" id="refresh-careers-btn">Yenile</button>
+                </div>
+                <div class="admin-careers" id="careers-list">
+                    <p class="admin-empty">Yukleniyor...</p>
+                </div>
             </div>
 
             <!-- URUNLER SEKMESI -->
@@ -142,6 +154,6 @@
     </section>
 </main>
 
-<script src="src/js/admin.js?v=20260410f"></script>
+<script src="src/js/admin.js?v=20260414c"></script>
 </body>
 </html>

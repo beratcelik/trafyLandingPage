@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (target === 'products') loadProducts();
             if (target === 'orders') loadOrders();
+            if (target === 'careers') loadCareers();
         });
     });
 
@@ -278,6 +279,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    }
+
+    // ===== KARIYER BASVURULARI =====
+
+    const careersRefreshBtn = document.getElementById('refresh-careers-btn');
+    if (careersRefreshBtn) careersRefreshBtn.addEventListener('click', loadCareers);
+
+    async function loadCareers() {
+        const apps = await apiCall('/api/admin/career-applications');
+        if (!apps) return;
+        renderCareers(apps);
+    }
+
+    function renderCareers(apps) {
+        const container = document.getElementById('careers-list');
+        if (!apps || apps.length === 0) {
+            container.innerHTML = '<p class="admin-empty">Henuz basvuru yok.</p>';
+            return;
+        }
+        container.innerHTML = `
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Ad Soyad</th>
+                        <th>E-posta</th>
+                        <th>Telefon</th>
+                        <th>LinkedIn</th>
+                        <th>Pozisyon</th>
+                        <th>Mesaj</th>
+                        <th>Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${apps.map(a => `
+                        <tr>
+                            <td>${escapeHtml(a.name)}</td>
+                            <td><a href="mailto:${escapeHtml(a.email)}">${escapeHtml(a.email)}</a></td>
+                            <td>${escapeHtml(a.phone || '-')}</td>
+                            <td>${a.linkedin ? `<a href="${escapeHtml(a.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>` : '-'}</td>
+                            <td>${escapeHtml(a.position || '-')}</td>
+                            <td style="max-width:280px;white-space:normal;">${escapeHtml(a.message || '-')}</td>
+                            <td>${formatDate(a.created_at)}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
     }
 
     // Yardimci fonksiyonlar

@@ -23,6 +23,7 @@ app.use('/api/payment', require('./routes/payment'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api/invoices', require('./routes/invoices'));
 app.use('/api/products', require('./routes/products'));
+app.use('/api/career-applications', require('./routes/career'));
 
 // Statik dosyalar
 app.use(express.static(path.join(__dirname, 'public')));
