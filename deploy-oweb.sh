@@ -32,6 +32,8 @@ sshpass -p 'UqaY6B19m@bviFgO?Xw6' ssh -o StrictHostKeyChecking=no "$SERVER" "
     -v $REMOTE_DIR/.env:/app/.env:ro \
     -v $REMOTE_DIR/db:/app/db \
     trafy-landing:latest
+  # Nginx Proxy Manager ile ayni networke bagla (502 onlemek icin)
+  docker network connect dmrandevu_dmrandevu-network $CONTAINER
   sleep 2
   docker logs $CONTAINER --tail 5
 "
