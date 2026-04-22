@@ -24,6 +24,20 @@ app.use('/api/admin', require('./routes/admin'));
 app.use('/api/invoices', require('./routes/invoices'));
 app.use('/api/products', require('./routes/products'));
 app.use('/api/career-applications', require('./routes/career'));
+app.use('/api/app', require('./routes/app'));
+
+// /app/* statik dosyalari icin cache + indirme header'lari (express.static'ten once mount edilmeli)
+app.use('/app', (req, res, next) => {
+  if (req.path === '/update.json' || req.path === '/update.json.sig') {
+    res.set('Cache-Control', 'no-cache, must-revalidate');
+  } else if (req.path.endsWith('.apk')) {
+    // Versiyonlu dosya isimleri immutable -- agressif cachele
+    res.set('Cache-Control', 'public, max-age=31536000, immutable');
+    res.set('Content-Type', 'application/vnd.android.package-archive');
+    res.set('Content-Disposition', `attachment; filename="${path.basename(req.path)}"`);
+  }
+  next();
+});
 
 // Statik dosyalar
 app.use(express.static(path.join(__dirname, 'public')));

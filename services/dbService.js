@@ -77,6 +77,24 @@ function initDatabase() {
       message TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+
+    CREATE TABLE IF NOT EXISTS apk_versions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      version_code INTEGER NOT NULL UNIQUE,
+      version_name TEXT NOT NULL,
+      file_name TEXT NOT NULL,
+      file_size INTEGER NOT NULL,
+      sha256 TEXT NOT NULL,
+      mandatory INTEGER NOT NULL DEFAULT 0,
+      release_notes_tr TEXT,
+      release_notes_en TEXT,
+      is_current INTEGER NOT NULL DEFAULT 0,
+      uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      uploaded_by TEXT,
+      signer_cert_sha256 TEXT NOT NULL,
+      signature_scheme TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_apk_current ON apk_versions(is_current);
   `);
 
   // career_applications icin migrasyon (eski DB'ye linkedin ekle)
@@ -328,6 +346,77 @@ function getAllCareerApplications() {
     .all();
 }
 
+// ===== APK surumleri =====
+
+function getAllApkVersions() {
+  return getDb()
+    .prepare('SELECT * FROM apk_versions ORDER BY version_code DESC')
+    .all();
+}
+
+function getCurrentApkVersion() {
+  return getDb()
+    .prepare('SELECT * FROM apk_versions WHERE is_current = 1 LIMIT 1')
+    .get();
+}
+
+function getApkVersionById(id) {
+  return getDb().prepare('SELECT * FROM apk_versions WHERE id = ?').get(id);
+}
+
+function getApkVersionByCode(versionCode) {
+  return getDb().prepare('SELECT * FROM apk_versions WHERE version_code = ?').get(versionCode);
+}
+
+function insertApkVersionAndActivate(row) {
+  const database = getDb();
+  const tx = database.transaction(() => {
+    database.prepare('UPDATE apk_versions SET is_current = 0').run();
+    const r = database.prepare(`
+      INSERT INTO apk_versions
+        (version_code, version_name, file_name, file_size, sha256, mandatory,
+         release_notes_tr, release_notes_en, is_current, uploaded_by,
+         signer_cert_sha256, signature_scheme)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
+    `).run(
+      row.version_code,
+      row.version_name,
+      row.file_name,
+      row.file_size,
+      row.sha256,
+      row.mandatory ? 1 : 0,
+      row.release_notes_tr || null,
+      row.release_notes_en || null,
+      row.uploaded_by || null,
+      row.signer_cert_sha256,
+      row.signature_scheme
+    );
+    return r.lastInsertRowid;
+  });
+  return tx();
+}
+
+function activateApkVersion(id) {
+  const database = getDb();
+  const tx = database.transaction(() => {
+    const target = database.prepare('SELECT id FROM apk_versions WHERE id = ?').get(id);
+    if (!target) return { ok: false, reason: 'not_found' };
+    database.prepare('UPDATE apk_versions SET is_current = 0').run();
+    database.prepare('UPDATE apk_versions SET is_current = 1 WHERE id = ?').run(id);
+    return { ok: true };
+  });
+  return tx();
+}
+
+function deleteApkVersion(id) {
+  const database = getDb();
+  const row = database.prepare('SELECT * FROM apk_versions WHERE id = ?').get(id);
+  if (!row) return { ok: false, reason: 'not_found' };
+  if (row.is_current) return { ok: false, reason: 'is_current', row };
+  database.prepare('DELETE FROM apk_versions WHERE id = ?').run(id);
+  return { ok: true, row };
+}
+
 module.exports = {
   initDatabase,
   getDb,
@@ -348,5 +437,13 @@ module.exports = {
   releaseStockForOrder,
   // Kariyer
   createCareerApplication,
-  getAllCareerApplications
+  getAllCareerApplications,
+  // APK
+  getAllApkVersions,
+  getCurrentApkVersion,
+  getApkVersionById,
+  getApkVersionByCode,
+  insertApkVersionAndActivate,
+  activateApkVersion,
+  deleteApkVersion
 };

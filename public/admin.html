@@ -47,6 +47,61 @@
                 <button type="button" class="admin-tab active" data-tab="orders">Siparisler</button>
                 <button type="button" class="admin-tab" data-tab="products">Urunler &amp; Stok</button>
                 <button type="button" class="admin-tab" data-tab="careers">Kariyer Basvurulari</button>
+                <button type="button" class="admin-tab" data-tab="apk">Android Uygulamasi</button>
+            </div>
+
+            <!-- ANDROID UYGULAMA SEKMESI -->
+            <div class="admin-tab-content hidden" id="tab-apk">
+                <div class="admin-filters">
+                    <h2 style="margin:0;flex:1;">Android APK Surum Yonetimi</h2>
+                    <button type="button" class="btn btn-primary" id="refresh-apk-btn">Yenile</button>
+                </div>
+
+                <div class="apk-status-panel" id="apk-status-panel">
+                    <div class="apk-status-tile"><span class="label">Yukleniyor...</span></div>
+                </div>
+
+                <h3 style="margin-top:1.5rem;">Yeni Surum Yukle</h3>
+                <form class="apk-upload-form" id="apk-upload-form" enctype="multipart/form-data">
+                    <div class="full">
+                        <label for="apk-file">APK dosyasi (.apk, max 100MB)</label>
+                        <input type="file" id="apk-file" name="apk" accept=".apk,application/vnd.android.package-archive" required>
+                    </div>
+                    <div>
+                        <label for="apk-version-code">versionCode</label>
+                        <input type="number" id="apk-version-code" name="versionCode" min="1" required placeholder="orn: 2">
+                    </div>
+                    <div>
+                        <label for="apk-version-name">versionName</label>
+                        <input type="text" id="apk-version-name" name="versionName" required placeholder="orn: 1.1.0" pattern="[0-9.A-Za-z\-_+]{1,32}">
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" id="apk-mandatory" name="mandatory">
+                            Zorunlu guncelleme (kullaniciya 'Sonra' butonu gosterme)
+                        </label>
+                    </div>
+                    <div></div>
+                    <div>
+                        <label for="apk-notes-tr">Surum notlari (TR)</label>
+                        <textarea id="apk-notes-tr" name="releaseNotesTr" placeholder="- Daha hizli medya yukleme&#10;- Hata duzeltmeleri"></textarea>
+                    </div>
+                    <div>
+                        <label for="apk-notes-en">Release notes (EN)</label>
+                        <textarea id="apk-notes-en" name="releaseNotesEn" placeholder="- Faster media loading&#10;- Bug fixes"></textarea>
+                    </div>
+                    <div class="full" style="display:flex;gap:0.5rem;align-items:center;">
+                        <button type="submit" class="btn btn-primary" id="apk-upload-btn">Yukle ve Aktif Et</button>
+                        <span id="apk-upload-status" style="color:#6b7280;font-size:0.85rem;"></span>
+                    </div>
+                    <div class="apk-progress" id="apk-progress"><div class="apk-progress-bar" id="apk-progress-bar"></div></div>
+                    <div class="apk-result" id="apk-result"></div>
+                </form>
+
+                <h3 style="margin-top:1.5rem;">Surum Gecmisi</h3>
+                <div class="apk-versions-table" id="apk-versions-list">
+                    <p class="admin-empty">Yukleniyor...</p>
+                </div>
             </div>
 
             <!-- KARIYER SEKMESI -->

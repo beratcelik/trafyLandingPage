@@ -22,7 +22,7 @@ function securityMiddleware(app) {
   // CORS -- sadece kendi domain'imiz
   app.use(cors({
     origin: process.env.DOMAIN || 'https://trafy.tr',
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', 'X-Admin-Secret']
   }));
 

@@ -1,0 +1,6 @@
+*.apk
+update.json
+update.json.sig
+update.json.tmp
+update.json.sig.tmp
+_tmp/

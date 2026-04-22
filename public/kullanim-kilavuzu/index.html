@@ -43,6 +43,10 @@
                 <div class="pill">📶 Wi-Fi & Uygulama</div>
                 <div class="pill">⚙️ Menü</div>
                 <div class="pill">🛠️ Sorun Giderme</div>
+                <a class="pill" id="apk-download-guide" href="/api/app/latest" rel="nofollow" download
+                   style="background:#0071e3;color:#fff;text-decoration:none;cursor:pointer;">
+                    📱 Android Uygulaması <span id="apk-version-guide"></span>
+                </a>
             </div>
         </section>
 
@@ -83,6 +87,16 @@
     </dialog>
 
     <script src="guide.js"></script>
+    <script>
+        fetch('/api/app/info', { cache: 'no-store' })
+            .then(r => r.ok ? r.json() : null)
+            .then(info => {
+                if (!info) return;
+                const span = document.getElementById('apk-version-guide');
+                if (span) span.textContent = `v${info.versionName}`;
+            })
+            .catch(() => {});
+    </script>
 </body>
 
 </html>

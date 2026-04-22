@@ -2334,3 +2334,118 @@ th:first-child {
     font-size: 0.8rem;
     color: #374151;
 }
+
+/* ===== APK indir butonlari ===== */
+.hero-cta-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 1rem;
+}
+.hero-apk-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.95rem;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s ease;
+}
+.hero-apk-btn:hover { background: rgba(255,255,255,0.22); }
+.hero-apk-btn i { width: 18px; height: 18px; }
+.apk-version-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+}
+.apk-version-inline { color: #888; font-size: 0.85em; margin-left: 4px; }
+
+/* ===== Admin -- Uygulama sekmesi ===== */
+.apk-status-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.apk-status-tile { display: flex; flex-direction: column; gap: 4px; }
+.apk-status-tile .label { font-size: 0.75rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; }
+.apk-status-tile .value { font-size: 0.9rem; font-family: ui-monospace, Menlo, monospace; word-break: break-all; }
+.apk-status-tile.ok .value { color: #059669; }
+.apk-status-tile.bad .value { color: #dc2626; }
+
+.apk-upload-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.apk-upload-form .full { grid-column: 1 / -1; }
+.apk-upload-form label { display: block; font-size: 0.85rem; color: #374151; margin-bottom: 4px; }
+.apk-upload-form input[type="text"],
+.apk-upload-form input[type="number"],
+.apk-upload-form input[type="file"],
+.apk-upload-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+.apk-upload-form textarea { min-height: 70px; font-family: ui-monospace, Menlo, monospace; }
+.apk-progress {
+    grid-column: 1 / -1;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+    display: none;
+}
+.apk-progress.active { display: block; }
+.apk-progress-bar { height: 100%; background: #2563eb; width: 0%; transition: width 0.2s ease; }
+.apk-result {
+    grid-column: 1 / -1;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: none;
+}
+.apk-result.show { display: block; }
+.apk-result.ok { background: #ecfdf5; color: #047857; border: 1px solid #6ee7b7; }
+.apk-result.err { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; white-space: pre-wrap; }
+
+.apk-versions-table .badge-current { background: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; }
+.apk-versions-table .badge-archived { background: #f3f4f6; color: #6b7280; padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; }
+.apk-versions-table code.sha-short { font-size: 0.75rem; cursor: pointer; }
+.apk-versions-table .row-actions { display: flex; gap: 0.4rem; }
+
+/* Kullanim kilavuzu sayfasi pill */
+.guide-apk-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 6px 12px;
+    background: #1f2937;
+    color: #fff;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-left: 6px;
+}
+.guide-apk-pill:hover { background: #111827; }

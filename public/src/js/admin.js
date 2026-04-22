@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target === 'products') loadProducts();
             if (target === 'orders') loadOrders();
             if (target === 'careers') loadCareers();
+            if (target === 'apk') loadApk();
         });
     });
 
@@ -326,6 +327,198 @@ document.addEventListener('DOMContentLoaded', () => {
                 </tbody>
             </table>
         `;
+    }
+
+    // ===== ANDROID APK YONETIMI =====
+
+    const apkRefreshBtn = document.getElementById('refresh-apk-btn');
+    if (apkRefreshBtn) apkRefreshBtn.addEventListener('click', loadApk);
+
+    async function loadApk() {
+        const [status, versions] = await Promise.all([
+            apiCall('/api/admin/apk/status'),
+            apiCall('/api/admin/apk/versions')
+        ]);
+        if (!status || !versions) return;
+        renderApkStatus(status);
+        renderApkVersions(versions);
+    }
+
+    function renderApkStatus(s) {
+        const c = document.getElementById('apk-status-panel');
+        const signerOk = s.signer.keyExists && s.signer.publicKeyB64;
+        const verifierOk = s.verifier && s.verifier.ok;
+        c.innerHTML = `
+            <div class="apk-status-tile ${signerOk ? 'ok' : 'bad'}">
+                <span class="label">Manifest imzalama anahtari</span>
+                <span class="value">${signerOk ? 'AKTIF' : 'EKSIK -- yukleme devre disi'}</span>
+                ${s.signer.publicKeyB64 ? `<span class="label" title="${escapeHtml(s.signer.publicKeyB64)}">Public key (Android'e yapistirin)</span><code style="font-size:0.7rem;cursor:pointer;" data-copy="${escapeHtml(s.signer.publicKeyB64)}">${escapeHtml(s.signer.publicKeyB64.slice(0, 24))}...</code>` : ''}
+            </div>
+            <div class="apk-status-tile ${verifierOk ? 'ok' : 'bad'}">
+                <span class="label">apksigner</span>
+                <span class="value">${verifierOk ? escapeHtml(s.verifier.version) : 'BULUNAMADI'}</span>
+                ${!verifierOk ? `<span class="label">${escapeHtml((s.verifier && s.verifier.error) || 'apksigner kurulu degil')}</span>` : ''}
+            </div>
+            <div class="apk-status-tile ${s.pinnedCert ? 'ok' : 'bad'}">
+                <span class="label">Pinli release sertifikasi</span>
+                <span class="value" title="${escapeHtml(s.pinnedCert || '')}">${s.pinnedCert ? escapeHtml(s.pinnedCert.slice(0, 24)) + '...' : 'Pinlenmemis (ilk yuklemede otomatik pinlenir)'}</span>
+            </div>
+            <div class="apk-status-tile">
+                <span class="label">Aktif Surum</span>
+                <span class="value">${s.current ? `v${escapeHtml(s.current.version_name)} (vc${s.current.version_code})` : 'Yok'}</span>
+            </div>
+        `;
+        // Public key copy
+        c.querySelectorAll('[data-copy]').forEach(el => {
+            el.addEventListener('click', () => {
+                navigator.clipboard.writeText(el.dataset.copy).then(() => {
+                    const orig = el.textContent;
+                    el.textContent = 'Kopyalandi';
+                    setTimeout(() => { el.textContent = orig; }, 1200);
+                });
+            });
+        });
+    }
+
+    function formatBytes(b) {
+        if (b < 1024) return b + ' B';
+        if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+        return (b/(1024*1024)).toFixed(2) + ' MB';
+    }
+
+    function renderApkVersions(versions) {
+        const c = document.getElementById('apk-versions-list');
+        if (!versions || versions.length === 0) {
+            c.innerHTML = '<p class="admin-empty">Henuz yuklu APK yok.</p>';
+            return;
+        }
+        c.innerHTML = `
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Boyut</th>
+                        <th>SHA-256</th>
+                        <th>Imza</th>
+                        <th>Tarih</th>
+                        <th>Notlar</th>
+                        <th>Durum</th>
+                        <th>Islem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${versions.map(v => `
+                        <tr data-id="${v.id}">
+                            <td><strong>${escapeHtml(v.version_name)}</strong> <small>(vc${v.version_code})</small></td>
+                            <td>${formatBytes(v.file_size)}</td>
+                            <td><code class="sha-short" data-copy="${escapeHtml(v.sha256)}" title="${escapeHtml(v.sha256)}">${escapeHtml(v.sha256.slice(0, 12))}...</code></td>
+                            <td>${escapeHtml(v.signature_scheme || '-')}</td>
+                            <td>${formatDate(v.uploaded_at)}</td>
+                            <td style="max-width:240px;white-space:normal;font-size:0.8rem;">${escapeHtml((v.release_notes_tr || '').slice(0, 80))}${(v.release_notes_tr || '').length > 80 ? '...' : ''}</td>
+                            <td>${v.is_current ? '<span class="badge-current">AKTIF</span>' : '<span class="badge-archived">arsiv</span>'}</td>
+                            <td class="row-actions">
+                                ${!v.is_current ? `<button type="button" class="btn btn-outline btn-sm apk-activate-btn" data-id="${v.id}">Aktif Et</button>` : ''}
+                                ${!v.is_current ? `<button type="button" class="btn btn-outline btn-sm apk-delete-btn" data-id="${v.id}" style="color:#dc2626;border-color:#dc2626;">Sil</button>` : ''}
+                                <a href="/app/${escapeHtml(v.file_name)}" class="btn btn-outline btn-sm" download>Indir</a>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+        c.querySelectorAll('[data-copy]').forEach(el => {
+            el.addEventListener('click', () => {
+                navigator.clipboard.writeText(el.dataset.copy).then(() => {
+                    const orig = el.textContent;
+                    el.textContent = 'Kopyalandi';
+                    setTimeout(() => { el.textContent = orig; }, 1200);
+                });
+            });
+        });
+        c.querySelectorAll('.apk-activate-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                if (!confirm('Bu surumu aktif yapmak istediginize emin misiniz? Tum kullanicilara guncelleme cagrisi gidecektir.')) return;
+                btn.disabled = true;
+                const r = await apiCall(`/api/admin/apk/activate/${btn.dataset.id}`, { method: 'POST' });
+                if (r && r.success) loadApk();
+                else alert('Hata: ' + (r && r.error || 'bilinmiyor'));
+            });
+        });
+        c.querySelectorAll('.apk-delete-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                if (!confirm('Bu surum kalici olarak silinecek. Devam edilsin mi?')) return;
+                btn.disabled = true;
+                const r = await apiCall(`/api/admin/apk/${btn.dataset.id}`, { method: 'DELETE' });
+                if (r && r.success) loadApk();
+                else alert('Hata: ' + (r && r.error || 'bilinmiyor'));
+            });
+        });
+    }
+
+    // Upload form -- XHR ile (progress icin)
+    const uploadForm = document.getElementById('apk-upload-form');
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fileEl = document.getElementById('apk-file');
+            if (!fileEl.files || !fileEl.files[0]) { alert('APK dosyasi secin'); return; }
+            const fd = new FormData(uploadForm);
+
+            const btn = document.getElementById('apk-upload-btn');
+            const status = document.getElementById('apk-upload-status');
+            const progress = document.getElementById('apk-progress');
+            const bar = document.getElementById('apk-progress-bar');
+            const result = document.getElementById('apk-result');
+
+            btn.disabled = true;
+            status.textContent = 'Yukleniyor...';
+            progress.classList.add('active');
+            bar.style.width = '0%';
+            result.classList.remove('show', 'ok', 'err');
+            result.textContent = '';
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api/admin/apk/upload');
+            xhr.setRequestHeader('X-Admin-Secret', adminKey);
+            xhr.upload.onprogress = (ev) => {
+                if (ev.lengthComputable) {
+                    const pct = (ev.loaded / ev.total) * 100;
+                    bar.style.width = pct.toFixed(1) + '%';
+                    if (pct >= 99) status.textContent = 'Sunucu dogruluyor (apksigner)...';
+                }
+            };
+            xhr.onload = () => {
+                btn.disabled = false;
+                progress.classList.remove('active');
+                let body;
+                try { body = JSON.parse(xhr.responseText); } catch (_e) { body = { error: 'Sunucu yanitini ayrıstırılamadı: ' + xhr.responseText.slice(0, 500) }; }
+                if (xhr.status >= 200 && xhr.status < 300 && body.success) {
+                    result.classList.add('show', 'ok');
+                    result.textContent = `Basarili: v${body.manifest.versionName} (vc${body.manifest.versionCode}) yayinlandi.\nSHA-256: ${body.sha256}\nImza semasi: ${body.verify.scheme}${body.verify.bootstrap ? '\nUYARI: ilk yukleme -- sertifika otomatik pinlendi. Lutfen .env icine APK_RELEASE_CERT_SHA256 ekleyin.' : ''}`;
+                    status.textContent = 'Tamam';
+                    uploadForm.reset();
+                    loadApk();
+                } else {
+                    result.classList.add('show', 'err');
+                    let msg = body.error || ('HTTP ' + xhr.status);
+                    if (body.code === 'CERT_MISMATCH' && body.details) {
+                        msg += `\nBeklenen: ${body.details.expected}\nGelen:    ${body.details.actual}`;
+                    } else if (body.details && typeof body.details === 'string') {
+                        msg += '\n\n' + body.details;
+                    }
+                    result.textContent = msg;
+                    status.textContent = 'Hata';
+                }
+            };
+            xhr.onerror = () => {
+                btn.disabled = false;
+                progress.classList.remove('active');
+                result.classList.add('show', 'err');
+                result.textContent = 'Ag hatasi -- yukleme basarisiz';
+                status.textContent = 'Hata';
+            };
+            xhr.send(fd);
+        });
     }
 
     // Yardimci fonksiyonlar

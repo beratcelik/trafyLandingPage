@@ -48,6 +48,25 @@ document.addEventListener("DOMContentLoaded", () => {
         setText("price-tres-pro", "10000 TL");
     };
 
+    // Aktif APK surumunu cek (yoksa sessizce gec; butonlar zaten gizlenebilir)
+    fetch('/api/app/info', { cache: 'no-store' })
+        .then((res) => res.ok ? res.json() : null)
+        .then((info) => {
+            const heroBtn = document.getElementById('apk-download-hero');
+            const footerLink = document.getElementById('apk-download-footer');
+            const hv = document.getElementById('apk-version-hero');
+            const fv = document.getElementById('apk-version-footer');
+            if (!info) {
+                // Henuz APK yayinlanmamis -- butonlari gizle
+                if (heroBtn) heroBtn.style.display = 'none';
+                if (footerLink && footerLink.parentElement) footerLink.parentElement.style.display = 'none';
+                return;
+            }
+            if (hv) hv.textContent = `v${info.versionName}`;
+            if (fv) fv.textContent = `v${info.versionName}`;
+        })
+        .catch(() => {});
+
     // Admin panelinden yonetilen fiyatlari DB'den cek
     fetch("/api/products", { cache: "no-store" })
         .then((res) => {
