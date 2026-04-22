@@ -107,3 +107,94 @@ APKSIGNER_PATH=/opt/android-sdk/build-tools/34.0.0/apksigner
 | `V1_ONLY` | 422 | v2/v3 imza yok (sadece v1) -- Janus saldirisina acik |
 | `DEBUG_KEYSTORE` | 422 | CN=Android Debug -- release build degil |
 | `CERT_MISMATCH` | 422 | SHA-256 pinned cert ile eslesmiyor |
+
+## 3. Agent / CI Upload API
+
+Headless build sistemleri (Android dev agent'i, GitHub Actions, vb.) icin admin paneline girmeden APK yuklemek icin dar kapsamli endpoint.
+
+### Auth
+
+`X-APK-Upload-Token` header. Token `ADMIN_SECRET`'tan AYRI bir env var'dir (`APK_UPLOAD_TOKEN`). En az 32 karakter olmalidir.
+
+Sizma durumunda etki dar:
+- Saldirgan SADECE APK yukleyebilir; orders/products/careers route'larina erisemez
+- Yuklenen APK pinli release sertifikasi ile imzali olmali (yoksa server reddeder) -- saldirganin keystore'unuzu da ele gecirmesi gerekir
+- Manifest ed25519 ile imzaliysa Android tarafinda dogrulanir; private key sunucuda kalir, token sizmasiyla ele gecmez
+- Tum yuklemeler audit log'a yazilir (`[apk-upload] ok uploader=agent ip=... versionCode=...`)
+
+### GET /api/app/upload/preflight
+
+Yukleme oncesi durum kontrolu (apk dosyasi tasimaz). Token gecerli mi, server hazir mi, sonraki versionCode kac olmali?
+
+```bash
+curl -s https://trafy.tr/api/app/upload/preflight \
+  -H "X-APK-Upload-Token: $TRAFY_APK_TOKEN"
+```
+
+Cevap:
+```json
+{
+  "ok": true,
+  "signerReady": true,
+  "verifierReady": true,
+  "verifierVersion": "0.9",
+  "pinnedCert": "AB:CD:...",
+  "currentVersionCode": 3,
+  "currentVersionName": "1.2.0",
+  "nextSuggestedVersionCode": 4
+}
+```
+
+`ok: false` olursa yuklemeyin -- ya signing key eksik ya apksigner kurulu degil. Build kirilmasi yerine guzel bir hata don.
+
+### POST /api/app/upload
+
+`multipart/form-data` ile APK + metadata yukle.
+
+```bash
+curl -s -X POST https://trafy.tr/api/app/upload \
+  -H "X-APK-Upload-Token: $TRAFY_APK_TOKEN" \
+  -F "apk=@app/build/outputs/apk/release/app-release.apk" \
+  -F "versionCode=4" \
+  -F "versionName=1.2.0" \
+  -F "mandatory=false" \
+  -F "releaseNotesTr=- Daha hizli medya yukleme%0A- Hata duzeltmeleri" \
+  -F "releaseNotesEn=- Faster media loading%0A- Bug fixes"
+```
+
+Basari cevabi:
+```json
+{
+  "success": true,
+  "id": 4,
+  "fileName": "trafy-1.2.0-vc4.apk",
+  "sha256": "...",
+  "downloadUrl": "/app/trafy-1.2.0-vc4.apk",
+  "verify": { "scheme": "v3", "certFingerprint": "AB:CD:...", "bootstrap": false },
+  "manifest": { "...": "imzali update.json icerigi" }
+}
+```
+
+Hata cevabi (HTTP 4xx) JSON: `{ "error": "...", "code": "CERT_MISMATCH", "details": {...} }`.
+
+### CI ornek (GitHub Actions)
+
+```yaml
+- name: Upload APK to Trafy
+  run: |
+    curl --fail -X POST https://trafy.tr/api/app/upload \
+      -H "X-APK-Upload-Token: ${{ secrets.TRAFY_APK_TOKEN }}" \
+      -F "apk=@${{ github.workspace }}/app-release.apk" \
+      -F "versionCode=${{ steps.version.outputs.code }}" \
+      -F "versionName=${{ steps.version.outputs.name }}" \
+      -F "releaseNotesEn=$(git log -1 --pretty=%B)"
+```
+
+`--fail` ile non-2xx olursa adim kirilir; CI yesil olmaz.
+
+### Token yonetimi
+
+- Olusturma: `openssl rand -hex 32`
+- Server: `.env` icine `APK_UPLOAD_TOKEN=...` ekle ve `docker restart trafy-landing`
+- Agent / CI: gizli secret olarak sakla (asla repo'ya commit'lenmemeli)
+- Rotasyon: yeni token uret, server'da degistir + restart, agent secret'ini guncelle. Anlik gecis (eski token hemen reddedilir).
