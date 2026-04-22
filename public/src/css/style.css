@@ -2341,7 +2341,8 @@ th:first-child {
     flex-direction: column;
     gap: 0.75rem;
     align-items: center;
-    margin-top: 1rem;
+    width: fit-content;
+    margin: 1rem auto 0;
 }
 .hero-apk-btn {
     display: inline-flex;
