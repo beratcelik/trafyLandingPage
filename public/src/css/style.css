@@ -2340,7 +2340,7 @@ th:first-child {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 1rem;
 }
 .hero-apk-btn {
