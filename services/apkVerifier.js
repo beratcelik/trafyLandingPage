@@ -17,15 +17,20 @@ function getApksignerPath() {
 }
 
 function getPinnedFingerprint() {
+  // Her zaman bare hex (64 karakter, kolonsuz, uppercase) don --
+  // formatFingerprint sonradan kolonlari ekler. Env var iki yazimda da olabilir
+  // (AB:CD:.. veya ABCD..) -- ikisini de normalize et.
+  let raw = null;
   if (process.env.APK_RELEASE_CERT_SHA256) {
-    return process.env.APK_RELEASE_CERT_SHA256.toUpperCase().replace(/\s/g, '');
+    raw = process.env.APK_RELEASE_CERT_SHA256;
+  } else {
+    try {
+      if (fs.existsSync(PINNED_FILE)) raw = fs.readFileSync(PINNED_FILE, 'utf8');
+    } catch (_e) { /* ignore */ }
   }
-  try {
-    if (fs.existsSync(PINNED_FILE)) {
-      return fs.readFileSync(PINNED_FILE, 'utf8').trim().toUpperCase();
-    }
-  } catch (_e) { /* ignore */ }
-  return null;
+  if (!raw) return null;
+  const hex = raw.toUpperCase().replace(/[^0-9A-F]/g, '');
+  return hex.length === 64 ? hex : null;
 }
 
 function bootstrapPinnedFingerprint(fp) {
