@@ -1,6 +1,17 @@
 document.addEventListener('DOMContentLoaded', async () => {
     lucide.createIcons();
 
+    // Satis acikken checkout.html ustundeki "odemeli satis henuz acik degil" banner'i gizle
+    fetch('/api/products/config', { cache: 'no-store' })
+        .then(res => res.ok ? res.json() : null)
+        .then(cfg => {
+            if (cfg && cfg.salesEnabled) {
+                const banner = document.querySelector('.preorder-banner');
+                if (banner) banner.style.display = 'none';
+            }
+        })
+        .catch(() => {});
+
     // Urun gorseli haritalamasi (sadece gorsel yolu icin -- fiyat ve ad API'den gelir)
     const IMAGES = {
         'deneme': './images/t_logo.png',

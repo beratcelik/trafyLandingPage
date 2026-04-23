@@ -48,6 +48,32 @@ document.addEventListener("DOMContentLoaded", () => {
         setText("price-tres-pro", "10000 TL");
     };
 
+    // Satis acik mi? Butonlari ve banner'i buna gore guncelle
+    function applySalesUI(salesOn) {
+        const banner = document.querySelector('.preorder-banner');
+        if (banner) banner.style.display = salesOn ? 'none' : '';
+
+        const links = document.querySelectorAll('a[href*="on-siparis.html?product="], a[href*="checkout.html?product="]');
+        links.forEach(a => {
+            const m = a.getAttribute('href').match(/product=([^&]+)/);
+            if (!m) return;
+            const slug = m[1];
+            const page = salesOn ? 'checkout.html' : 'on-siparis.html';
+            a.setAttribute('href', `${page}?product=${slug}`);
+
+            if (a.classList.contains('buy-btn')) {
+                a.textContent = salesOn ? 'Şimdi Satın Al' : 'Ön Sipariş Ver';
+            } else {
+                a.textContent = salesOn ? 'Satın Al' : 'Ön Sipariş';
+            }
+        });
+    }
+
+    fetch('/api/products/config', { cache: 'no-store' })
+        .then(res => res.ok ? res.json() : null)
+        .then(cfg => { if (cfg) applySalesUI(!!cfg.salesEnabled); })
+        .catch(() => {});
+
     // Aktif APK surumunu cek (yoksa sessizce gec; butonlar zaten gizlenebilir)
     fetch('/api/app/info', { cache: 'no-store' })
         .then((res) => res.ok ? res.json() : null)

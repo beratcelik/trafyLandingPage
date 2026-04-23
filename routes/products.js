@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAllProducts } = require('../services/dbService');
+const { getAllProducts, isSalesEnabled } = require('../services/dbService');
 
 // GET /api/products -- Public urun listesi (fiyatlar + stok durumu)
 router.get('/', (req, res) => {
@@ -13,6 +13,11 @@ router.get('/', (req, res) => {
     inStock: p.stock > 0
   }));
   res.json(products);
+});
+
+// GET /api/products/config -- Public site durumu (satis acik mi vb.)
+router.get('/config', (req, res) => {
+  res.json({ salesEnabled: isSalesEnabled() });
 });
 
 module.exports = router;
