@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Otomatik giris
     if (adminKey) {
         showPanel();
+        loadSalesToggle();
         loadOrders();
         loadProducts();
     }
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (target === 'products') loadProducts();
             if (target === 'orders') loadOrders();
+            if (target === 'preorders') loadPreorders();
             if (target === 'careers') loadCareers();
             if (target === 'apk') loadApk();
         });
@@ -46,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!adminKey) return;
         sessionStorage.setItem('adminKey', adminKey);
         showPanel();
+        loadSalesToggle();
         loadOrders();
         loadProducts();
     }
@@ -86,14 +89,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // Siparisleri yukle
     async function loadOrders() {
         const status = document.getElementById('filter-status').value;
-        const params = status ? `?status=${status}` : '';
-        const orders = await apiCall(`/api/admin/orders${params}`);
+        const mock = document.getElementById('filter-mock').checked;
+        const params = new URLSearchParams();
+        if (status) params.set('status', status);
+        if (mock) params.set('mock', 'true');
+        const qs = params.toString() ? `?${params.toString()}` : '';
+        const orders = await apiCall(`/api/admin/orders${qs}`);
         if (!orders) return;
         renderOrders(orders);
     }
 
     document.getElementById('refresh-btn').addEventListener('click', loadOrders);
     document.getElementById('filter-status').addEventListener('change', loadOrders);
+    document.getElementById('filter-mock').addEventListener('change', loadOrders);
+
+    // Mock siparis musterilerine toplu mailto
+    document.getElementById('mock-mailto-btn').addEventListener('click', async () => {
+        const mockOrders = await apiCall('/api/admin/orders?mock=true');
+        if (!mockOrders) return;
+        const emails = [...new Set(mockOrders.map(o => o.customer_email).filter(Boolean))];
+        if (emails.length === 0) { alert('Mock siparis bulunamadi.'); return; }
+        const subject = encodeURIComponent('Trafy siparisiniz hakkinda');
+        const body = encodeURIComponent(
+            'Merhaba,\n\nWeb sitemizde yaptiginiz siparis teknik bir sorun nedeniyle odeme tahsil edilmeden kaydedilmis. Bu durum icin ozur dileriz.\n\nSatis sistemimiz tekrar acildiginda siparisinizi onceliklendirmek icin ekteki on-siparis formunu doldurmanizi rica ederiz: https://trafy.tr/on-siparis.html\n\nTrafy Ekibi'
+        );
+        window.location.href = `mailto:?bcc=${emails.join(',')}&subject=${subject}&body=${body}`;
+    });
+
+    // Mock siparisleri IPTAL yap
+    document.getElementById('cancel-mock-btn').addEventListener('click', async () => {
+        if (!confirm('Tum mock (MOCK-) siparisleri IPTAL olarak isaretlenecek. Devam?')) return;
+        const r = await apiCall('/api/admin/orders/cancel-mock', { method: 'POST' });
+        if (r && r.success) {
+            alert(`${r.cancelled} mock siparis IPTAL edildi.`);
+            loadOrders();
+        } else {
+            alert('Hata: ' + (r && r.error || 'bilinmiyor'));
+        }
+    });
 
     function renderOrders(orders) {
         const container = document.getElementById('orders-list');
@@ -116,9 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     </tr>
                 </thead>
                 <tbody>
-                    ${orders.map(o => `
-                        <tr>
-                            <td>${escapeHtml(o.id)}</td>
+                    ${orders.map(o => {
+                        const isMock = (o.param_transaction_id || '').startsWith('MOCK-');
+                        return `
+                        <tr${isMock ? ' style="background:#fff7e6;"' : ''}>
+                            <td>${escapeHtml(o.id)}${isMock ? ' <span class="mock-badge" style="background:#f59e0b;color:#fff;font-size:0.7rem;padding:1px 6px;border-radius:4px;margin-left:4px;">MOCK</span>' : ''}</td>
                             <td>${escapeHtml(o.product_name)} x${o.quantity}</td>
                             <td>${escapeHtml(o.customer_name)}</td>
                             <td>${formatPrice(o.total_price / 100)}</td>
@@ -126,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td>${formatDate(o.created_at)}</td>
                             <td><button class="btn btn-outline btn-sm detail-btn" data-order-id="${escapeHtml(o.id)}">Detay</button></td>
                         </tr>
-                    `).join('')}
+                    `;}).join('')}
                 </tbody>
             </table>
         `;
@@ -200,6 +235,142 @@ document.addEventListener('DOMContentLoaded', () => {
             loadOrders();
         }
     });
+
+    // ===== SATIS DURUMU TOGGLE =====
+
+    async function loadSalesToggle() {
+        const settings = await apiCall('/api/admin/settings');
+        if (!settings) return;
+        applySalesToggleUI(settings.sales_enabled);
+    }
+
+    function applySalesToggleUI(enabled) {
+        const panel = document.getElementById('sales-toggle-panel');
+        const toggle = document.getElementById('sales-toggle');
+        const label = document.getElementById('sales-status-label');
+        const hint = document.getElementById('sales-toggle-hint');
+        if (!panel || !toggle || !label || !hint) return;
+        toggle.checked = !!enabled;
+        panel.classList.toggle('sales-on', !!enabled);
+        label.textContent = enabled ? 'ACIK (odeme aliniyor)' : 'KAPALI (on-siparis moduna yonlendiriliyor)';
+        hint.textContent = enabled ? 'Satisi durdurmak icin kapat' : 'Satisi acmak icin ac';
+    }
+
+    const salesToggleEl = document.getElementById('sales-toggle');
+    if (salesToggleEl) {
+        salesToggleEl.addEventListener('change', async () => {
+            const enabled = salesToggleEl.checked;
+            const confirmMsg = enabled
+                ? 'Satislar acilacak: checkout + Param odeme + fatura aktif olacak. Devam?'
+                : 'Satislar kapatilacak: checkout 503 donecek, musteri on-siparis formuna yonlendirilecek. Devam?';
+            if (!confirm(confirmMsg)) {
+                salesToggleEl.checked = !enabled;
+                return;
+            }
+            salesToggleEl.disabled = true;
+            const r = await apiCall('/api/admin/settings/sales-enabled', {
+                method: 'POST',
+                body: JSON.stringify({ enabled })
+            });
+            salesToggleEl.disabled = false;
+            if (r && r.success) {
+                applySalesToggleUI(r.sales_enabled);
+            } else {
+                salesToggleEl.checked = !enabled;
+                alert('Hata: ' + (r && r.error || 'bilinmiyor'));
+            }
+        });
+    }
+
+    // ===== ON SIPARIS YONETIMI =====
+
+    const preordersRefreshBtn = document.getElementById('refresh-preorders-btn');
+    if (preordersRefreshBtn) preordersRefreshBtn.addEventListener('click', loadPreorders);
+
+    const preorderMailtoBtn = document.getElementById('preorder-mailto-btn');
+    if (preorderMailtoBtn) preorderMailtoBtn.addEventListener('click', () => {
+        const selected = document.querySelectorAll('#preorders-list .preorder-select:checked');
+        let emails;
+        if (selected.length > 0) {
+            emails = [...new Set(Array.from(selected).map(el => el.dataset.email))];
+        } else {
+            const all = document.querySelectorAll('#preorders-list .preorder-select');
+            emails = [...new Set(Array.from(all).map(el => el.dataset.email))];
+        }
+        if (emails.length === 0) { alert('On-siparis bulunamadi.'); return; }
+        const subject = encodeURIComponent('Trafy satislarimiz acildi');
+        const body = encodeURIComponent(
+            'Merhaba,\n\nTrafy urunlerine olan ilginiz icin tesekkur ederiz. Satislarimiz acildi; web sitemizden siparis verebilirsiniz:\nhttps://trafy.tr\n\nTrafy Ekibi'
+        );
+        window.location.href = `mailto:?bcc=${emails.join(',')}&subject=${subject}&body=${body}`;
+    });
+
+    async function loadPreorders() {
+        const preorders = await apiCall('/api/admin/preorders');
+        if (!preorders) return;
+        renderPreorders(preorders);
+    }
+
+    function renderPreorders(preorders) {
+        const container = document.getElementById('preorders-list');
+        if (!preorders || preorders.length === 0) {
+            container.innerHTML = '<p class="admin-empty">Henuz on-siparis yok.</p>';
+            return;
+        }
+        container.innerHTML = `
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="preorder-select-all"></th>
+                        <th>Ad</th>
+                        <th>Telefon</th>
+                        <th>E-posta</th>
+                        <th>Urun</th>
+                        <th>Adet</th>
+                        <th>Not</th>
+                        <th>Tarih</th>
+                        <th>Durum</th>
+                        <th>Islem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${preorders.map(p => `
+                        <tr data-id="${p.id}">
+                            <td><input type="checkbox" class="preorder-select" data-email="${escapeHtml(p.customer_email)}"></td>
+                            <td>${escapeHtml(p.customer_name)}</td>
+                            <td>${escapeHtml(p.customer_phone)}</td>
+                            <td><a href="mailto:${escapeHtml(p.customer_email)}">${escapeHtml(p.customer_email)}</a></td>
+                            <td>${escapeHtml(p.product_name)}</td>
+                            <td>${p.quantity}</td>
+                            <td style="max-width:220px;white-space:normal;">${escapeHtml(p.note || '-')}</td>
+                            <td>${formatDate(p.created_at)}</td>
+                            <td>${p.notified ? '<span style="color:#10b981;">Bilgilendirildi</span>' : '<span style="color:#6b7280;">Beklemede</span>'}</td>
+                            <td><button class="btn btn-outline btn-sm preorder-notify-btn" data-id="${p.id}" data-notified="${p.notified ? 1 : 0}">${p.notified ? 'Geri Al' : 'Isaretle'}</button></td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+
+        const selectAll = document.getElementById('preorder-select-all');
+        if (selectAll) {
+            selectAll.addEventListener('change', () => {
+                container.querySelectorAll('.preorder-select').forEach(el => { el.checked = selectAll.checked; });
+            });
+        }
+
+        container.querySelectorAll('.preorder-notify-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const id = btn.dataset.id;
+                const newValue = btn.dataset.notified === '1' ? false : true;
+                const r = await apiCall(`/api/admin/preorders/${id}/notified`, {
+                    method: 'POST',
+                    body: JSON.stringify({ notified: newValue })
+                });
+                if (r && r.success) loadPreorders();
+            });
+        });
+    }
 
     // ===== URUN YONETIMI =====
 

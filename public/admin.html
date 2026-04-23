@@ -45,9 +45,22 @@
             <!-- Sekmeler -->
             <div class="admin-tabs">
                 <button type="button" class="admin-tab active" data-tab="orders">Siparisler</button>
+                <button type="button" class="admin-tab" data-tab="preorders">On Siparisler</button>
                 <button type="button" class="admin-tab" data-tab="products">Urunler &amp; Stok</button>
                 <button type="button" class="admin-tab" data-tab="careers">Kariyer Basvurulari</button>
                 <button type="button" class="admin-tab" data-tab="apk">Android Uygulamasi</button>
+            </div>
+
+            <!-- ON SIPARISLER SEKMESI -->
+            <div class="admin-tab-content hidden" id="tab-preorders">
+                <div class="admin-filters">
+                    <h2 style="margin:0;flex:1;">On Siparisler</h2>
+                    <button type="button" class="btn btn-outline" id="preorder-mailto-btn">Secililere Mail Gonder</button>
+                    <button type="button" class="btn btn-primary" id="refresh-preorders-btn">Yenile</button>
+                </div>
+                <div class="admin-preorders" id="preorders-list">
+                    <p class="admin-empty">Yukleniyor...</p>
+                </div>
             </div>
 
             <!-- ANDROID UYGULAMA SEKMESI -->
@@ -128,6 +141,22 @@
 
             <!-- SIPARISLER SEKMESI -->
             <div class="admin-tab-content" id="tab-orders">
+
+            <!-- Satis Durumu Toggle -->
+            <div class="sales-toggle-panel" id="sales-toggle-panel">
+                <div class="sales-toggle-info">
+                    <strong>Satis Durumu:</strong>
+                    <span id="sales-status-label">...</span>
+                </div>
+                <div class="sales-toggle-controls">
+                    <span class="sales-toggle-hint" id="sales-toggle-hint"></span>
+                    <label class="switch">
+                        <input type="checkbox" id="sales-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
             <!-- Filtreler -->
             <div class="admin-filters">
                 <select id="filter-status">
@@ -139,6 +168,11 @@
                     <option value="TESLIM_EDILDI">Teslim Edildi</option>
                     <option value="IPTAL">Iptal</option>
                 </select>
+                <label style="display:flex;align-items:center;gap:6px;font-size:0.9rem;">
+                    <input type="checkbox" id="filter-mock"> Sadece MOCK
+                </label>
+                <button type="button" class="btn btn-outline" id="mock-mailto-btn">Mock Musterilerine Mail</button>
+                <button type="button" class="btn btn-outline" id="cancel-mock-btn">Mock Siparisleri IPTAL Yap</button>
                 <button type="button" class="btn btn-primary" id="refresh-btn">Yenile</button>
             </div>
 

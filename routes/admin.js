@@ -7,6 +7,8 @@ const {
   getAllOrders, getOrderFull, updateOrderStatus,
   getAllProducts, getProduct, updateProduct,
   commitStockForOrder, releaseStockForOrder,
+  getAllPreorders, markPreorderNotified, cancelAllMockOrders,
+  getSetting, setSetting, isSalesEnabled,
   getAllCareerApplications,
   getAllApkVersions, getCurrentApkVersion, getApkVersionById,
   activateApkVersion, deleteApkVersion
@@ -24,9 +26,49 @@ router.get('/orders', (req, res) => {
   if (req.query.status) filters.status = req.query.status;
   if (req.query.date_from) filters.date_from = req.query.date_from;
   if (req.query.date_to) filters.date_to = req.query.date_to;
+  if (req.query.mock === 'true') filters.mock = true;
 
   const orders = getAllOrders(filters);
   res.json(orders);
+});
+
+// ===== Ayarlar =====
+
+// GET /api/admin/settings -- Tum ayarlar
+router.get('/settings', (req, res) => {
+  res.json({
+    sales_enabled: isSalesEnabled()
+  });
+});
+
+// POST /api/admin/settings/sales-enabled -- Satis akisi toggle
+router.post('/settings/sales-enabled', (req, res) => {
+  const enabled = req.body && req.body.enabled === true;
+  setSetting('sales_enabled', enabled ? 'true' : 'false');
+  res.json({ success: true, sales_enabled: enabled });
+});
+
+// ===== On-siparis yonetimi =====
+
+// GET /api/admin/preorders -- Tum on-siparisler
+router.get('/preorders', (req, res) => {
+  res.json(getAllPreorders());
+});
+
+// POST /api/admin/preorders/:id/notified -- On-siparisi "haber verildi" isaretle
+router.post('/preorders/:id/notified', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  if (!Number.isInteger(id)) return res.status(400).json({ error: 'Gecersiz id' });
+  const notified = req.body && req.body.notified === false ? false : true;
+  const changes = markPreorderNotified(id, notified);
+  if (changes === 0) return res.status(404).json({ error: 'On-siparis bulunamadi' });
+  res.json({ success: true, notified });
+});
+
+// POST /api/admin/orders/cancel-mock -- Tum mock siparisleri IPTAL yap
+router.post('/orders/cancel-mock', (req, res) => {
+  const count = cancelAllMockOrders();
+  res.json({ success: true, cancelled: count });
 });
 
 // GET /api/admin/orders/:id -- Siparis detay

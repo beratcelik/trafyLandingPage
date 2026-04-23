@@ -220,6 +220,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const data = await response.json();
 
+            if (response.status === 503 && data.redirect) {
+                // Satış kapalıysa ön-sipariş formuna yönlendir
+                const params = new URLSearchParams({ product: productSlug });
+                window.location.href = data.redirect + '?' + params.toString();
+                return;
+            }
+
             if (!response.ok) {
                 throw new Error(data.errors ? data.errors.join(', ') : data.error || 'Siparis olusturulamadi');
             }

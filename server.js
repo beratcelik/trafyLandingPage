@@ -19,6 +19,7 @@ app.use('/api/', rateLimiter);
 
 // API Routes
 app.use('/api/orders', require('./routes/orders'));
+app.use('/api/preorders', require('./routes/preorders'));
 app.use('/api/payment', require('./routes/payment'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api/invoices', require('./routes/invoices'));

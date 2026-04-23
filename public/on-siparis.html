@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trafy - On Siparis</title>
+    <link rel="stylesheet" href="src/css/normalize.css">
+    <link rel="stylesheet" href="src/css/style.css?v=20260422a">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<header>
+    <div class="header-center">
+        <div class="logo-wrapper">
+            <a href="/"><img src="./images/t_logo.png" alt="Trafy Logo" style="height: 64px;"></a>
+        </div>
+        <nav>
+            <a href="/">Ana Sayfa</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="checkout-section">
+        <div class="checkout-container">
+
+            <div class="preorder-intro">
+                <h2>On Siparis</h2>
+                <p class="preorder-lead">
+                    Satislarimiz cok yakinda acilacak. On siparis verirseniz,
+                    sevkiyat acildiginda sizi ilk biz bilgilendirir ve siparisinizi onceliklendiririz.
+                </p>
+            </div>
+
+            <div class="checkout-step" id="preorder-form-wrap">
+                <div class="order-summary-card">
+                    <img id="product-image" src="" alt="" class="checkout-product-image">
+                    <div class="order-summary-info">
+                        <h3 id="product-name"></h3>
+                        <p class="product-unit-price">Liste fiyati: <span id="product-price"></span></p>
+                        <div class="quantity-selector">
+                            <label for="quantity">Adet:</label>
+                            <button type="button" class="qty-btn" id="qty-minus">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="10" readonly>
+                            <button type="button" class="qty-btn" id="qty-plus">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="preorder-form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Ad Soyad *</label>
+                        <input type="text" id="name" name="name" required minlength="2" maxlength="100" placeholder="Adiniz Soyadiniz">
+                        <span class="form-error"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Telefon *</label>
+                            <input type="tel" id="phone" name="phone" required pattern="05\d{9}" placeholder="05xxxxxxxxx" maxlength="11">
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-posta *</label>
+                            <input type="email" id="email" name="email" required placeholder="ornek@email.com">
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="note">Not (opsiyonel)</label>
+                        <textarea id="note" name="note" maxlength="500" rows="2" placeholder="Eklemek istediginiz bir sey var mi?"></textarea>
+                    </div>
+                    <p class="secure-note">
+                        <i data-lucide="info" style="width:14px;height:14px;"></i>
+                        Bu formda odeme alinmaz. Sadece iletisim bilgilerinizi kaydediyoruz.
+                    </p>
+                    <button type="submit" class="btn btn-primary checkout-next" id="submit-btn">On Siparis Ver</button>
+                </form>
+            </div>
+
+            <div class="preorder-step hidden" id="preorder-success">
+                <div class="result-card success">
+                    <i data-lucide="check-circle" style="width:64px;height:64px;color:#22c55e;"></i>
+                    <h2>Tesekkurler!</h2>
+                    <p id="success-message">On siparisiniz alindi. Satislar acildiginda size haber verecegiz.</p>
+                    <a href="/" class="btn btn-primary">Ana Sayfa</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Trafy. Tum haklari saklidir.</p>
+</footer>
+
+<script src="src/js/on-siparis.js?v=20260422a"></script>
+</body>
+</html>

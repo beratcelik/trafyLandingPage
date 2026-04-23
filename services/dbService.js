@@ -78,6 +78,25 @@ function initDatabase() {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
+    CREATE TABLE IF NOT EXISTS settings (
+      key TEXT PRIMARY KEY,
+      value TEXT,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS preorders (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      product_slug TEXT NOT NULL,
+      product_name TEXT NOT NULL,
+      quantity INTEGER DEFAULT 1,
+      customer_name TEXT NOT NULL,
+      customer_phone TEXT NOT NULL,
+      customer_email TEXT NOT NULL,
+      note TEXT,
+      notified INTEGER DEFAULT 0,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE IF NOT EXISTS apk_versions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       version_code INTEGER NOT NULL UNIQUE,
@@ -116,6 +135,13 @@ function initDatabase() {
   addCol('invoice_status', 'TEXT');
   addCol('invoice_error', 'TEXT');
   addCol('stock_committed', 'INTEGER DEFAULT 0');
+
+  // Seed: sales_enabled ayarini env'den (ilk kurulum icin). Sonradan admin panelden degisir.
+  const hasSales = database.prepare("SELECT value FROM settings WHERE key = 'sales_enabled'").get();
+  if (!hasSales) {
+    const initial = process.env.SALES_ENABLED === 'false' ? 'false' : 'true';
+    database.prepare("INSERT INTO settings (key, value) VALUES ('sales_enabled', ?)").run(initial);
+  }
 
   // Seed: urunler tablosu bos ise varsayilanlarla doldur
   const productCount = database.prepare('SELECT COUNT(*) as c FROM products').get().c;
@@ -304,6 +330,9 @@ function getAllOrders(filters = {}) {
     conditions.push('created_at <= ?');
     values.push(filters.date_to);
   }
+  if (filters.mock === true) {
+    conditions.push("param_transaction_id LIKE 'MOCK-%'");
+  }
 
   if (conditions.length > 0) {
     query += ' WHERE ' + conditions.join(' AND ');
@@ -314,9 +343,73 @@ function getAllOrders(filters = {}) {
   return stmt.all(...values);
 }
 
+function cancelAllMockOrders() {
+  const stmt = getDb().prepare(
+    "UPDATE orders SET status='IPTAL', updated_at=CURRENT_TIMESTAMP WHERE param_transaction_id LIKE 'MOCK-%' AND status != 'IPTAL'"
+  );
+  return stmt.run().changes;
+}
+
 function countRecentOrders(phone, email, minutes = 60) {
   const stmt = getDb().prepare(`
     SELECT COUNT(*) as count FROM orders
+    WHERE (customer_phone = ? OR customer_email = ?)
+    AND created_at >= datetime('now', ?)
+  `);
+  return stmt.get(phone, email, `-${minutes} minutes`).count;
+}
+
+// ===== Ayarlar (settings) =====
+
+function getSetting(key, defaultValue = null) {
+  const row = getDb().prepare('SELECT value FROM settings WHERE key = ?').get(key);
+  return row ? row.value : defaultValue;
+}
+
+function setSetting(key, value) {
+  getDb().prepare(`
+    INSERT INTO settings (key, value, updated_at) VALUES (?, ?, CURRENT_TIMESTAMP)
+    ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = CURRENT_TIMESTAMP
+  `).run(key, String(value));
+}
+
+function isSalesEnabled() {
+  return getSetting('sales_enabled', 'true') !== 'false';
+}
+
+// ===== On-siparis (preorder) =====
+
+function createPreorder(data) {
+  const product = getProduct(data.product);
+  if (!product) return { error: 'invalid_product' };
+  const quantity = Math.max(1, Math.min(10, parseInt(data.quantity) || 1));
+
+  const stmt = getDb().prepare(`
+    INSERT INTO preorders (product_slug, product_name, quantity,
+      customer_name, customer_phone, customer_email, note)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `);
+  const r = stmt.run(
+    data.product, product.name, quantity,
+    data.name.trim(), data.phone.trim(), data.email.trim(),
+    data.note ? data.note.trim() : null
+  );
+  return { id: r.lastInsertRowid, productName: product.name, quantity };
+}
+
+function getAllPreorders() {
+  return getDb().prepare(
+    'SELECT id, product_slug, product_name, quantity, customer_name, customer_phone, customer_email, note, notified, created_at FROM preorders ORDER BY created_at DESC'
+  ).all();
+}
+
+function markPreorderNotified(id, notified = true) {
+  return getDb().prepare('UPDATE preorders SET notified = ? WHERE id = ?').run(notified ? 1 : 0, id).changes;
+}
+
+function countRecentPreorders(phone, email, minutes = 60) {
+  const stmt = getDb().prepare(`
+    SELECT COUNT(*) as count FROM preorders
     WHERE (customer_phone = ? OR customer_email = ?)
     AND created_at >= datetime('now', ?)
   `);
@@ -435,6 +528,16 @@ module.exports = {
   incrementStock,
   commitStockForOrder,
   releaseStockForOrder,
+  // On-siparis
+  createPreorder,
+  getAllPreorders,
+  markPreorderNotified,
+  countRecentPreorders,
+  cancelAllMockOrders,
+  // Ayarlar
+  getSetting,
+  setSetting,
+  isSalesEnabled,
   // Kariyer
   createCareerApplication,
   getAllCareerApplications,

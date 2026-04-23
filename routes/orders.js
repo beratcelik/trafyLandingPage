@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const { orderRateLimiter } = require('../middleware/security');
-const { createOrder, getOrderStatus, countRecentOrders, getAllProducts } = require('../services/dbService');
+const { createOrder, getOrderStatus, countRecentOrders, getAllProducts, isSalesEnabled } = require('../services/dbService');
 const { initiatePayment } = require('../services/paramService');
 
 // Dogrulama kurallari
@@ -35,6 +35,14 @@ const orderValidation = [
 
 // POST /api/orders -- Yeni siparis olustur
 router.post('/', orderRateLimiter, orderValidation, async (req, res) => {
+  // Satış geçici olarak kapalıysa ön-sipariş formuna yönlendir
+  if (!isSalesEnabled()) {
+    return res.status(503).json({
+      error: 'Satış geçici olarak durduruldu. Lütfen ön sipariş formunu kullanın.',
+      redirect: '/on-siparis.html'
+    });
+  }
+
   // Dogrulama hatalari
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
